@@ -1,0 +1,448 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8229BFD71B5E2A7600C40181 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8229BFD61B5E2A7600C40181 /* main.m */; };
+		8229BFDA1B5E2A7600C40181 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8229BFD91B5E2A7600C40181 /* AppDelegate.m */; };
+		8229BFDD1B5E2A7600C40181 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8229BFDC1B5E2A7600C40181 /* ViewController.m */; };
+		8229BFE01B5E2A7600C40181 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8229BFDE1B5E2A7600C40181 /* Main.storyboard */; };
+		8229BFE21B5E2A7600C40181 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8229BFE11B5E2A7600C40181 /* Images.xcassets */; };
+		8229BFE51B5E2A7600C40181 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8229BFE31B5E2A7600C40181 /* LaunchScreen.xib */; };
+		8229BFF11B5E2A7600C40181 /* MaterialFormKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8229BFF01B5E2A7600C40181 /* MaterialFormKitDemoTests.m */; };
+		8229C0011B5E2B0000C40181 /* MFTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8229C0001B5E2B0000C40181 /* MFTextField.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8229BFEB1B5E2A7600C40181 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8229BFC91B5E2A7600C40181 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8229BFD01B5E2A7600C40181;
+			remoteInfo = MaterialFormKitDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8229BFD11B5E2A7600C40181 /* MaterialFormKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaterialFormKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8229BFD51B5E2A7600C40181 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8229BFD61B5E2A7600C40181 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8229BFD81B5E2A7600C40181 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		8229BFD91B5E2A7600C40181 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		8229BFDB1B5E2A7600C40181 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		8229BFDC1B5E2A7600C40181 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8229BFDF1B5E2A7600C40181 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8229BFE11B5E2A7600C40181 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8229BFE41B5E2A7600C40181 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		8229BFEA1B5E2A7600C40181 /* MaterialFormKitDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MaterialFormKitDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8229BFEF1B5E2A7600C40181 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8229BFF01B5E2A7600C40181 /* MaterialFormKitDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaterialFormKitDemoTests.m; sourceTree = "<group>"; };
+		8229BFFF1B5E2B0000C40181 /* MFTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTextField.h; sourceTree = "<group>"; };
+		8229C0001B5E2B0000C40181 /* MFTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTextField.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8229BFCE1B5E2A7600C40181 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8229BFE71B5E2A7600C40181 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8229BFC81B5E2A7600C40181 = {
+			isa = PBXGroup;
+			children = (
+				8229BFFE1B5E2B0000C40181 /* MaterialFormKit */,
+				8229BFD31B5E2A7600C40181 /* MaterialFormKitDemo */,
+				8229BFED1B5E2A7600C40181 /* MaterialFormKitDemoTests */,
+				8229BFD21B5E2A7600C40181 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8229BFD21B5E2A7600C40181 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8229BFD11B5E2A7600C40181 /* MaterialFormKitDemo.app */,
+				8229BFEA1B5E2A7600C40181 /* MaterialFormKitDemoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8229BFD31B5E2A7600C40181 /* MaterialFormKitDemo */ = {
+			isa = PBXGroup;
+			children = (
+				8229BFD81B5E2A7600C40181 /* AppDelegate.h */,
+				8229BFD91B5E2A7600C40181 /* AppDelegate.m */,
+				8229BFDB1B5E2A7600C40181 /* ViewController.h */,
+				8229BFDC1B5E2A7600C40181 /* ViewController.m */,
+				8229BFDE1B5E2A7600C40181 /* Main.storyboard */,
+				8229BFE11B5E2A7600C40181 /* Images.xcassets */,
+				8229BFE31B5E2A7600C40181 /* LaunchScreen.xib */,
+				8229BFD41B5E2A7600C40181 /* Supporting Files */,
+			);
+			path = MaterialFormKitDemo;
+			sourceTree = "<group>";
+		};
+		8229BFD41B5E2A7600C40181 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8229BFD51B5E2A7600C40181 /* Info.plist */,
+				8229BFD61B5E2A7600C40181 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8229BFED1B5E2A7600C40181 /* MaterialFormKitDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				8229BFF01B5E2A7600C40181 /* MaterialFormKitDemoTests.m */,
+				8229BFEE1B5E2A7600C40181 /* Supporting Files */,
+			);
+			path = MaterialFormKitDemoTests;
+			sourceTree = "<group>";
+		};
+		8229BFEE1B5E2A7600C40181 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8229BFEF1B5E2A7600C40181 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8229BFFE1B5E2B0000C40181 /* MaterialFormKit */ = {
+			isa = PBXGroup;
+			children = (
+				8229BFFF1B5E2B0000C40181 /* MFTextField.h */,
+				8229C0001B5E2B0000C40181 /* MFTextField.m */,
+			);
+			name = MaterialFormKit;
+			path = ../MaterialFormKit;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8229BFD01B5E2A7600C40181 /* MaterialFormKitDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8229BFF41B5E2A7600C40181 /* Build configuration list for PBXNativeTarget "MaterialFormKitDemo" */;
+			buildPhases = (
+				8229BFCD1B5E2A7600C40181 /* Sources */,
+				8229BFCE1B5E2A7600C40181 /* Frameworks */,
+				8229BFCF1B5E2A7600C40181 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MaterialFormKitDemo;
+			productName = MaterialFormKitDemo;
+			productReference = 8229BFD11B5E2A7600C40181 /* MaterialFormKitDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8229BFE91B5E2A7600C40181 /* MaterialFormKitDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8229BFF71B5E2A7600C40181 /* Build configuration list for PBXNativeTarget "MaterialFormKitDemoTests" */;
+			buildPhases = (
+				8229BFE61B5E2A7600C40181 /* Sources */,
+				8229BFE71B5E2A7600C40181 /* Frameworks */,
+				8229BFE81B5E2A7600C40181 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8229BFEC1B5E2A7600C40181 /* PBXTargetDependency */,
+			);
+			name = MaterialFormKitDemoTests;
+			productName = MaterialFormKitDemoTests;
+			productReference = 8229BFEA1B5E2A7600C40181 /* MaterialFormKitDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8229BFC91B5E2A7600C40181 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Stephanie Sharp";
+				TargetAttributes = {
+					8229BFD01B5E2A7600C40181 = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+					8229BFE91B5E2A7600C40181 = {
+						CreatedOnToolsVersion = 6.3.2;
+						TestTargetID = 8229BFD01B5E2A7600C40181;
+					};
+				};
+			};
+			buildConfigurationList = 8229BFCC1B5E2A7600C40181 /* Build configuration list for PBXProject "MaterialFormKitDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8229BFC81B5E2A7600C40181;
+			productRefGroup = 8229BFD21B5E2A7600C40181 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8229BFD01B5E2A7600C40181 /* MaterialFormKitDemo */,
+				8229BFE91B5E2A7600C40181 /* MaterialFormKitDemoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8229BFCF1B5E2A7600C40181 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8229BFE01B5E2A7600C40181 /* Main.storyboard in Resources */,
+				8229BFE51B5E2A7600C40181 /* LaunchScreen.xib in Resources */,
+				8229BFE21B5E2A7600C40181 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8229BFE81B5E2A7600C40181 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8229BFCD1B5E2A7600C40181 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8229C0011B5E2B0000C40181 /* MFTextField.m in Sources */,
+				8229BFDD1B5E2A7600C40181 /* ViewController.m in Sources */,
+				8229BFDA1B5E2A7600C40181 /* AppDelegate.m in Sources */,
+				8229BFD71B5E2A7600C40181 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8229BFE61B5E2A7600C40181 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8229BFF11B5E2A7600C40181 /* MaterialFormKitDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8229BFEC1B5E2A7600C40181 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8229BFD01B5E2A7600C40181 /* MaterialFormKitDemo */;
+			targetProxy = 8229BFEB1B5E2A7600C40181 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8229BFDE1B5E2A7600C40181 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8229BFDF1B5E2A7600C40181 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8229BFE31B5E2A7600C40181 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8229BFE41B5E2A7600C40181 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8229BFF21B5E2A7600C40181 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8229BFF31B5E2A7600C40181 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8229BFF51B5E2A7600C40181 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MaterialFormKitDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8229BFF61B5E2A7600C40181 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MaterialFormKitDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		8229BFF81B5E2A7600C40181 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MaterialFormKitDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MaterialFormKitDemo.app/MaterialFormKitDemo";
+			};
+			name = Debug;
+		};
+		8229BFF91B5E2A7600C40181 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MaterialFormKitDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MaterialFormKitDemo.app/MaterialFormKitDemo";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8229BFCC1B5E2A7600C40181 /* Build configuration list for PBXProject "MaterialFormKitDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8229BFF21B5E2A7600C40181 /* Debug */,
+				8229BFF31B5E2A7600C40181 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8229BFF41B5E2A7600C40181 /* Build configuration list for PBXNativeTarget "MaterialFormKitDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8229BFF51B5E2A7600C40181 /* Debug */,
+				8229BFF61B5E2A7600C40181 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8229BFF71B5E2A7600C40181 /* Build configuration list for PBXNativeTarget "MaterialFormKitDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8229BFF81B5E2A7600C40181 /* Debug */,
+				8229BFF91B5E2A7600C40181 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8229BFC91B5E2A7600C40181 /* Project object */;
+}
