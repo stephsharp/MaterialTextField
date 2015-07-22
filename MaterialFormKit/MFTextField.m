@@ -104,18 +104,16 @@
 {
     [super layoutSubviews];
 
-    if (!self.floatingLabelEnabled) {
-        return;
-    }
-
-    if (![self isEmpty]) {
-        self.floatingLabel.textColor = self.isFirstResponder ? self.tintColor : self.floatingLabelColor;
-        if (self.floatingLabel.alpha == 0.0f) {
-            [self showFloatingLabel];
+    if (self.floatingLabelEnabled) {
+        if (![self isEmpty]) {
+            self.floatingLabel.textColor = self.isFirstResponder ? self.tintColor : self.floatingLabelColor;
+            if (self.floatingLabel.alpha == 0.0f) {
+                [self showFloatingLabel];
+            }
         }
-    }
-    else {
-        [self hideFloatingLabel];
+        else {
+            [self hideFloatingLabel];
+        }
     }
 
     self.bottomBorderLayer.backgroundColor = self.isFirstResponder ? self.tintColor.CGColor : self.bottomBorderColor.CGColor;

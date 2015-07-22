@@ -16,8 +16,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="placeholder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L9E-2s-gFY" customClass="MFTextField">
-                                <rect key="frame" x="32" y="69" width="280" height="50"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="placeholder" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L9E-2s-gFY" customClass="MFTextField">
+                                <rect key="frame" x="32" y="69" width="280" height="70"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="floatingLabelEnabled" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="placeholder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vrI-fI-vIo" customClass="MFTextField">
+                                <rect key="frame" x="32" y="190" width="280" height="50"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
