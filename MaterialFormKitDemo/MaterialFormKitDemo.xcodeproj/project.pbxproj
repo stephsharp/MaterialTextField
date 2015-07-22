@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		8229BFD71B5E2A7600C40181 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8229BFD61B5E2A7600C40181 /* main.m */; };
 		8229BFDA1B5E2A7600C40181 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8229BFD91B5E2A7600C40181 /* AppDelegate.m */; };
-		8229BFDD1B5E2A7600C40181 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8229BFDC1B5E2A7600C40181 /* ViewController.m */; };
+		8229BFDD1B5E2A7600C40181 /* MaterialFormKitDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8229BFDC1B5E2A7600C40181 /* MaterialFormKitDemoViewController.m */; };
 		8229BFE01B5E2A7600C40181 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8229BFDE1B5E2A7600C40181 /* Main.storyboard */; };
 		8229BFE21B5E2A7600C40181 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8229BFE11B5E2A7600C40181 /* Images.xcassets */; };
 		8229BFE51B5E2A7600C40181 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8229BFE31B5E2A7600C40181 /* LaunchScreen.xib */; };
@@ -34,8 +34,8 @@
 		8229BFD61B5E2A7600C40181 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8229BFD81B5E2A7600C40181 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8229BFD91B5E2A7600C40181 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8229BFDB1B5E2A7600C40181 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8229BFDC1B5E2A7600C40181 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8229BFDB1B5E2A7600C40181 /* MaterialFormKitDemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaterialFormKitDemoViewController.h; sourceTree = "<group>"; };
+		8229BFDC1B5E2A7600C40181 /* MaterialFormKitDemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaterialFormKitDemoViewController.m; sourceTree = "<group>"; };
 		8229BFDF1B5E2A7600C40181 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8229BFE11B5E2A7600C40181 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8229BFE41B5E2A7600C40181 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -90,8 +90,8 @@
 			children = (
 				8229BFD81B5E2A7600C40181 /* AppDelegate.h */,
 				8229BFD91B5E2A7600C40181 /* AppDelegate.m */,
-				8229BFDB1B5E2A7600C40181 /* ViewController.h */,
-				8229BFDC1B5E2A7600C40181 /* ViewController.m */,
+				8229BFDB1B5E2A7600C40181 /* MaterialFormKitDemoViewController.h */,
+				8229BFDC1B5E2A7600C40181 /* MaterialFormKitDemoViewController.m */,
 				8229BFDE1B5E2A7600C40181 /* Main.storyboard */,
 				8229BFE11B5E2A7600C40181 /* Images.xcassets */,
 				8229BFE31B5E2A7600C40181 /* LaunchScreen.xib */,
@@ -239,7 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8229C0011B5E2B0000C40181 /* MFTextField.m in Sources */,
-				8229BFDD1B5E2A7600C40181 /* ViewController.m in Sources */,
+				8229BFDD1B5E2A7600C40181 /* MaterialFormKitDemoViewController.m in Sources */,
 				8229BFDA1B5E2A7600C40181 /* AppDelegate.m in Sources */,
 				824DA4A01B5F7A4D00F189F1 /* UIColor+MaterialFormKit.m in Sources */,
 				8229BFD71B5E2A7600C40181 /* main.m in Sources */,

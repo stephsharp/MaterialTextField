@@ -7,6 +7,7 @@
 //
 
 #import "MFTextField.h"
+#import "UIColor+MaterialFormKit.h"
 
 @interface MFTextField ()
 
@@ -50,14 +51,19 @@
 
 - (void)setDefaults
 {
-    self.padding = CGSizeMake(5.0f, 5.0f);
+    self.padding = CGSizeMake(0.0f, 5.0f);
+
     self.floatingLabelEnabled = YES;
     self.floatingLabelBottomMargin = 2.0f;
-    self.floatingLabelColor = [UIColor lightGrayColor];
-    self.floatingLabelFont = [UIFont boldSystemFontOfSize:10.0f];
+    self.floatingLabelColor = [UIColor mf_darkGrayColor];
+    self.floatingLabelDisabledColor = [UIColor mf_midGrayColor];
+    self.floatingLabelFont = [self defaultFloatingLabelFont];
+
     self.bottomBorderHeight = 1.0f;
-    self.bottomBorderColor = [UIColor lightGrayColor];
-    self.bottomBorderHighlightedHeight = 1.75f;
+    self.bottomBorderColor = [UIColor mf_lightGrayColor];
+    self.bottomBorderEditingHeight = 1.75f;
+
+    self.errorColor = [UIColor mf_redColor];
 }
 
 - (void)setupBottomBorder
@@ -117,12 +123,18 @@
     }
 
     self.bottomBorderLayer.backgroundColor = self.isFirstResponder ? self.tintColor.CGColor : self.bottomBorderColor.CGColor;
-    CGFloat borderHeight = self.isFirstResponder ? self.bottomBorderHighlightedHeight : self.bottomBorderHeight;
+    CGFloat borderHeight = self.isFirstResponder ? self.bottomBorderEditingHeight : self.bottomBorderHeight;
     self.bottomBorderLayer.frame = CGRectMake(0, self.layer.bounds.size.height - borderHeight,
                                               self.layer.bounds.size.width, borderHeight);
 }
 
 #pragma mark - Floating placeholder label
+
+- (UIFont *)defaultFloatingLabelFont
+{
+    UIFontDescriptor * fontDescriptor = [self.font.fontDescriptor fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitBold];
+    return [UIFont fontWithDescriptor:fontDescriptor size:12.0f];
+}
 
 - (void)showFloatingLabel
 {

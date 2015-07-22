@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Material Form Kit Demo View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MaterialFormKitDemoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -36,6 +36,10 @@
                             <outletCollection property="gestureRecognizers" destination="c8Q-pN-pP5" appends="YES" id="9Q4-no-6ng"/>
                         </connections>
                     </view>
+                    <connections>
+                        <outlet property="leftAlignedTextField" destination="vrI-fI-vIo" id="cVN-vP-3Ab"/>
+                        <outlet property="rightAlignedTextField" destination="L9E-2s-gFY" id="G5z-Xz-exG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="c8Q-pN-pP5">
