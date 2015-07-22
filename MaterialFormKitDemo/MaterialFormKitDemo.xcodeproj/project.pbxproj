@@ -15,6 +15,7 @@
 		8229BFE51B5E2A7600C40181 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8229BFE31B5E2A7600C40181 /* LaunchScreen.xib */; };
 		8229BFF11B5E2A7600C40181 /* MaterialFormKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8229BFF01B5E2A7600C40181 /* MaterialFormKitDemoTests.m */; };
 		8229C0011B5E2B0000C40181 /* MFTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8229C0001B5E2B0000C40181 /* MFTextField.m */; };
+		824DA4A01B5F7A4D00F189F1 /* UIColor+MaterialFormKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 824DA49F1B5F7A4D00F189F1 /* UIColor+MaterialFormKit.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,8 @@
 		8229BFF01B5E2A7600C40181 /* MaterialFormKitDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaterialFormKitDemoTests.m; sourceTree = "<group>"; };
 		8229BFFF1B5E2B0000C40181 /* MFTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTextField.h; sourceTree = "<group>"; };
 		8229C0001B5E2B0000C40181 /* MFTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTextField.m; sourceTree = "<group>"; };
+		824DA49E1B5F7A4D00F189F1 /* UIColor+MaterialFormKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MaterialFormKit.h"; sourceTree = "<group>"; };
+		824DA49F1B5F7A4D00F189F1 /* UIColor+MaterialFormKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MaterialFormKit.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,8 @@
 			children = (
 				8229BFFF1B5E2B0000C40181 /* MFTextField.h */,
 				8229C0001B5E2B0000C40181 /* MFTextField.m */,
+				824DA49E1B5F7A4D00F189F1 /* UIColor+MaterialFormKit.h */,
+				824DA49F1B5F7A4D00F189F1 /* UIColor+MaterialFormKit.m */,
 			);
 			name = MaterialFormKit;
 			path = ../MaterialFormKit;
@@ -236,6 +241,7 @@
 				8229C0011B5E2B0000C40181 /* MFTextField.m in Sources */,
 				8229BFDD1B5E2A7600C40181 /* ViewController.m in Sources */,
 				8229BFDA1B5E2A7600C40181 /* AppDelegate.m in Sources */,
+				824DA4A01B5F7A4D00F189F1 /* UIColor+MaterialFormKit.m in Sources */,
 				8229BFD71B5E2A7600C40181 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,6 +439,7 @@
 				8229BFF61B5E2A7600C40181 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8229BFF71B5E2A7600C40181 /* Build configuration list for PBXNativeTarget "MaterialFormKitDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -441,6 +448,7 @@
 				8229BFF91B5E2A7600C40181 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
