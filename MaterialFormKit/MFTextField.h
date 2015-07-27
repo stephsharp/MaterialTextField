@@ -11,18 +11,21 @@
 IB_DESIGNABLE
 @interface MFTextField : UITextField
 
-@property (nonatomic) IBInspectable CGSize padding;
+@property (nonatomic) IBInspectable CGSize labelPadding;
+@property (nonatomic) IBInspectable CGFloat bottomPadding;
 
-@property (nonatomic) IBInspectable BOOL floatingLabelEnabled;
-@property (nonatomic) IBInspectable CGFloat floatingLabelBottomMargin;
-@property (nonatomic) IBInspectable UIColor *floatingLabelColor;
-@property (nonatomic) IBInspectable UIColor *floatingLabelDisabledColor;
-@property (nonatomic) UIFont *floatingLabelFont;
+@property (nonatomic) IBInspectable BOOL floatingPlaceholderEnabled;
+@property (nonatomic) IBInspectable UIColor *floatingPlaceholderColor;
+@property (nonatomic) IBInspectable UIColor *floatingPlaceholderDisabledColor;
+@property (nonatomic) UIFont *labelFont;
 
 @property (nonatomic) IBInspectable CGFloat bottomBorderHeight;
 @property (nonatomic) IBInspectable CGFloat bottomBorderEditingHeight;
 @property (nonatomic) IBInspectable UIColor *bottomBorderColor;
 
+@property (nonatomic) IBInspectable BOOL errorsEnabled;
 @property (nonatomic) IBInspectable UIColor *errorColor;
+@property (nonatomic) IBInspectable NSString *errorMessage;
+@property (nonatomic) BOOL isValid;
 
 @end

@@ -8,11 +8,12 @@
 
 #import "MaterialFormKitDemoViewController.h"
 #import "UIColor+MaterialFormKit.h"
+#import "MFTextField.h"
 
 @interface MaterialFormKitDemoViewController ()
 
-@property (weak, nonatomic) IBOutlet UITextField *rightAlignedTextField;
-@property (weak, nonatomic) IBOutlet UITextField *leftAlignedTextField;
+@property (weak, nonatomic) IBOutlet MFTextField *rightAlignedTextField;
+@property (weak, nonatomic) IBOutlet MFTextField *leftAlignedTextField;
 
 @end
 
@@ -27,6 +28,7 @@
 
     self.leftAlignedTextField.tintColor = [UIColor mf_greenColor];
     self.leftAlignedTextField.textColor = [UIColor mf_veryDarkGrayColor];
+    self.leftAlignedTextField.errorsEnabled = YES;
 }
 
 - (IBAction)dismissKeyboard
