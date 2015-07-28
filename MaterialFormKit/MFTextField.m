@@ -134,13 +134,12 @@ static NSTimeInterval const MFFloatingLabelAnimationDuration = 0.45;
 
     NSDictionary *views = @{@"placeholder": self.placeholderLabel, @"error": self.errorLabel};
     NSDictionary *metrics = @{@"vPadding": @(self.labelPadding.height),
-                              /* @"vPadding2": @(self.font.lineHeight + (self.labelPadding.height * 2)), */
                               @"vPadding3": @(vPadding3),
                               @"hPadding": @(self.labelPadding.width),
                               @"errorPadding": @(self.bottomPadding)};
 
     if (self.errorsEnabled) {
-        NSArray *verticalErrorConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-vPadding3-[error]-|"
+        NSArray *verticalErrorConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-vPadding3-[error]-(>=0,0@900)-|"
                                                                                     options:0
                                                                                     metrics:metrics
                                                                                       views:views];
@@ -361,91 +360,30 @@ static NSTimeInterval const MFFloatingLabelAnimationDuration = 0.45;
 
 #pragma mark - UITextField
 
-//- (CGRect)textRectForBounds:(CGRect)bounds
-//{
-//    CGRect rect = bounds; //[super textRectForBounds:bounds];
-//    CGRect newRect = CGRectMake(rect.origin.x + self.labelPadding.width, rect.origin.y,
-//                                rect.size.width - (2 * self.labelPadding.width), rect.size.height);
-//
-//   // CGRect boundingRect = [self.text boundingRectWithSize:CGSizeMake(newRect.size.width, CGFLOAT_MAX) options:0 attributes:0 context:nil];
-//
-//    if (!self.floatingPlaceholderEnabled) {
-//        return newRect;
-//    }
-//
-//    //if (![self isEmpty]) {
-//        CGFloat top = self.placeholderLabel.font.lineHeight + self.labelPadding.height;
-//        newRect = UIEdgeInsetsInsetRect(newRect, UIEdgeInsetsMake(top, 0.0, 0.0, 0.0));
-//        newRect.size.height = self.font.lineHeight;
-//        //newRect = CGRectMake(newRect.origin.x, top, newRect.size.width, self.font.lineHeight); // why *2 ??
-//    //}
-////    return [super textRectForBounds:newRect];
-//    return newRect;
-//}
-
-//- (CGRect)textRectForBounds:(CGRect)bounds
-//{
-//    //CGRect rect = bounds; //[super textRectForBounds:bounds];
-//    CGRect newRect = CGRectMake(bounds.origin.x + self.labelPadding.width,
-//                                self.labelPadding.height,
-//                                bounds.size.width - (2 * self.labelPadding.width),
-//                                self.font.lineHeight);
-//
-//    if (self.floatingPlaceholderEnabled) {
-//        newRect.origin.y += self.placeholderLabel.font.lineHeight;
-//        newRect.size.height = self.font.lineHeight;
-//    }
-//
-//    //    //if (![self isEmpty]) {
-//    //        CGFloat top = self.placeholderLabel.font.lineHeight + self.labelPadding.height;
-//    //        newRect = UIEdgeInsetsInsetRect(newRect, UIEdgeInsetsMake(top, 0.0, 0.0, 0.0));
-//    //        newRect.size.height = self.font.lineHeight;
-//    //        //newRect = CGRectMake(newRect.origin.x, top, newRect.size.width, self.font.lineHeight); // why *2 ??
-//    //    //}
-//    ////    return [super textRectForBounds:newRect];
-//    return newRect;
-//}
-
 - (CGRect)textRectForBounds:(CGRect)bounds
 {
-    CGRect rect = [super textRectForBounds:bounds];
-    rect.size.height = self.font.lineHeight;
-
-//    CGRect newRect = CGRectMake(bounds.origin.x + self.labelPadding.width,
-//                                self.labelPadding.height,
-//                                bounds.size.width - (2 * self.labelPadding.width),
-//                                self.font.lineHeight);
-
 //    if (self.floatingPlaceholderEnabled) {
-//        //rect.origin.y += self.placeholderLabel.font.lineHeight;
-//        //rect.size.height = self.font.lineHeight;
-//
-//            CGFloat top = self.placeholderLabel.font.lineHeight + self.labelPadding.height;
-//            //rect = UIEdgeInsetsInsetRect(rect, UIEdgeInsetsMake(top, 0.0, 0.0, 0.0));
-//        rect = CGRectInset(rect, 0, top);
-//
+        CGRect rect = [super textRectForBounds:bounds];
+        rect.size.height = self.font.lineHeight;
+
+        CGFloat top = self.placeholderLabel.font.lineHeight + ceil(self.labelPadding.height);
+        rect.origin.y = top;
 //    }
-//
-//    rect.size.height = self.font.lineHeight;
 
-
-    CGFloat top = self.placeholderLabel.bounds.size.height + self.labelPadding.height;
-    //[self setNeedsLayout];
-
-//    UIScrollView /* UIFieldEditor */ *editor = nil;
-//    for (UIView *v in self.subviews) {
-//        if ([NSStringFromClass(v.class) isEqualToString:@"UIFieldEditor"]) {
-//            editor = (UIScrollView *)v;
-//        }
-//    }
-//    editor.scrollEnabled = YES;
-    //editor.contentSize = CGSizeMake(editor.contentSize.width, self.font.lineHeight);
-
-    return CGRectMake(rect.origin.x, rect.origin.y + top, rect.size.width, rect.size.height);
-    //return CGRectMake(0, 0, self.bounds.size.width, bounds.size.height);
+    return rect;
 }
 
 - (CGRect)editingRectForBounds:(CGRect)bounds
+{
+    return [self textRectForBounds:bounds];
+}
+
+//- (void)drawPlaceholderInRect:(CGRect)rect
+//{
+//    [super drawPlaceholderInRect:rect];
+//}
+
+- (CGRect)placeholderRectForBounds:(CGRect)bounds
 {
     return [self textRectForBounds:bounds];
 }
@@ -454,19 +392,6 @@ static NSTimeInterval const MFFloatingLabelAnimationDuration = 0.45;
 {
     return (self.text.length == 0);
 }
-
-//#pragma mark - UIView
-//
-//- (CGSize)intrinsicContentSize
-//{
-//    CGSize superSize = [super intrinsicContentSize];
-//    return superSize;
-////    CGRect textRect = [self textRectForBounds:self.bounds];
-////    CGFloat width = CGRectGetWidth(self.placeholderLabel.frame) + (2 * self.labelPadding.width);
-////    CGFloat height = CGRectGetHeight(self.floatingLabel.frame) + self.labelPadding.height + CGRectGetHeight(textRect) + self.bottomPadding + self.bottomBorderHeight + self.labelPadding.height + CGRectGetHeight(self.errorLabel.frame);
-////
-////    return CGSizeMake(width, height);
-//}
 
 - (void)prepareForInterfaceBuilder
 {
