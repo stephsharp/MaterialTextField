@@ -9,6 +9,7 @@
 #import "MFTextField.h"
 #import "UIColor+MaterialFormKit.h"
 
+static CGFloat const MFDefaultLabelFontSize = 13.0f;
 static NSTimeInterval const MFFloatingLabelAnimationDuration = 0.45;
 
 @interface MFTextField ()
@@ -58,6 +59,7 @@ static NSTimeInterval const MFFloatingLabelAnimationDuration = 0.45;
     //}
 
     self.borderStyle = UITextBorderStyleNone;
+    self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
 
     [self setupConstraints];
 }
@@ -79,7 +81,7 @@ static NSTimeInterval const MFFloatingLabelAnimationDuration = 0.45;
     self.bottomBorderEditingHeight = 1.75f;
 
     // TODO: need to update constraints if errors are enabled/disabled
-    self.errorsEnabled = NO;
+    self.errorsEnabled = YES;
     self.errorColor = [UIColor mf_redColor];
     self.errorMessage = @"Error";
     self.errorFont = [self defaultErrorFont];
@@ -112,6 +114,7 @@ static NSTimeInterval const MFFloatingLabelAnimationDuration = 0.45;
     self.errorLabel = [UILabel new];
     self.errorLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.errorLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+    [self.errorLabel setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     self.errorLabel.font = self.errorFont;
     self.errorLabel.textAlignment = NSTextAlignmentLeft;
     self.errorLabel.numberOfLines = 0;
@@ -137,7 +140,7 @@ static NSTimeInterval const MFFloatingLabelAnimationDuration = 0.45;
                               @"errorPadding": @(self.bottomPadding)};
 
     if (self.errorsEnabled) {
-        NSArray *verticalErrorConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-vPadding3-[error]->=0-|"
+        NSArray *verticalErrorConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-vPadding3-[error]-|"
                                                                                     options:0
                                                                                     metrics:metrics
                                                                                       views:views];
@@ -279,12 +282,12 @@ static NSTimeInterval const MFFloatingLabelAnimationDuration = 0.45;
 - (UIFont *)defaultPlaceholderFont
 {
     UIFontDescriptor * fontDescriptor = [self.font.fontDescriptor fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitBold];
-    return [UIFont fontWithDescriptor:fontDescriptor size:self.font.pointSize * 0.7f];
+    return [UIFont fontWithDescriptor:fontDescriptor size:MFDefaultLabelFontSize];
 }
 
 - (UIFont *)defaultErrorFont
 {
-    return [self.font fontWithSize:self.font.pointSize * 0.7f];
+    return [self.font fontWithSize:MFDefaultLabelFontSize];
 }
 
 - (void)showFloatingLabel
@@ -405,47 +408,44 @@ static NSTimeInterval const MFFloatingLabelAnimationDuration = 0.45;
 
 - (CGRect)textRectForBounds:(CGRect)bounds
 {
-    CGRect rect = bounds; // [super textRectForBounds:bounds];
+    CGRect rect = [super textRectForBounds:bounds];
+    rect.size.height = self.font.lineHeight;
+
 //    CGRect newRect = CGRectMake(bounds.origin.x + self.labelPadding.width,
 //                                self.labelPadding.height,
 //                                bounds.size.width - (2 * self.labelPadding.width),
 //                                self.font.lineHeight);
 
-    if (self.floatingPlaceholderEnabled) {
-        //rect.origin.y += self.placeholderLabel.font.lineHeight;
-        //rect.size.height = self.font.lineHeight;
+//    if (self.floatingPlaceholderEnabled) {
+//        //rect.origin.y += self.placeholderLabel.font.lineHeight;
+//        //rect.size.height = self.font.lineHeight;
+//
+//            CGFloat top = self.placeholderLabel.font.lineHeight + self.labelPadding.height;
+//            //rect = UIEdgeInsetsInsetRect(rect, UIEdgeInsetsMake(top, 0.0, 0.0, 0.0));
+//        rect = CGRectInset(rect, 0, top);
+//
+//    }
+//
+//    rect.size.height = self.font.lineHeight;
 
-            CGFloat top = self.placeholderLabel.font.lineHeight + self.labelPadding.height;
-            //rect = UIEdgeInsetsInsetRect(rect, UIEdgeInsetsMake(top, 0.0, 0.0, 0.0));
-        rect = CGRectInset(rect, 0, top);
 
-    }
+    CGFloat top = self.placeholderLabel.bounds.size.height + self.labelPadding.height;
+    //[self setNeedsLayout];
 
-    rect.size.height = self.font.lineHeight;
+//    UIScrollView /* UIFieldEditor */ *editor = nil;
+//    for (UIView *v in self.subviews) {
+//        if ([NSStringFromClass(v.class) isEqualToString:@"UIFieldEditor"]) {
+//            editor = (UIScrollView *)v;
+//        }
+//    }
+//    editor.scrollEnabled = YES;
+    //editor.contentSize = CGSizeMake(editor.contentSize.width, self.font.lineHeight);
 
-    return rect; //CGRectMake(0, 0, self.bounds.size.width, self.font.lineHeight);
+    return CGRectMake(rect.origin.x, rect.origin.y + top, rect.size.width, rect.size.height);
+    //return CGRectMake(0, 0, self.bounds.size.width, bounds.size.height);
 }
-
-//- (CGRect)textRectForBounds:(CGRect)bounds
-//{
-////    bounds.origin.y = 0;
-////    bounds.size.height = self.font.lineHeight;
-//
-//    CGFloat top = self.labelPadding.height + self.placeholderLabel.font.lineHeight;
-//    bounds = UIEdgeInsetsInsetRect(bounds, UIEdgeInsetsMake(top, 0.0, 0.0, 0.0));
-//    //bounds.origin.y = top;
-//    bounds.size.height = self.font.lineHeight;
-//
-//    return bounds;
-//}
-
 
 - (CGRect)editingRectForBounds:(CGRect)bounds
-{
-    return [self textRectForBounds:bounds];
-}
-
-- (CGRect)placeholderRectForBounds:(CGRect)bounds
 {
     return [self textRectForBounds:bounds];
 }
@@ -480,6 +480,12 @@ static NSTimeInterval const MFFloatingLabelAnimationDuration = 0.45;
     }
     
     [self sharedInit];
+}
+
+- (void)setFont:(UIFont *)font
+{
+    [super setFont:font];
+    self.errorTopConstraint.constant = self.placeholderLabel.font.lineHeight + self.font.lineHeight + (self.labelPadding.height * 2) + self.bottomPadding;
 }
 
 @end
