@@ -17,7 +17,7 @@ IB_DESIGNABLE
 @property (nonatomic) IBInspectable BOOL floatingPlaceholderEnabled;
 @property (nonatomic) IBInspectable UIColor *floatingPlaceholderColor;
 @property (nonatomic) IBInspectable UIColor *floatingPlaceholderDisabledColor;
-@property (nonatomic) UIFont *labelFont;
+@property (nonatomic) UIFont *floatingPlaceholderFont;
 
 @property (nonatomic) IBInspectable CGFloat bottomBorderHeight;
 @property (nonatomic) IBInspectable CGFloat bottomBorderEditingHeight;
@@ -26,6 +26,8 @@ IB_DESIGNABLE
 @property (nonatomic) IBInspectable BOOL errorsEnabled;
 @property (nonatomic) IBInspectable UIColor *errorColor;
 @property (nonatomic) IBInspectable NSString *errorMessage;
+@property (nonatomic) UIFont *errorFont;
+
 @property (nonatomic) BOOL isValid;
 
 @end

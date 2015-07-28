@@ -29,6 +29,8 @@
     self.leftAlignedTextField.tintColor = [UIColor mf_greenColor];
     self.leftAlignedTextField.textColor = [UIColor mf_veryDarkGrayColor];
     self.leftAlignedTextField.errorsEnabled = YES;
+    self.leftAlignedTextField.isValid = NO;
+    //self.leftAlignedTextField.errorMessage = @"This is an error message that is really long and should wrap onto 2 lines.";
 }
 
 - (IBAction)dismissKeyboard

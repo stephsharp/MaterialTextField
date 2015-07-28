@@ -17,24 +17,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="placeholder" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L9E-2s-gFY" customClass="MFTextField">
-                                <rect key="frame" x="32" y="69" width="280" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="pUc-Yj-7xa"/>
-                                    <constraint firstAttribute="height" constant="70" id="wVg-rQ-bMR"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="floatingPlaceholderEnabled" value="NO"/>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="placeholder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vrI-fI-vIo" customClass="MFTextField">
-                                <rect key="frame" x="32" y="190" width="280" height="50"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="750" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="placeholder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wbu-R9-PKC" customClass="MFTextField">
+                                <rect key="frame" x="32" y="359.5" width="300" height="100.5"/>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="UwL-Iq-bVI"/>
-                                    <constraint firstAttribute="height" constant="50" id="luy-C5-kNi"/>
+                                    <constraint firstAttribute="width" constant="300" id="2uj-tg-EsN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -44,64 +31,38 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vj3-Bk-LRN">
-                                <rect key="frame" x="32" y="274" width="300" height="300"/>
-                                <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="placeholder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wbu-R9-PKC" customClass="MFTextField">
-                                        <rect key="frame" x="0.0" y="28" width="300" height="50"/>
-                                        <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="er6-9c-709"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="size" keyPath="padding">
-                                                <size key="value" width="0.0" height="0.0"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="121-e4-iPB">
-                                        <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECQ-9E-vMR">
-                                        <rect key="frame" x="0.0" y="86.5" width="300" height="183"/>
-                                        <string key="text">Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label  Label </string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="750" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="placeholder" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vrI-fI-vIo" customClass="MFTextField">
+                                <rect key="frame" x="32" y="179" width="280" height="160"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="Wbu-R9-PKC" firstAttribute="leading" secondItem="Vj3-Bk-LRN" secondAttribute="leading" id="0cq-F1-K6W"/>
-                                    <constraint firstItem="121-e4-iPB" firstAttribute="top" secondItem="Vj3-Bk-LRN" secondAttribute="top" id="CLU-QP-Aw6"/>
-                                    <constraint firstAttribute="trailing" secondItem="Wbu-R9-PKC" secondAttribute="trailing" id="GXa-rb-Z3o"/>
-                                    <constraint firstItem="Wbu-R9-PKC" firstAttribute="top" secondItem="121-e4-iPB" secondAttribute="bottom" constant="8" symbolic="YES" id="QUV-CB-aST"/>
-                                    <constraint firstAttribute="bottom" secondItem="ECQ-9E-vMR" secondAttribute="bottom" priority="250" id="QX1-l0-KC5"/>
-                                    <constraint firstItem="121-e4-iPB" firstAttribute="leading" secondItem="Vj3-Bk-LRN" secondAttribute="leading" id="UmP-JT-aP7"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ECQ-9E-vMR" secondAttribute="trailing" id="arf-Na-nRm"/>
-                                    <constraint firstAttribute="width" constant="300" id="cIg-pZ-Nba"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="121-e4-iPB" secondAttribute="trailing" id="ffA-qU-tHT"/>
-                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ECQ-9E-vMR" secondAttribute="bottom" id="hMv-hW-k7p"/>
-                                    <constraint firstItem="ECQ-9E-vMR" firstAttribute="leading" secondItem="Vj3-Bk-LRN" secondAttribute="leading" id="hgq-hv-2nG"/>
-                                    <constraint firstAttribute="height" constant="300" id="vNG-2t-bYd"/>
-                                    <constraint firstItem="ECQ-9E-vMR" firstAttribute="top" secondItem="Wbu-R9-PKC" secondAttribute="bottom" constant="8" symbolic="YES" id="zQK-Fj-BfY"/>
+                                    <constraint firstAttribute="height" constant="160" id="RPN-6Q-dDY"/>
+                                    <constraint firstAttribute="width" constant="280" id="UwL-Iq-bVI"/>
                                 </constraints>
-                            </view>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="750" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="placeholder" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gNx-E7-aGq" customClass="MFTextField">
+                                <rect key="frame" x="32" y="30" width="280" height="101"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="hKY-Tm-L3B"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="floatingPlaceholderEnabled" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="L9E-2s-gFY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="49" id="7A8-kB-pn9"/>
-                            <constraint firstItem="Vj3-Bk-LRN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="IrZ-Xp-pL0"/>
+                            <constraint firstItem="gNx-E7-aGq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="JGp-OO-Lj7"/>
                             <constraint firstItem="vrI-fI-vIo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="OcS-24-SuD"/>
-                            <constraint firstItem="L9E-2s-gFY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="ZAK-2A-Ze4"/>
-                            <constraint firstItem="vrI-fI-vIo" firstAttribute="top" secondItem="L9E-2s-gFY" secondAttribute="bottom" constant="51" id="jLY-E9-Icc"/>
-                            <constraint firstItem="Vj3-Bk-LRN" firstAttribute="top" secondItem="vrI-fI-vIo" secondAttribute="bottom" constant="34" id="x6t-em-ui2"/>
+                            <constraint firstItem="Wbu-R9-PKC" firstAttribute="top" secondItem="vrI-fI-vIo" secondAttribute="bottom" constant="20" id="TxR-tX-kSq"/>
+                            <constraint firstItem="vrI-fI-vIo" firstAttribute="top" secondItem="gNx-E7-aGq" secondAttribute="bottom" constant="48" id="YpL-as-BsA"/>
+                            <constraint firstItem="Wbu-R9-PKC" firstAttribute="leading" secondItem="vrI-fI-vIo" secondAttribute="leading" id="fuU-6H-anJ"/>
+                            <constraint firstItem="gNx-E7-aGq" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="lwY-Tl-Xmh"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="c8Q-pN-pP5" appends="YES" id="9Q4-no-6ng"/>
@@ -109,7 +70,7 @@
                     </view>
                     <connections>
                         <outlet property="leftAlignedTextField" destination="vrI-fI-vIo" id="cVN-vP-3Ab"/>
-                        <outlet property="rightAlignedTextField" destination="L9E-2s-gFY" id="G5z-Xz-exG"/>
+                        <outlet property="rightAlignedTextField" destination="gNx-E7-aGq" id="Gb1-9U-5eY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -119,6 +80,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="349" y="222"/>
         </scene>
     </scenes>
 </document>
