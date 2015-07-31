@@ -304,6 +304,10 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     CGFloat yPos = CGRectGetMaxY(textRect) + self.labelPadding.height - borderHeight;
 
     self.bottomBorderLayer.frame = CGRectMake(0, yPos, CGRectGetWidth(self.bounds), borderHeight);
+
+    if (self.errorsEnabled) {
+        [self updateErrorLabelPosition];
+    }
 }
 
 #pragma mark - Floating placeholder
