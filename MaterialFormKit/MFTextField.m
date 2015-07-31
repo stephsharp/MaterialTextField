@@ -10,7 +10,7 @@
 #import "UIColor+MaterialFormKit.h"
 
 static CGFloat const MFDefaultLabelFontSize = 13.0f;
-static NSTimeInterval const MFFloatingLabelAnimationDuration = 0.45;
+static NSTimeInterval const MFPlaceholderAnimationDuration = 0.45;
 
 @interface MFTextField ()
 
@@ -18,8 +18,8 @@ static NSTimeInterval const MFFloatingLabelAnimationDuration = 0.45;
 @property (nonatomic) CALayer *bottomBorderLayer;
 @property (nonatomic) UILabel *errorLabel;
 
-@property (nonatomic) NSLayoutConstraint *placeholderTopConstraint;
-@property (nonatomic) NSLayoutConstraint *errorTopConstraint;
+@property (nonatomic) NSLayoutConstraint *placeholderLabelTopConstraint;
+@property (nonatomic) NSLayoutConstraint *errorLabelTopConstraint;
 
 @end
 
@@ -48,20 +48,16 @@ static NSTimeInterval const MFFloatingLabelAnimationDuration = 0.45;
 - (void)sharedInit
 {
     [self setDefaults];
+    [self setupTextField];
     [self setupBottomBorder];
 
-    //if (self.floatingPlaceholderEnabled) {
-        [self setupFloatingLabel];
-    //}
+    if (self.floatingPlaceholderEnabled) {
+        [self setupPlaceholderLabel];
+    }
 
-    //if (self.errorsEnabled) {
+    if (self.errorsEnabled) {
         [self setupErrorLabel];
-    //}
-
-    self.borderStyle = UITextBorderStyleNone;
-    self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
-
-    [self setupConstraints];
+    }
 }
 
 #pragma mark - Setup
@@ -69,7 +65,7 @@ static NSTimeInterval const MFFloatingLabelAnimationDuration = 0.45;
 - (void)setDefaults
 {
     self.labelPadding = CGSizeMake(0.0f, 8.0f);
-    self.bottomPadding = 4.0f;
+    self.errorPadding = 4.0f;
 
     self.floatingPlaceholderEnabled = YES;
     self.floatingPlaceholderColor = [UIColor mf_darkGrayColor];
@@ -80,33 +76,37 @@ static NSTimeInterval const MFFloatingLabelAnimationDuration = 0.45;
     self.bottomBorderColor = [UIColor mf_lightGrayColor];
     self.bottomBorderEditingHeight = 1.75f;
 
-    // TODO: need to update constraints if errors are enabled/disabled
-    self.errorsEnabled = YES;
+    self.errorsEnabled = NO;
     self.errorColor = [UIColor mf_redColor];
     self.errorMessage = @"Error";
     self.errorFont = [self defaultErrorFont];
     self.isValid = YES;
 }
 
+- (void)setupTextField
+{
+    self.borderStyle = UITextBorderStyleNone;
+    self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
+}
+
 - (void)setupBottomBorder
 {
-    CGRect textRect = [self textRectForBounds:self.bounds];
-
     self.bottomBorderLayer = [CALayer layer];
-    self.bottomBorderLayer.frame = CGRectMake(0, CGRectGetMaxY(textRect) + self.labelPadding.height - 1,
-                                              CGRectGetWidth(self.bounds), 1);
-    self.bottomBorderLayer.backgroundColor = self.bottomBorderColor.CGColor;
+    [self layoutBottomBorderLayer];
     [self.layer addSublayer:self.bottomBorderLayer];
 }
 
-- (void)setupFloatingLabel
+- (void)setupPlaceholderLabel
 {
     self.placeholderLabel = [UILabel new];
     self.placeholderLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.placeholderLabel.font = self.floatingPlaceholderFont;
-    self.placeholderLabel.alpha = 0.0f;
-    [self updateFloatingLabelText];
+    self.placeholderLabel.textAlignment = self.textAlignment;
+    [self hidePlaceholderLabel];
+    [self updatePlaceholderText];
+    [self updatePlaceholderColor];
     [self addSubview:self.placeholderLabel];
+    [self setupPlaceholderConstraints];
 }
 
 - (void)setupErrorLabel
@@ -119,49 +119,46 @@ static NSTimeInterval const MFFloatingLabelAnimationDuration = 0.45;
     self.errorLabel.textAlignment = NSTextAlignmentLeft;
     self.errorLabel.numberOfLines = 0;
     self.errorLabel.textColor = self.errorColor;
-    self.errorLabel.alpha = 0.0f;
+    [self hideErrorLabel];
     [self updateErrorLabelText];
     [self addSubview:self.errorLabel];
+    [self setupErrorConstraints];
 }
 
-- (void)setupConstraints
+- (void)setupPlaceholderConstraints
 {
-    CGFloat vPadding3 = self.placeholderLabel.font.lineHeight + self.font.lineHeight + (self.labelPadding.height * 2) + self.bottomPadding;
-    // not working...
-    if (!self.floatingPlaceholderEnabled) {
-        vPadding3 = self.font.lineHeight + (self.labelPadding.height * 2) + self.bottomPadding;
-    }
+    if (self.placeholderLabel) {
+        NSDictionary *views = @{@"placeholder": self.placeholderLabel};
 
-    NSDictionary *views = @{@"placeholder": self.placeholderLabel, @"error": self.errorLabel};
-    NSDictionary *metrics = @{@"vPadding": @(self.labelPadding.height),
-                              @"vPadding3": @(vPadding3),
-                              @"hPadding": @(self.labelPadding.width),
-                              @"errorPadding": @(self.bottomPadding)};
+        NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[placeholder]"
+                                                                               options:0
+                                                                               metrics:nil
+                                                                                 views:views];
+        self.placeholderLabelTopConstraint = verticalConstraints[0];
+        [self addConstraints:verticalConstraints];
 
-    if (self.errorsEnabled) {
-        NSArray *verticalErrorConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-vPadding3-[error]-(>=0,0@900)-|"
-                                                                                    options:0
-                                                                                    metrics:metrics
-                                                                                      views:views];
-        [self addConstraints:verticalErrorConstraints];
-        self.errorTopConstraint = verticalErrorConstraints[0];
-
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[error]->=0-|"
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[placeholder]|"
                                                                      options:0
-                                                                     metrics:metrics
+                                                                     metrics:nil
                                                                        views:views]];
     }
+}
 
-    if (self.floatingPlaceholderEnabled) {
-        NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[placeholder]"
+- (void)setupErrorConstraints
+{
+    if (self.errorLabel) {
+        NSDictionary *views = @{@"error": self.errorLabel};
+        NSDictionary *metrics = @{@"topPadding": @([self topPaddingForErrorLabel])};
+
+        NSString *visualFormatString = @"V:|-topPadding-[error]-(>=0,0@900)-|";
+        NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:visualFormatString
                                                                                options:0
                                                                                metrics:metrics
                                                                                  views:views];
-
+        self.errorLabelTopConstraint = verticalConstraints[0];
         [self addConstraints:verticalConstraints];
-        self.placeholderTopConstraint = verticalConstraints[0];
 
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[placeholder]|"
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[error]->=0-|"
                                                                      options:0
                                                                      metrics:metrics
                                                                        views:views]];
@@ -170,22 +167,42 @@ static NSTimeInterval const MFFloatingLabelAnimationDuration = 0.45;
 
 #pragma mark - Properties
 
+- (void)setFloatingPlaceholderEnabled:(BOOL)floatingPlaceholderEnabled
+{
+    _floatingPlaceholderEnabled = floatingPlaceholderEnabled;
+    [self removePlaceholderLabel];
+
+    if (floatingPlaceholderEnabled) {
+        [self setupPlaceholderLabel];
+    }
+}
+
 - (void)setFloatingPlaceholderFont:(UIFont *)floatingPlaceholderFont
 {
     _floatingPlaceholderFont = floatingPlaceholderFont;
     self.placeholderLabel.font = floatingPlaceholderFont;
 }
 
+- (void)setFloatingPlaceholderColor:(UIColor *)floatingPlaceholderColor
+{
+    _floatingPlaceholderColor = floatingPlaceholderColor;
+    [self updatePlaceholderColor];
+}
+
+- (void)setErrorsEnabled:(BOOL)errorsEnabled
+{
+    _errorsEnabled = errorsEnabled;
+    [self removeErrorLabel];
+
+    if (errorsEnabled) {
+        [self setupErrorLabel];
+    }
+}
+
 - (void)setErrorFont:(UIFont *)errorFont
 {
     _errorFont = errorFont;
     self.errorLabel.font = errorFont;
-}
-
-- (void)setFloatingPlaceholderColor:(UIColor *)floatingPlaceholderColor
-{
-    _floatingPlaceholderColor = floatingPlaceholderColor;
-    self.placeholderLabel.textColor = floatingPlaceholderColor;
 }
 
 - (void)setErrorColor:(UIColor *)errorColor
@@ -197,7 +214,7 @@ static NSTimeInterval const MFFloatingLabelAnimationDuration = 0.45;
 - (void)setPlaceholder:(NSString *)placeholder
 {
     [super setPlaceholder:placeholder];
-    [self updateFloatingLabelText];
+    [self updatePlaceholderText];
 }
 
 - (void)setErrorMessage:(NSString *)errorMessage
@@ -206,77 +223,87 @@ static NSTimeInterval const MFFloatingLabelAnimationDuration = 0.45;
     [self updateErrorLabelText];
 }
 
+- (void)setFont:(UIFont *)font
+{
+    [super setFont:font];
+    [self updateErrorLabelPosition];
+}
+
 #pragma mark - Layout
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
 
-    if (self.floatingPlaceholderEnabled) {
-        [self layoutFloatingLabel];
-    }
-
     [self layoutBottomBorderLayer];
+
+    if (self.floatingPlaceholderEnabled) {
+        [self layoutPlaceholderLabel];
+    }
 
     if (self.errorsEnabled) {
         [self layoutErrorLabel];
     }
 }
 
-- (void)layoutFloatingLabel
-{
-    if (![self isEmpty]) {
-        if (!self.isFirstResponder) {
-            self.placeholderLabel.textColor = self.floatingPlaceholderColor;
-        }
-        else if (self.isValid) {
-            self.placeholderLabel.textColor = self.tintColor;
-        }
-        else if (self.errorsEnabled) {
-            self.placeholderLabel.textColor = self.errorColor;
-        }
-
-        if ([self floatingLabelIsHidden]) {
-            [self showFloatingLabel];
-        }
-    }
-    else {
-        [self hideFloatingLabel];
-    }
-}
-
 - (void)layoutBottomBorderLayer
 {
-    if (self.isValid) {
-        self.bottomBorderLayer.backgroundColor = self.isFirstResponder ? self.tintColor.CGColor : self.bottomBorderColor.CGColor;
+    [self updateBottomBorderColor];
+    [self updateBottomBorderFrame];
+}
+
+- (void)layoutPlaceholderLabel
+{
+    if ([self isEmpty]) {
+        [self hidePlaceholderLabel];
     }
-    else if (self.errorsEnabled) {
-        self.bottomBorderLayer.backgroundColor = self.errorColor.CGColor;
+    else {
+        [self updatePlaceholderColor];
+
+        if ([self placeholderLabelIsHidden]) {
+            [self showPlaceholderLabelAnimated:YES];
+        }
     }
-    CGRect textRect = [self textRectForBounds:self.bounds];
-    CGFloat borderHeight = self.isFirstResponder ? self.bottomBorderEditingHeight : self.bottomBorderHeight;
-    self.bottomBorderLayer.frame = CGRectMake(0, CGRectGetMaxY(textRect) + self.labelPadding.height - borderHeight,
-                                              CGRectGetWidth(self.bounds), borderHeight);
 }
 
 - (void)layoutErrorLabel
 {
-    if (!self.isValid) {
-        if ([self errorLabelIsHidden]) {
-            [self showErrorLabel];
-        }
-    }
-    else {
+    if (self.isValid) {
         [self hideErrorLabel];
     }
+    else {
+        if ([self errorLabelIsHidden]) {
+            [self showErrorLabelAnimated:YES];
+        }
+    }
 }
 
-- (BOOL)isValid
+#pragma mark - Bottom border
+
+- (void)updateBottomBorderColor
 {
-    return self.text.length < 2;
+    UIColor *borderColor;
+
+    if (self.errorsEnabled && !self.isValid) {
+        borderColor = self.errorColor;
+    }
+    else {
+        borderColor = self.isFirstResponder ? self.tintColor : self.bottomBorderColor;
+    }
+
+    self.bottomBorderLayer.backgroundColor = borderColor.CGColor;
 }
 
-#pragma mark - Floating placeholder label
+- (void)updateBottomBorderFrame
+{
+    CGRect textRect = [self textRectForBounds:self.bounds];
+    CGFloat borderHeight = self.isFirstResponder ? self.bottomBorderEditingHeight : self.bottomBorderHeight;
+    CGFloat yPos = CGRectGetMaxY(textRect) + self.labelPadding.height - borderHeight;
+
+    self.bottomBorderLayer.frame = CGRectMake(0, yPos, CGRectGetWidth(self.bounds), borderHeight);
+}
+
+#pragma mark - Floating placeholder
 
 - (UIFont *)defaultPlaceholderFont
 {
@@ -289,57 +316,88 @@ static NSTimeInterval const MFFloatingLabelAnimationDuration = 0.45;
     return [self.font fontWithSize:MFDefaultLabelFontSize];
 }
 
-- (void)showFloatingLabel
+- (void)showPlaceholderLabelAnimated:(BOOL)animated
 {
-    CGFloat finalDistanceFromTop = self.placeholderTopConstraint.constant;
+    if (animated) {
+        CGFloat finalDistanceFromTop = self.placeholderLabelTopConstraint.constant;
 
-    self.placeholderTopConstraint.constant = CGRectGetMinY([self textRectForBounds:self.bounds]) / 2.0f;
-    [self layoutIfNeeded];
+        self.placeholderLabelTopConstraint.constant = CGRectGetMinY([self textRectForBounds:self.bounds]) / 2.0f;
+        [self layoutIfNeeded];
 
-    self.placeholderTopConstraint.constant = finalDistanceFromTop;
-    [UIView animateWithDuration:MFFloatingLabelAnimationDuration
-                          delay:0.0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         self.placeholderLabel.alpha = 1.0f;
-                         [self layoutIfNeeded];
-                     } completion:nil];
+        self.placeholderLabelTopConstraint.constant = finalDistanceFromTop;
+        [UIView animateWithDuration:MFPlaceholderAnimationDuration
+                              delay:0.0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             self.placeholderLabel.alpha = 1.0f;
+                             [self layoutIfNeeded];
+                         } completion:nil];
+    }
+    else {
+        self.placeholderLabel.alpha = 1.0f;
+    }
 }
 
-- (void)hideFloatingLabel
+- (void)hidePlaceholderLabel
 {
     self.placeholderLabel.alpha = 0.0f;
 }
 
-- (BOOL)floatingLabelIsHidden
+- (BOOL)placeholderLabelIsHidden
 {
     return (self.placeholderLabel.alpha == 0.0f);
 }
 
-- (void)updateFloatingLabelText
+- (void)updatePlaceholderText
 {
     self.placeholderLabel.text = self.placeholder;
-    self.placeholderLabel.textAlignment = self.textAlignment;
     [self.placeholderLabel sizeToFit];
 }
 
-#pragma mark - Error message label
-
-- (void)showErrorLabel
+- (void)updatePlaceholderColor
 {
-    CGFloat finalDistanceFromTop = self.errorTopConstraint.constant;
+    UIColor *color;
 
-    self.errorTopConstraint.constant = CGRectGetMaxY(self.bottomBorderLayer.frame);
-    [self layoutIfNeeded];
+    if (self.isFirstResponder) {
+        color = (self.errorsEnabled && !self.isValid) ? self.errorColor : self.tintColor;
+    }
+    else {
+        color = self.floatingPlaceholderColor;
+    }
 
-    self.errorTopConstraint.constant = finalDistanceFromTop;
-    [UIView animateWithDuration:MFFloatingLabelAnimationDuration
-                          delay:0.0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         self.errorLabel.alpha = 1.0f;
-                         [self layoutIfNeeded];
-                     } completion:nil];
+    self.placeholderLabel.textColor = color;
+}
+
+- (void)removePlaceholderLabel
+{
+    if (self.placeholderLabel) {
+        [self.placeholderLabel removeFromSuperview];
+        self.placeholderLabel = nil;
+    }
+}
+
+#pragma mark - Error message
+
+- (void)showErrorLabelAnimated:(BOOL)animated
+{
+    if (animated) {
+        CGFloat finalDistanceFromTop = self.errorLabelTopConstraint.constant;
+
+        self.errorLabelTopConstraint.constant = CGRectGetMaxY(self.bottomBorderLayer.frame);
+        [self layoutIfNeeded];
+
+        self.errorLabelTopConstraint.constant = finalDistanceFromTop;
+        [UIView animateWithDuration:MFPlaceholderAnimationDuration
+                              delay:0.0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             self.errorLabel.alpha = 1.0f;
+                             [self layoutIfNeeded];
+                         } completion:nil];
+    }
+    else {
+        self.errorLabel.alpha = 1.0f;
+    }
 }
 
 - (void)hideErrorLabel
@@ -358,17 +416,42 @@ static NSTimeInterval const MFFloatingLabelAnimationDuration = 0.45;
     [self.errorLabel sizeToFit];
 }
 
+- (CGFloat)topPaddingForErrorLabel
+{
+    CGFloat topPadding = self.font.lineHeight + (self.labelPadding.height * 2) + self.errorPadding;
+
+    if (self.floatingPlaceholderEnabled) {
+        topPadding += self.placeholderLabel.font.lineHeight;
+    }
+
+    return topPadding;
+}
+
+- (void)updateErrorLabelPosition
+{
+    self.errorLabelTopConstraint.constant = [self topPaddingForErrorLabel];
+}
+
+- (void)removeErrorLabel
+{
+    if (self.errorLabel) {
+        [self.errorLabel removeFromSuperview];
+        self.errorLabel = nil;
+    }
+}
+
 #pragma mark - UITextField
 
 - (CGRect)textRectForBounds:(CGRect)bounds
 {
-//    if (self.floatingPlaceholderEnabled) {
-        CGRect rect = [super textRectForBounds:bounds];
-        rect.size.height = self.font.lineHeight;
+    CGRect rect = [super textRectForBounds:bounds];
+    rect.size.height = self.font.lineHeight;
 
-        CGFloat top = self.placeholderLabel.font.lineHeight + ceil(self.labelPadding.height);
-        rect.origin.y = top;
-//    }
+    CGFloat top = ceil(self.labelPadding.height);
+    if (self.floatingPlaceholderEnabled) {
+        top += self.placeholderLabel.font.lineHeight;
+    }
+    rect.origin.y = top;
 
     return rect;
 }
@@ -393,24 +476,20 @@ static NSTimeInterval const MFFloatingLabelAnimationDuration = 0.45;
     return (self.text.length == 0);
 }
 
+#pragma mark - Interface builder
+
 - (void)prepareForInterfaceBuilder
 {
     if (self.floatingPlaceholderEnabled) {
-        self.placeholderLabel.alpha = 1.0f;
+        [self showPlaceholderLabelAnimated:NO];
     }
 
     if (self.errorsEnabled) {
         self.isValid = NO;
-        self.errorLabel.alpha = 1.0f;
+        [self showErrorLabelAnimated:NO];
     }
-    
-    [self sharedInit];
-}
 
-- (void)setFont:(UIFont *)font
-{
-    [super setFont:font];
-    self.errorTopConstraint.constant = self.placeholderLabel.font.lineHeight + self.font.lineHeight + (self.labelPadding.height * 2) + self.bottomPadding;
+    [self sharedInit];
 }
 
 @end

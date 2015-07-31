@@ -12,7 +12,7 @@ IB_DESIGNABLE
 @interface MFTextField : UITextField
 
 @property (nonatomic) IBInspectable CGSize labelPadding;
-@property (nonatomic) IBInspectable CGFloat bottomPadding;
+@property (nonatomic) IBInspectable CGFloat errorPadding;
 
 @property (nonatomic) IBInspectable BOOL floatingPlaceholderEnabled;
 @property (nonatomic) IBInspectable UIColor *floatingPlaceholderColor;

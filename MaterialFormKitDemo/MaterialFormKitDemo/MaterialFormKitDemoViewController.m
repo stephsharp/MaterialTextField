@@ -10,7 +10,7 @@
 #import "UIColor+MaterialFormKit.h"
 #import "MFTextField.h"
 
-@interface MaterialFormKitDemoViewController ()
+@interface MaterialFormKitDemoViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet MFTextField *rightAlignedTextField;
 @property (weak, nonatomic) IBOutlet MFTextField *leftAlignedTextField;
@@ -25,17 +25,32 @@
 
     self.rightAlignedTextField.tintColor = [UIColor mf_greenColor];
     self.rightAlignedTextField.textColor = [UIColor mf_veryDarkGrayColor];
+    self.rightAlignedTextField.errorsEnabled = YES;
+    self.rightAlignedTextField.errorMessage = @"Maximum of 6 characters allowed.";
 
     self.leftAlignedTextField.tintColor = [UIColor mf_greenColor];
     self.leftAlignedTextField.textColor = [UIColor mf_veryDarkGrayColor];
     self.leftAlignedTextField.errorsEnabled = YES;
-    self.leftAlignedTextField.isValid = NO;
-    self.leftAlignedTextField.errorMessage = @"This is an error message that is really long and should wrap onto 2 lines.";
+    self.leftAlignedTextField.errorMessage = @"This is an error message that is really long and should wrap onto 2 or more lines.";
 }
 
 - (IBAction)dismissKeyboard
 {
     [self.view endEditing:YES];
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+
+    if (textField == self.rightAlignedTextField) {
+        self.rightAlignedTextField.isValid = (newString.length <= 6);
+    }
+    else if (textField == self.leftAlignedTextField) {
+        self.leftAlignedTextField.isValid = (newString.length < 2);
+    }
+
+    return YES;
 }
 
 @end
