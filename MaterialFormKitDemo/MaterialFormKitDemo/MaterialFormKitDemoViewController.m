@@ -23,6 +23,7 @@
 {
     [super viewDidLoad];
 
+    self.rightAlignedTextField.floatingPlaceholderEnabled = NO;
     self.rightAlignedTextField.tintColor = [UIColor mf_greenColor];
     self.rightAlignedTextField.textColor = [UIColor mf_veryDarkGrayColor];
     self.rightAlignedTextField.errorsEnabled = YES;

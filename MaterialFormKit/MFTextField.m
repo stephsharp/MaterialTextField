@@ -10,7 +10,7 @@
 #import "UIColor+MaterialFormKit.h"
 
 static CGFloat const MFDefaultLabelFontSize = 13.0f;
-static NSTimeInterval const MFPlaceholderAnimationDuration = 0.45;
+static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 @interface MFTextField ()
 
@@ -20,6 +20,9 @@ static NSTimeInterval const MFPlaceholderAnimationDuration = 0.45;
 
 @property (nonatomic) NSLayoutConstraint *placeholderLabelTopConstraint;
 @property (nonatomic) NSLayoutConstraint *errorLabelTopConstraint;
+@property (nonatomic) NSLayoutConstraint *errorLabelHeightConstraint;
+
+@property (nonatomic) BOOL isAnimating;
 
 @end
 
@@ -87,6 +90,7 @@ static NSTimeInterval const MFPlaceholderAnimationDuration = 0.45;
 {
     self.borderStyle = UITextBorderStyleNone;
     self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
+    self.clipsToBounds = NO;
 }
 
 - (void)setupBottomBorder
@@ -119,7 +123,7 @@ static NSTimeInterval const MFPlaceholderAnimationDuration = 0.45;
     self.errorLabel.textAlignment = NSTextAlignmentLeft;
     self.errorLabel.numberOfLines = 0;
     self.errorLabel.textColor = self.errorColor;
-    [self hideErrorLabel];
+    [self hideErrorLabelAnimated:NO];
     [self updateErrorLabelText];
     [self addSubview:self.errorLabel];
     [self setupErrorConstraints];
@@ -148,7 +152,7 @@ static NSTimeInterval const MFPlaceholderAnimationDuration = 0.45;
 {
     if (self.errorLabel) {
         NSDictionary *views = @{@"error": self.errorLabel};
-        NSDictionary *metrics = @{@"topPadding": @([self topPaddingForErrorLabel])};
+        NSDictionary *metrics = @{@"topPadding": @([self topPaddingForErrorLabelHidden:[self errorLabelIsHidden]])};
 
         NSString *visualFormatString = @"V:|-topPadding-[error]-(>=0,0@900)-|";
         NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:visualFormatString
@@ -162,6 +166,15 @@ static NSTimeInterval const MFPlaceholderAnimationDuration = 0.45;
                                                                      options:0
                                                                      metrics:metrics
                                                                        views:views]];
+
+        self.errorLabelHeightConstraint = [NSLayoutConstraint constraintWithItem:self.errorLabel
+                                                                       attribute:NSLayoutAttributeHeight
+                                                                       relatedBy:NSLayoutRelationEqual
+                                                                          toItem:nil
+                                                                       attribute:NSLayoutAttributeNotAnAttribute
+                                                                      multiplier:0
+                                                                        constant:0];
+        [self.errorLabel addConstraint:self.errorLabelHeightConstraint];
     }
 }
 
@@ -242,7 +255,7 @@ static NSTimeInterval const MFPlaceholderAnimationDuration = 0.45;
     }
 
     if (self.errorsEnabled) {
-        [self layoutErrorLabel];
+        [self layoutErrorLabelAnimated:YES];
     }
 }
 
@@ -266,15 +279,13 @@ static NSTimeInterval const MFPlaceholderAnimationDuration = 0.45;
     }
 }
 
-- (void)layoutErrorLabel
+- (void)layoutErrorLabelAnimated:(BOOL)animated
 {
-    if (self.isValid) {
-        [self hideErrorLabel];
+    if (self.isValid && ![self errorLabelIsHidden]) {
+        [self hideErrorLabelAnimated:animated];
     }
-    else {
-        if ([self errorLabelIsHidden]) {
-            [self showErrorLabelAnimated:YES];
-        }
+    else if (!self.isValid && [self errorLabelIsHidden]) {
+        [self showErrorLabelAnimated:animated];
     }
 }
 
@@ -322,10 +333,10 @@ static NSTimeInterval const MFPlaceholderAnimationDuration = 0.45;
         CGFloat finalDistanceFromTop = self.placeholderLabelTopConstraint.constant;
 
         self.placeholderLabelTopConstraint.constant = CGRectGetMinY([self textRectForBounds:self.bounds]) / 2.0f;
-        [self layoutIfNeeded];
+        [self.superview layoutIfNeeded];
 
         self.placeholderLabelTopConstraint.constant = finalDistanceFromTop;
-        [UIView animateWithDuration:MFPlaceholderAnimationDuration
+        [UIView animateWithDuration:MFDefaultAnimationDuration
                               delay:0.0
                             options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
@@ -380,29 +391,69 @@ static NSTimeInterval const MFPlaceholderAnimationDuration = 0.45;
 
 - (void)showErrorLabelAnimated:(BOOL)animated
 {
-    if (animated) {
-        CGFloat finalDistanceFromTop = self.errorLabelTopConstraint.constant;
+    self.errorLabelHeightConstraint.active = NO;
+    self.errorLabelTopConstraint.constant = [self topPaddingForErrorLabelHidden:NO];
 
-        self.errorLabelTopConstraint.constant = CGRectGetMaxY(self.bottomBorderLayer.frame);
-        [self layoutIfNeeded];
-
-        self.errorLabelTopConstraint.constant = finalDistanceFromTop;
-        [UIView animateWithDuration:MFPlaceholderAnimationDuration
+    if (animated && !self.isAnimating) {
+        self.isAnimating = YES;
+        [UIView animateWithDuration:MFDefaultAnimationDuration
                               delay:0.0
-                            options:UIViewAnimationOptionCurveEaseOut
+                            options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
-                             self.errorLabel.alpha = 1.0f;
-                             [self layoutIfNeeded];
-                         } completion:nil];
+                             [self.superview layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             [UIView animateWithDuration:MFDefaultAnimationDuration * 0.6
+                                                   delay:0.0
+                                                 options:UIViewAnimationOptionCurveEaseOut
+                                              animations:^{
+                                                  self.errorLabel.alpha = 1.0f;
+                                              } completion:^(BOOL finished) {
+                                                  self.isAnimating = NO;
+                                                  // Layout error label without animation if isValid has changed since animation started.
+                                                  if (self.isValid) {
+                                                      [self layoutErrorLabelAnimated:NO];
+                                                  }
+                                              }];
+                         }];
     }
-    else {
+    else if (!animated) {
         self.errorLabel.alpha = 1.0f;
     }
 }
 
-- (void)hideErrorLabel
+- (void)hideErrorLabelAnimated:(BOOL)animated
 {
-    self.errorLabel.alpha = 0.0f;
+    if (animated && !self.isAnimating) {
+        self.isAnimating = YES;
+        [UIView animateWithDuration:MFDefaultAnimationDuration * 0.6
+                              delay:0.0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                            self.errorLabel.alpha = 0.0f;
+                         } completion:^(BOOL finished) {
+                             self.errorLabelTopConstraint.constant = [self topPaddingForErrorLabelHidden:YES];
+                             self.errorLabelHeightConstraint.active = YES;
+
+                             [UIView animateWithDuration:MFDefaultAnimationDuration * 0.3
+                                                   delay:0.0
+                                                 options:UIViewAnimationOptionCurveEaseOut
+                                              animations:^{
+                                                    [self.superview layoutIfNeeded];
+                                              } completion:^(BOOL finished) {
+                                                  self.isAnimating = NO;
+                                                  // Layout error label without animation if isValid has changed since animation started.
+                                                  if (!self.isValid) {
+                                                      [self layoutErrorLabelAnimated:NO];
+                                                  }
+                                              }];
+                         }];
+    }
+    else if (!animated) {
+        self.errorLabel.alpha = 0.0f;
+        self.errorLabelTopConstraint.constant = [self topPaddingForErrorLabelHidden:YES];
+        self.errorLabelHeightConstraint.active = YES;
+    }
+
 }
 
 - (BOOL)errorLabelIsHidden
@@ -416,12 +467,12 @@ static NSTimeInterval const MFPlaceholderAnimationDuration = 0.45;
     [self.errorLabel sizeToFit];
 }
 
-- (CGFloat)topPaddingForErrorLabel
+- (CGFloat)topPaddingForErrorLabelHidden:(BOOL)hidden
 {
-    CGFloat topPadding = self.font.lineHeight + (self.labelPadding.height * 2) + self.errorPadding;
+    CGFloat topPadding = CGRectGetMaxY(self.bottomBorderLayer.frame);
 
-    if (self.floatingPlaceholderEnabled) {
-        topPadding += self.placeholderLabel.font.lineHeight;
+    if (!hidden) {
+        topPadding += self.errorPadding;
     }
 
     return topPadding;
@@ -429,7 +480,7 @@ static NSTimeInterval const MFPlaceholderAnimationDuration = 0.45;
 
 - (void)updateErrorLabelPosition
 {
-    self.errorLabelTopConstraint.constant = [self topPaddingForErrorLabel];
+    self.errorLabelTopConstraint.constant = [self topPaddingForErrorLabelHidden:[self errorLabelIsHidden]];
 }
 
 - (void)removeErrorLabel
@@ -476,20 +527,29 @@ static NSTimeInterval const MFPlaceholderAnimationDuration = 0.45;
     return (self.text.length == 0);
 }
 
+# pragma mark - UIView
+
+- (CGSize)intrinsicContentSize
+{
+    CGSize intrinsicSize = [super intrinsicContentSize];
+
+    if (!self.errorLabel || [self errorLabelIsHidden]) {
+        intrinsicSize.height = CGRectGetMaxY(self.bottomBorderLayer.frame);
+    }
+
+    return intrinsicSize;
+}
+
 #pragma mark - Interface builder
 
 - (void)prepareForInterfaceBuilder
 {
-    if (self.floatingPlaceholderEnabled) {
-        [self showPlaceholderLabelAnimated:NO];
-    }
+    [self setDefaults];
+    [self setupTextField];
+    [self setupBottomBorder];
 
-    if (self.errorsEnabled) {
-        self.isValid = NO;
-        [self showErrorLabelAnimated:NO];
-    }
-
-    [self sharedInit];
+    self.floatingPlaceholderEnabled = NO;
+    self.errorsEnabled = NO;
 }
 
 @end
