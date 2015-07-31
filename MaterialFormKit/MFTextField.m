@@ -53,14 +53,6 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     [self setDefaults];
     [self setupTextField];
     [self setupBottomBorder];
-
-    if (self.floatingPlaceholderEnabled) {
-        [self setupPlaceholderLabel];
-    }
-
-    if (self.errorsEnabled) {
-        [self setupErrorLabel];
-    }
 }
 
 #pragma mark - Setup
