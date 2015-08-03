@@ -22,8 +22,11 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 @property (nonatomic) NSLayoutConstraint *errorLabelTopConstraint;
 @property (nonatomic) NSLayoutConstraint *errorLabelHeightConstraint;
 
+@property (nonatomic, readonly, getter=isEmpty) BOOL empty;
 @property (nonatomic) BOOL placeholderIsAnimating;
+@property (nonatomic, readonly) BOOL placeholderIsHidden;
 @property (nonatomic) BOOL errorIsAnimating;
+@property (nonatomic, readonly) BOOL errorIsHidden;
 
 @end
 
@@ -145,7 +148,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 {
     if (self.errorLabel) {
         NSDictionary *views = @{@"error": self.errorLabel};
-        NSDictionary *metrics = @{@"topPadding": @([self topPaddingForErrorLabelHidden:[self errorLabelIsHidden]])};
+        NSDictionary *metrics = @{@"topPadding": @([self topPaddingForErrorLabelHidden:self.errorIsHidden])};
 
         NSString *visualFormatString = @"V:|-topPadding-[error]-(>=0,0@900)-|";
         NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:visualFormatString
@@ -235,6 +238,21 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     self.errorLabel.font = errorFont;
 }
 
+- (BOOL)isEmpty
+{
+    return (self.text.length == 0);
+}
+
+- (BOOL)placeholderIsHidden
+{
+    return (self.placeholderLabel.alpha == 0.0f);
+}
+
+- (BOOL)errorIsHidden
+{
+    return (self.errorLabel.alpha == 0.0f);
+}
+
 #pragma mark - Layout
 
 - (void)layoutSubviews
@@ -260,13 +278,13 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 - (void)layoutPlaceholderLabelAnimated:(BOOL)animated
 {
-    if ([self isEmpty] && ![self placeholderLabelIsHidden]) {
+    if (self.isEmpty && !self.placeholderIsHidden) {
         [self hidePlaceholderLabelAnimated:animated];
     }
-    else if (![self isEmpty]) {
+    else if (!self.isEmpty) {
         [self updatePlaceholderColor];
 
-        if ([self placeholderLabelIsHidden]) {
+        if (self.placeholderIsHidden) {
             [self showPlaceholderLabelAnimated:animated];
         }
     }
@@ -274,10 +292,10 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 - (void)layoutErrorLabelAnimated:(BOOL)animated
 {
-    if (self.isValid && ![self errorLabelIsHidden]) {
+    if (self.isValid && !self.errorIsHidden) {
         [self hideErrorLabelAnimated:animated];
     }
-    else if (!self.isValid && [self errorLabelIsHidden]) {
+    else if (!self.isValid && self.errorIsHidden) {
         [self showErrorLabelAnimated:animated];
     }
 }
@@ -339,7 +357,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
                          } completion:^(BOOL finished) {
                              self.placeholderIsAnimating = NO;
                              // Layout label without animation if isEmpty has changed since animation started.
-                             if ([self isEmpty]) {
+                             if (self.isEmpty) {
                                  [self hidePlaceholderLabelAnimated:NO];
                              }
                          }];
@@ -367,7 +385,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
                          } completion:^(BOOL finished) {
                              self.placeholderIsAnimating = NO;
                              // Layout label without animation if isEmpty has changed since animation started.
-                             if (![self isEmpty]) {
+                             if (!self.isEmpty) {
                                  [self showPlaceholderLabelAnimated:NO];
                              }
                          }];
@@ -376,11 +394,6 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
         self.placeholderLabel.alpha = 0.0f;
         self.placeholderLabelTopConstraint.constant = finalDistanceFromTop;
     }
-}
-
-- (BOOL)placeholderLabelIsHidden
-{
-    return (self.placeholderLabel.alpha == 0.0f);
 }
 
 - (void)updatePlaceholderText
@@ -483,11 +496,6 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 }
 
-- (BOOL)errorLabelIsHidden
-{
-    return (self.errorLabel.alpha == 0.0f);
-}
-
 - (void)updateErrorLabelText
 {
     self.errorLabel.text = self.error;
@@ -507,7 +515,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 - (void)updateErrorLabelPosition
 {
-    self.errorLabelTopConstraint.constant = [self topPaddingForErrorLabelHidden:[self errorLabelIsHidden]];
+    self.errorLabelTopConstraint.constant = [self topPaddingForErrorLabelHidden:self.errorIsHidden];
 }
 
 - (void)removeErrorLabel
@@ -544,18 +552,13 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     return [self textRectForBounds:bounds];
 }
 
-- (BOOL)isEmpty
-{
-    return (self.text.length == 0);
-}
-
 # pragma mark - UIView
 
 - (CGSize)intrinsicContentSize
 {
     CGSize intrinsicSize = [super intrinsicContentSize];
 
-    if (!self.errorLabel || [self errorLabelIsHidden]) {
+    if (!self.errorLabel || self.errorIsHidden) {
         intrinsicSize.height = CGRectGetMaxY(self.underlineLayer.frame);
     }
 
