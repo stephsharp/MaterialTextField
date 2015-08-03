@@ -24,11 +24,9 @@ IB_DESIGNABLE
 @property (nonatomic) IBInspectable UIColor *underlineColor;
 //@property (nonatomic) IBInspectable UIColor *underlineEditingColor; // defaults to tint color
 
-@property (nonatomic) IBInspectable BOOL errorsEnabled;
 @property (nonatomic) IBInspectable NSString *error;
 @property (nonatomic) IBInspectable UIColor *errorColor;
 @property (nonatomic) IBInspectable CGFloat errorPadding;
 @property (nonatomic) UIFont *errorFont;
-@property (nonatomic) BOOL isValid;
 
 @end

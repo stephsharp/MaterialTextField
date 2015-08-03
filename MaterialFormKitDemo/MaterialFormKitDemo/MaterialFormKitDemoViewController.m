@@ -26,13 +26,9 @@
     self.rightAlignedTextField.shouldAnimatePlaceholder = NO;
     self.rightAlignedTextField.tintColor = [UIColor mf_greenColor];
     self.rightAlignedTextField.textColor = [UIColor mf_veryDarkGrayColor];
-    self.rightAlignedTextField.errorsEnabled = YES;
-    self.rightAlignedTextField.error = @"Maximum of 6 characters allowed.";
 
     self.leftAlignedTextField.tintColor = [UIColor mf_greenColor];
     self.leftAlignedTextField.textColor = [UIColor mf_veryDarkGrayColor];
-    self.leftAlignedTextField.errorsEnabled = YES;
-    self.leftAlignedTextField.error = @"This is an error message that is really long and should wrap onto 2 or more lines.";
 }
 
 - (IBAction)dismissKeyboard
@@ -45,10 +41,12 @@
     NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
 
     if (textField == self.rightAlignedTextField) {
-        self.rightAlignedTextField.isValid = (newString.length <= 6);
+        NSString *error = @"Maximum of 6 characters allowed.";
+        self.rightAlignedTextField.error = (newString.length > 6) ? error : nil;
     }
     else if (textField == self.leftAlignedTextField) {
-        self.leftAlignedTextField.isValid = (newString.length < 2);
+        NSString *error = @"This is an error message that is really long and should wrap onto 2 or more lines.";
+        self.leftAlignedTextField.error = (newString.length >= 2) ? error : nil;
     }
 
     return YES;
