@@ -15,7 +15,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 @interface MFTextField ()
 
 @property (nonatomic) UILabel *placeholderLabel;
-@property (nonatomic) CALayer *bottomBorderLayer;
+@property (nonatomic) CALayer *underlineLayer;
 @property (nonatomic) UILabel *errorLabel;
 
 @property (nonatomic) NSLayoutConstraint *placeholderLabelTopConstraint;
@@ -52,24 +52,24 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 {
     [self setDefaults];
     [self setupTextField];
-    [self setupBottomBorder];
+    [self setupUnderline];
 }
 
 #pragma mark - Setup
 
 - (void)setDefaults
 {
-    self.labelPadding = CGSizeMake(0.0f, 8.0f);
+    self.textPadding = CGSizeMake(0.0f, 8.0f);
     self.errorPadding = 4.0f;
 
-    self.floatingPlaceholderEnabled = YES;
-    self.floatingPlaceholderColor = [UIColor mf_darkGrayColor];
-    self.floatingPlaceholderDisabledColor = [UIColor mf_midGrayColor];
-    self.floatingPlaceholderFont = [self defaultPlaceholderFont];
+    self.placeholderEnabled = YES;
+    self.placeholderColor = [UIColor mf_darkGrayColor];
+    //self.placeholderDisabledColor = [UIColor mf_midGrayColor];
+    self.placeholderFont = [self defaultPlaceholderFont];
 
-    self.bottomBorderHeight = 1.0f;
-    self.bottomBorderColor = [UIColor mf_lightGrayColor];
-    self.bottomBorderEditingHeight = 1.75f;
+    self.underlineHeight = 1.0f;
+    self.underlineColor = [UIColor mf_lightGrayColor];
+    self.underlineEditingHeight = 1.75f;
 
     self.errorsEnabled = NO;
     self.errorColor = [UIColor mf_redColor];
@@ -85,18 +85,18 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     self.clipsToBounds = NO;
 }
 
-- (void)setupBottomBorder
+- (void)setupUnderline
 {
-    self.bottomBorderLayer = [CALayer layer];
-    [self layoutBottomBorderLayer];
-    [self.layer addSublayer:self.bottomBorderLayer];
+    self.underlineLayer = [CALayer layer];
+    [self layoutUnderlineLayer];
+    [self.layer addSublayer:self.underlineLayer];
 }
 
 - (void)setupPlaceholderLabel
 {
     self.placeholderLabel = [UILabel new];
     self.placeholderLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    self.placeholderLabel.font = self.floatingPlaceholderFont;
+    self.placeholderLabel.font = self.placeholderFont;
     self.placeholderLabel.textAlignment = self.textAlignment;
     [self hidePlaceholderLabel];
     [self updatePlaceholderText];
@@ -172,25 +172,25 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 #pragma mark - Properties
 
-- (void)setFloatingPlaceholderEnabled:(BOOL)floatingPlaceholderEnabled
+- (void)setPlaceholderEnabled:(BOOL)placeholderEnabled
 {
-    _floatingPlaceholderEnabled = floatingPlaceholderEnabled;
+    _placeholderEnabled = placeholderEnabled;
     [self removePlaceholderLabel];
 
-    if (floatingPlaceholderEnabled) {
+    if (placeholderEnabled) {
         [self setupPlaceholderLabel];
     }
 }
 
-- (void)setFloatingPlaceholderFont:(UIFont *)floatingPlaceholderFont
+- (void)setPlaceholderFont:(UIFont *)placeholderFont
 {
-    _floatingPlaceholderFont = floatingPlaceholderFont;
-    self.placeholderLabel.font = floatingPlaceholderFont;
+    _placeholderFont = placeholderFont;
+    self.placeholderLabel.font = placeholderFont;
 }
 
-- (void)setFloatingPlaceholderColor:(UIColor *)floatingPlaceholderColor
+- (void)setPlaceholderColor:(UIColor *)placeholderColor
 {
-    _floatingPlaceholderColor = floatingPlaceholderColor;
+    _placeholderColor = placeholderColor;
     [self updatePlaceholderColor];
 }
 
@@ -240,9 +240,9 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 {
     [super layoutSubviews];
 
-    [self layoutBottomBorderLayer];
+    [self layoutUnderlineLayer];
 
-    if (self.floatingPlaceholderEnabled) {
+    if (self.placeholderEnabled) {
         [self layoutPlaceholderLabel];
     }
 
@@ -251,10 +251,10 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     }
 }
 
-- (void)layoutBottomBorderLayer
+- (void)layoutUnderlineLayer
 {
-    [self updateBottomBorderColor];
-    [self updateBottomBorderFrame];
+    [self updateUnderlineColor];
+    [self updateUnderlineFrame];
 }
 
 - (void)layoutPlaceholderLabel
@@ -281,36 +281,36 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     }
 }
 
-#pragma mark - Bottom border
+#pragma mark - Underline
 
-- (void)updateBottomBorderColor
+- (void)updateUnderlineColor
 {
-    UIColor *borderColor;
+    UIColor *underlineColor;
 
     if (self.errorsEnabled && !self.isValid) {
-        borderColor = self.errorColor;
+        underlineColor = self.errorColor;
     }
     else {
-        borderColor = self.isFirstResponder ? self.tintColor : self.bottomBorderColor;
+        underlineColor = self.isFirstResponder ? self.tintColor : self.underlineColor;
     }
 
-    self.bottomBorderLayer.backgroundColor = borderColor.CGColor;
+    self.underlineLayer.backgroundColor = underlineColor.CGColor;
 }
 
-- (void)updateBottomBorderFrame
+- (void)updateUnderlineFrame
 {
     CGRect textRect = [self textRectForBounds:self.bounds];
-    CGFloat borderHeight = self.isFirstResponder ? self.bottomBorderEditingHeight : self.bottomBorderHeight;
-    CGFloat yPos = CGRectGetMaxY(textRect) + self.labelPadding.height - borderHeight;
+    CGFloat underlineHeight = self.isFirstResponder ? self.underlineEditingHeight : self.underlineHeight;
+    CGFloat yPos = CGRectGetMaxY(textRect) + self.textPadding.height - underlineHeight;
 
-    self.bottomBorderLayer.frame = CGRectMake(0, yPos, CGRectGetWidth(self.bounds), borderHeight);
+    self.underlineLayer.frame = CGRectMake(0, yPos, CGRectGetWidth(self.bounds), underlineHeight);
 
     if (self.errorsEnabled) {
         [self updateErrorLabelPosition];
     }
 }
 
-#pragma mark - Floating placeholder
+#pragma mark - Placeholder
 
 - (UIFont *)defaultPlaceholderFont
 {
@@ -369,7 +369,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
         color = (self.errorsEnabled && !self.isValid) ? self.errorColor : self.tintColor;
     }
     else {
-        color = self.floatingPlaceholderColor;
+        color = self.placeholderColor;
     }
 
     self.placeholderLabel.textColor = color;
@@ -465,7 +465,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 - (CGFloat)topPaddingForErrorLabelHidden:(BOOL)hidden
 {
-    CGFloat topPadding = CGRectGetMaxY(self.bottomBorderLayer.frame);
+    CGFloat topPadding = CGRectGetMaxY(self.underlineLayer.frame);
 
     if (!hidden) {
         topPadding += self.errorPadding;
@@ -494,8 +494,8 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     CGRect rect = [super textRectForBounds:bounds];
     rect.size.height = self.font.lineHeight;
 
-    CGFloat top = ceil(self.labelPadding.height);
-    if (self.floatingPlaceholderEnabled) {
+    CGFloat top = ceil(self.textPadding.height);
+    if (self.placeholderEnabled) {
         top += self.placeholderLabel.font.lineHeight;
     }
     rect.origin.y = top;
@@ -530,7 +530,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     CGSize intrinsicSize = [super intrinsicContentSize];
 
     if (!self.errorLabel || [self errorLabelIsHidden]) {
-        intrinsicSize.height = CGRectGetMaxY(self.bottomBorderLayer.frame);
+        intrinsicSize.height = CGRectGetMaxY(self.underlineLayer.frame);
     }
 
     return intrinsicSize;
@@ -542,9 +542,9 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 {
     [self setDefaults];
     [self setupTextField];
-    [self setupBottomBorder];
+    [self setupUnderline];
 
-    self.floatingPlaceholderEnabled = NO;
+    self.placeholderEnabled = NO;
     self.errorsEnabled = NO;
 }
 

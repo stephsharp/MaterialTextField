@@ -11,23 +11,24 @@
 IB_DESIGNABLE
 @interface MFTextField : UITextField
 
-@property (nonatomic) IBInspectable CGSize labelPadding;
-@property (nonatomic) IBInspectable CGFloat errorPadding;
+@property (nonatomic) IBInspectable CGSize textPadding;
 
-@property (nonatomic) IBInspectable BOOL floatingPlaceholderEnabled;
-@property (nonatomic) IBInspectable UIColor *floatingPlaceholderColor;
-@property (nonatomic) IBInspectable UIColor *floatingPlaceholderDisabledColor;
-@property (nonatomic) UIFont *floatingPlaceholderFont;
+@property (nonatomic) IBInspectable BOOL placeholderEnabled;
+@property (nonatomic) IBInspectable UIColor *placeholderColor;
+//@property (nonatomic) IBInspectable UIColor *placeholderEditingColor; // defaults to tint color
+//@property (nonatomic) IBInspectable UIColor *placeholderDisabledColor;
+@property (nonatomic) UIFont *placeholderFont;
 
-@property (nonatomic) IBInspectable CGFloat bottomBorderHeight;
-@property (nonatomic) IBInspectable CGFloat bottomBorderEditingHeight;
-@property (nonatomic) IBInspectable UIColor *bottomBorderColor;
+@property (nonatomic) IBInspectable CGFloat underlineHeight;
+@property (nonatomic) IBInspectable CGFloat underlineEditingHeight;
+@property (nonatomic) IBInspectable UIColor *underlineColor;
+//@property (nonatomic) IBInspectable UIColor *underlineEditingColor; // defaults to tint color
 
 @property (nonatomic) IBInspectable BOOL errorsEnabled;
 @property (nonatomic) IBInspectable UIColor *errorColor;
 @property (nonatomic) IBInspectable NSString *errorMessage;
+@property (nonatomic) IBInspectable CGFloat errorPadding;
 @property (nonatomic) UIFont *errorFont;
-
 @property (nonatomic) BOOL isValid;
 
 @end
