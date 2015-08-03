@@ -22,7 +22,8 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 @property (nonatomic) NSLayoutConstraint *errorLabelTopConstraint;
 @property (nonatomic) NSLayoutConstraint *errorLabelHeightConstraint;
 
-@property (nonatomic) BOOL isAnimating;
+@property (nonatomic) BOOL placeholderIsAnimating;
+@property (nonatomic) BOOL errorIsAnimating;
 
 @end
 
@@ -98,11 +99,11 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     self.placeholderLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.placeholderLabel.font = self.placeholderFont;
     self.placeholderLabel.textAlignment = self.textAlignment;
-    [self hidePlaceholderLabel];
     [self updatePlaceholderText];
     [self updatePlaceholderColor];
     [self addSubview:self.placeholderLabel];
     [self setupPlaceholderConstraints];
+    [self layoutPlaceholderLabelAnimated:NO];
 }
 
 - (void)setupErrorLabel
@@ -115,10 +116,10 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     self.errorLabel.textAlignment = NSTextAlignmentLeft;
     self.errorLabel.numberOfLines = 0;
     self.errorLabel.textColor = self.errorColor;
-    [self hideErrorLabelAnimated:NO];
     [self updateErrorLabelText];
     [self addSubview:self.errorLabel];
     [self setupErrorConstraints];
+    [self layoutErrorLabelAnimated:NO];
 }
 
 - (void)setupPlaceholderConstraints
@@ -243,7 +244,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     [self layoutUnderlineLayer];
 
     if (self.placeholderEnabled) {
-        [self layoutPlaceholderLabel];
+        [self layoutPlaceholderLabelAnimated:YES];
     }
 
     if (self.errorsEnabled) {
@@ -257,16 +258,16 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     [self updateUnderlineFrame];
 }
 
-- (void)layoutPlaceholderLabel
+- (void)layoutPlaceholderLabelAnimated:(BOOL)animated
 {
-    if ([self isEmpty]) {
-        [self hidePlaceholderLabel];
+    if ([self isEmpty] && ![self placeholderLabelIsHidden]) {
+        [self hidePlaceholderLabelAnimated:animated];
     }
-    else {
+    else if (![self isEmpty]) {
         [self updatePlaceholderColor];
 
         if ([self placeholderLabelIsHidden]) {
-            [self showPlaceholderLabelAnimated:YES];
+            [self showPlaceholderLabelAnimated:animated];
         }
     }
 }
@@ -325,29 +326,56 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 - (void)showPlaceholderLabelAnimated:(BOOL)animated
 {
-    if (animated) {
-        CGFloat finalDistanceFromTop = self.placeholderLabelTopConstraint.constant;
+    if (animated && !self.placeholderIsAnimating) {
+        self.placeholderIsAnimating = YES;
+        self.placeholderLabelTopConstraint.constant = 0;
 
-        self.placeholderLabelTopConstraint.constant = CGRectGetMinY([self textRectForBounds:self.bounds]) / 2.0f;
-        [self.superview layoutIfNeeded];
-
-        self.placeholderLabelTopConstraint.constant = finalDistanceFromTop;
         [UIView animateWithDuration:MFDefaultAnimationDuration
                               delay:0.0
                             options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
                              self.placeholderLabel.alpha = 1.0f;
-                             [self layoutIfNeeded];
-                         } completion:nil];
+                             [self.superview layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             self.placeholderIsAnimating = NO;
+                             // Layout label without animation if isEmpty has changed since animation started.
+                             if ([self isEmpty]) {
+                                 [self hidePlaceholderLabelAnimated:NO];
+                             }
+                         }];
     }
-    else {
+    else if (!animated) {
         self.placeholderLabel.alpha = 1.0f;
+        self.placeholderLabelTopConstraint.constant = 0;
     }
 }
 
-- (void)hidePlaceholderLabel
+- (void)hidePlaceholderLabelAnimated:(BOOL)animated
 {
-    self.placeholderLabel.alpha = 0.0f;
+    CGFloat finalDistanceFromTop = CGRectGetMinY([self textRectForBounds:self.bounds]) / 2.0f;
+
+    if (animated && !self.placeholderIsAnimating) {
+        self.placeholderIsAnimating = YES;
+        self.placeholderLabelTopConstraint.constant = finalDistanceFromTop;
+
+        [UIView animateWithDuration:MFDefaultAnimationDuration
+                              delay:0.0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             self.placeholderLabel.alpha = 0.0f;
+                             [self.superview layoutIfNeeded];
+                         } completion:^(BOOL finished) {
+                             self.placeholderIsAnimating = NO;
+                             // Layout label without animation if isEmpty has changed since animation started.
+                             if (![self isEmpty]) {
+                                 [self showPlaceholderLabelAnimated:NO];
+                             }
+                         }];
+    }
+    else if (!animated) {
+        self.placeholderLabel.alpha = 0.0f;
+        self.placeholderLabelTopConstraint.constant = finalDistanceFromTop;
+    }
 }
 
 - (BOOL)placeholderLabelIsHidden
@@ -387,11 +415,12 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 - (void)showErrorLabelAnimated:(BOOL)animated
 {
-    self.errorLabelHeightConstraint.active = NO;
     self.errorLabelTopConstraint.constant = [self topPaddingForErrorLabelHidden:NO];
 
-    if (animated && !self.isAnimating) {
-        self.isAnimating = YES;
+    if (animated && !self.errorIsAnimating) {
+        self.errorIsAnimating = YES;
+        self.errorLabelHeightConstraint.active = NO;
+
         [UIView animateWithDuration:MFDefaultAnimationDuration
                               delay:0.0
                             options:UIViewAnimationOptionCurveEaseInOut
@@ -404,23 +433,25 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
                                               animations:^{
                                                   self.errorLabel.alpha = 1.0f;
                                               } completion:^(BOOL finished) {
-                                                  self.isAnimating = NO;
+                                                  self.errorIsAnimating = NO;
                                                   // Layout error label without animation if isValid has changed since animation started.
                                                   if (self.isValid) {
-                                                      [self layoutErrorLabelAnimated:NO];
+                                                      [self hideErrorLabelAnimated:NO];
                                                   }
                                               }];
                          }];
     }
     else if (!animated) {
         self.errorLabel.alpha = 1.0f;
+        self.errorLabelHeightConstraint.active = NO;
+
     }
 }
 
 - (void)hideErrorLabelAnimated:(BOOL)animated
 {
-    if (animated && !self.isAnimating) {
-        self.isAnimating = YES;
+    if (animated && !self.errorIsAnimating) {
+        self.errorIsAnimating = YES;
         [UIView animateWithDuration:MFDefaultAnimationDuration * 0.6
                               delay:0.0
                             options:UIViewAnimationOptionCurveEaseOut
@@ -436,10 +467,10 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
                                               animations:^{
                                                     [self.superview layoutIfNeeded];
                                               } completion:^(BOOL finished) {
-                                                  self.isAnimating = NO;
+                                                  self.errorIsAnimating = NO;
                                                   // Layout error label without animation if isValid has changed since animation started.
                                                   if (!self.isValid) {
-                                                      [self layoutErrorLabelAnimated:NO];
+                                                      [self showErrorLabelAnimated:NO];
                                                   }
                                               }];
                          }];
@@ -496,7 +527,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
     CGFloat top = ceil(self.textPadding.height);
     if (self.placeholderEnabled) {
-        top += self.placeholderLabel.font.lineHeight;
+        top += self.placeholderFont.lineHeight;
     }
     rect.origin.y = top;
 
@@ -507,11 +538,6 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 {
     return [self textRectForBounds:bounds];
 }
-
-//- (void)drawPlaceholderInRect:(CGRect)rect
-//{
-//    [super drawPlaceholderInRect:rect];
-//}
 
 - (CGRect)placeholderRectForBounds:(CGRect)bounds
 {
