@@ -253,6 +253,8 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     if (self.shouldAnimatePlaceholder) {
         [self layoutPlaceholderLabelAnimated:YES];
     }
+
+    [self layoutErrorLabelAnimated:YES];
 }
 
 - (void)layoutUnderlineLayer
@@ -418,27 +420,20 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     if (animated && !self.errorIsAnimating) {
         self.errorIsAnimating = YES;
         self.errorLabelHeightConstraint.active = NO;
+        self.errorLabelTopConstraint.constant = [self topPaddingForErrorLabelHidden:NO];
 
         [UIView animateWithDuration:MFDefaultAnimationDuration
                               delay:0.0
                             options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
                              [self.superview layoutIfNeeded];
+                             self.errorLabel.alpha = 1.0f;
                          } completion:^(BOOL finished) {
-                             self.errorLabelTopConstraint.constant = [self topPaddingForErrorLabelHidden:NO];
-                             [UIView animateWithDuration:MFDefaultAnimationDuration * 0.6
-                                                   delay:0.0
-                                                 options:UIViewAnimationOptionCurveEaseOut
-                                              animations:^{
-                                                  self.errorLabel.alpha = 1.0f;
-                                                  [self layoutIfNeeded];
-                                              } completion:^(BOOL finished) {
-                                                  self.errorIsAnimating = NO;
-                                                  // Layout error label without animation if isValid has changed since animation started.
-                                                  if (!self.hasError) {
-                                                      [self hideErrorLabelAnimated:NO];
-                                                  }
-                                              }];
+                              self.errorIsAnimating = NO;
+                              // Layout error label without animation if isValid has changed since animation started.
+                              if (!self.hasError) {
+                                  [self hideErrorLabelAnimated:NO];
+                              }
                          }];
     }
     else if (!animated) {
@@ -453,7 +448,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 {
     if (animated && !self.errorIsAnimating) {
         self.errorIsAnimating = YES;
-        [UIView animateWithDuration:MFDefaultAnimationDuration * 0.6
+        [UIView animateWithDuration:MFDefaultAnimationDuration * 0.5
                               delay:0.0
                             options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
