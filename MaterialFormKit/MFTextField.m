@@ -73,7 +73,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
     self.errorsEnabled = NO;
     self.errorColor = [UIColor mf_redColor];
-    self.errorMessage = @"Error";
+    self.error = @"Error";
     self.errorFont = [self defaultErrorFont];
     self.isValid = YES;
 }
@@ -172,6 +172,12 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 #pragma mark - Properties
 
+- (void)setFont:(UIFont *)font
+{
+    [super setFont:font];
+    [self updateErrorLabelPosition];
+}
+
 - (void)setPlaceholderEnabled:(BOOL)placeholderEnabled
 {
     _placeholderEnabled = placeholderEnabled;
@@ -204,10 +210,10 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     }
 }
 
-- (void)setErrorFont:(UIFont *)errorFont
+- (void)setError:(NSString *)error
 {
-    _errorFont = errorFont;
-    self.errorLabel.font = errorFont;
+    _error = error;
+    [self updateErrorLabelText];
 }
 
 - (void)setErrorColor:(UIColor *)errorColor
@@ -222,16 +228,10 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     [self updatePlaceholderText];
 }
 
-- (void)setErrorMessage:(NSString *)errorMessage
+- (void)setErrorFont:(UIFont *)errorFont
 {
-    _errorMessage = errorMessage;
-    [self updateErrorLabelText];
-}
-
-- (void)setFont:(UIFont *)font
-{
-    [super setFont:font];
-    [self updateErrorLabelPosition];
+    _errorFont = errorFont;
+    self.errorLabel.font = errorFont;
 }
 
 #pragma mark - Layout
@@ -459,7 +459,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 - (void)updateErrorLabelText
 {
-    self.errorLabel.text = self.errorMessage;
+    self.errorLabel.text = self.error;
     [self.errorLabel sizeToFit];
 }
 

@@ -27,12 +27,12 @@
     self.rightAlignedTextField.tintColor = [UIColor mf_greenColor];
     self.rightAlignedTextField.textColor = [UIColor mf_veryDarkGrayColor];
     self.rightAlignedTextField.errorsEnabled = YES;
-    self.rightAlignedTextField.errorMessage = @"Maximum of 6 characters allowed.";
+    self.rightAlignedTextField.error = @"Maximum of 6 characters allowed.";
 
     self.leftAlignedTextField.tintColor = [UIColor mf_greenColor];
     self.leftAlignedTextField.textColor = [UIColor mf_veryDarkGrayColor];
     self.leftAlignedTextField.errorsEnabled = YES;
-    self.leftAlignedTextField.errorMessage = @"This is an error message that is really long and should wrap onto 2 or more lines.";
+    self.leftAlignedTextField.error = @"This is an error message that is really long and should wrap onto 2 or more lines.";
 }
 
 - (IBAction)dismissKeyboard
