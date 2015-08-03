@@ -13,7 +13,7 @@ IB_DESIGNABLE
 
 @property (nonatomic) IBInspectable CGSize textPadding;
 
-@property (nonatomic) IBInspectable BOOL placeholderEnabled;
+@property (nonatomic) IBInspectable BOOL shouldAnimatePlaceholder;
 @property (nonatomic) IBInspectable UIColor *placeholderColor;
 //@property (nonatomic) IBInspectable UIColor *placeholderEditingColor; // defaults to tint color
 //@property (nonatomic) IBInspectable UIColor *placeholderDisabledColor;
