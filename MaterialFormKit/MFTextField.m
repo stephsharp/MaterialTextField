@@ -311,7 +311,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
     self.underlineLayer.frame = CGRectMake(0, yPos, CGRectGetWidth(self.bounds), underlineHeight);
 
-    if (self.hasError) {
+    if (!self.errorIsAnimating) {
         [self updateErrorLabelPosition];
     }
 }
@@ -440,7 +440,6 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
         self.errorLabel.alpha = 1.0f;
         self.errorLabelTopConstraint.constant = [self topPaddingForErrorLabelHidden:NO];
         self.errorLabelHeightConstraint.active = NO;
-
     }
 }
 
@@ -558,7 +557,6 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     [self setupUnderline];
 
     self.shouldAnimatePlaceholder = NO;
-    [self.errorLabel removeFromSuperview];
 }
 
 @end
