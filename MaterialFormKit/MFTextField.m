@@ -363,7 +363,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
         self.placeholderIsAnimating = YES;
         self.placeholderLabelTopConstraint.constant = finalDistanceFromTop;
 
-        [UIView animateWithDuration:MFDefaultAnimationDuration * 0.6
+        [UIView animateWithDuration:MFDefaultAnimationDuration * 0.3
                               delay:0.0
                             options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
