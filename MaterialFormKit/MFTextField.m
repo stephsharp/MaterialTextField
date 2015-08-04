@@ -28,6 +28,8 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 @property (nonatomic) BOOL placeholderIsAnimating;
 @property (nonatomic) BOOL errorIsAnimating;
 
+@property (nonatomic) UIFont *defaultPlaceholderFont;
+
 @end
 
 @implementation MFTextField
@@ -70,7 +72,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     self.shouldAnimatePlaceholder = YES;
     self.placeholderColor = [UIColor mf_darkGrayColor];
     //self.placeholderDisabledColor = [UIColor mf_midGrayColor];
-    self.placeholderFont = [self defaultPlaceholderFont];
+    self.placeholderFont = self.defaultPlaceholderFont;
 
     self.underlineHeight = 1.0f;
     self.underlineColor = [UIColor mf_lightGrayColor];
@@ -100,7 +102,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     self.placeholderLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.placeholderLabel.font = self.placeholderFont;
     self.placeholderLabel.textAlignment = self.textAlignment;
-    [self updatePlaceholderText];
+    [self updatePlaceholderText:self.placeholder];
     [self updatePlaceholderColor];
     [self addSubview:self.placeholderLabel];
     [self setupPlaceholderConstraints];
@@ -175,11 +177,35 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 #pragma mark - Properties
 
+#pragma mark UITextField
+
 - (void)setFont:(UIFont *)font
 {
     [super setFont:font];
+    [self updateDefaultPlaceholderFont];
     [self updateErrorLabelPosition];
 }
+
+- (void)setAttributedText:(NSAttributedString *)attributedText
+{
+    [super setAttributedText:attributedText];
+    [self updateDefaultPlaceholderFont];
+}
+
+- (void)setPlaceholder:(NSString *)placeholder
+{
+    [super setPlaceholder:placeholder];
+    [self updatePlaceholderText:placeholder];
+}
+
+- (void)setAttributedPlaceholder:(NSAttributedString *)attributedPlaceholder
+{
+    [super setAttributedPlaceholder:attributedPlaceholder];
+    [self updatePlaceholderText:attributedPlaceholder.string];
+    [self updateDefaultPlaceholderFont];
+}
+
+#pragma mark Placeholder
 
 - (void)setShouldAnimatePlaceholder:(BOOL)shouldAnimatePlaceholder
 {
@@ -193,8 +219,9 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 - (void)setPlaceholderFont:(UIFont *)placeholderFont
 {
-    _placeholderFont = placeholderFont;
-    self.placeholderLabel.font = placeholderFont;
+    _placeholderFont = placeholderFont ? placeholderFont : self.defaultPlaceholderFont;
+    self.placeholderLabel.font = _placeholderFont;
+    [self updatePlaceholderText:self.placeholder];
 }
 
 - (void)setPlaceholderColor:(UIColor *)placeholderColor
@@ -202,6 +229,16 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     _placeholderColor = placeholderColor;
     [self updatePlaceholderColor];
 }
+
+- (UIFont *)defaultPlaceholderFont
+{
+    if (!_defaultPlaceholderFont) {
+        _defaultPlaceholderFont = [self defaultFontForPlaceholder];
+    }
+    return _defaultPlaceholderFont;
+}
+
+#pragma mark Error
 
 - (void)setError:(NSString *)error
 {
@@ -215,17 +252,13 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     self.errorLabel.textColor = errorColor;
 }
 
-- (void)setPlaceholder:(NSString *)placeholder
-{
-    [super setPlaceholder:placeholder];
-    [self updatePlaceholderText];
-}
-
 - (void)setErrorFont:(UIFont *)errorFont
 {
     _errorFont = errorFont;
     self.errorLabel.font = errorFont;
 }
+
+#pragma mark Computed
 
 - (BOOL)isEmpty
 {
@@ -318,15 +351,37 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 #pragma mark - Placeholder
 
-- (UIFont *)defaultPlaceholderFont
+- (UIFont *)defaultFontForPlaceholder
 {
-    UIFontDescriptor * fontDescriptor = [self.font.fontDescriptor fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitBold];
-    return [UIFont fontWithDescriptor:fontDescriptor size:MFDefaultLabelFontSize];
+    UIFont *font;
+
+    if (self.attributedPlaceholder.length > 0) {
+        font = [self.attributedPlaceholder attribute:NSFontAttributeName atIndex:0 effectiveRange:NULL];
+    }
+    else if (self.attributedText.length > 0) {
+        font = [self.attributedText attribute:NSFontAttributeName atIndex:0 effectiveRange:NULL];
+    }
+    else {
+        font = self.font;
+    }
+
+    return [UIFont fontWithName:font.fontName size:MFDefaultLabelFontSize];
 }
 
-- (UIFont *)defaultErrorFont
+- (void)updateDefaultPlaceholderFont
 {
-    return [self.font fontWithSize:MFDefaultLabelFontSize];
+    BOOL isUsingDefaultFont = [self font:self.placeholderFont isEqualToFont:self.defaultPlaceholderFont];
+
+    self.defaultPlaceholderFont = [self defaultFontForPlaceholder];
+
+    if (!self.defaultPlaceholderFont || isUsingDefaultFont) {
+        self.placeholderFont = self.defaultPlaceholderFont;
+    }
+}
+
+- (BOOL)font:(UIFont *)font1 isEqualToFont:(UIFont *)font2
+{
+    return [[[font1 fontDescriptor] fontAttributes] isEqual:[[font2 fontDescriptor] fontAttributes]];
 }
 
 - (void)showPlaceholderLabelAnimated:(BOOL)animated
@@ -383,10 +438,11 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     }
 }
 
-- (void)updatePlaceholderText
+- (void)updatePlaceholderText:(NSString *)placeholder
 {
-    self.placeholderLabel.text = self.placeholder;
+    self.placeholderLabel.text = placeholder;
     [self.placeholderLabel sizeToFit];
+    [self invalidateIntrinsicContentSize];
 }
 
 - (void)updatePlaceholderColor
@@ -412,6 +468,11 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 }
 
 #pragma mark - Error message
+
+- (UIFont *)defaultErrorFont
+{
+    return [self.font fontWithSize:MFDefaultLabelFontSize];
+}
 
 - (void)showErrorLabelAnimated:(BOOL)animated
 {
