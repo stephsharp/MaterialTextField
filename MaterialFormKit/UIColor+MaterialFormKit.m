@@ -18,6 +18,11 @@
                            alpha:1.0];
 }
 
++ (UIColor *)mf_defaultPlaceholderGray
+{
+    return [UIColor colorWithRed:0.0f green:0.0f blue:0.098f alpha:0.22f];
+}
+
 + (UIColor *)mf_veryDarkGrayColor
 {
     return [UIColor colorWithHex:0x222222];

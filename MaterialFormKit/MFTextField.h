@@ -14,6 +14,12 @@ IB_DESIGNABLE
 @property (nonatomic) IBInspectable CGSize textPadding;
 
 @property (nonatomic) IBInspectable BOOL shouldAnimatePlaceholder;
+
+/**
+ * Optional property to set the color of the textfield's default placeholder
+ */
+@property (nonatomic) IBInspectable UIColor *defaultPlaceholderColor;
+
 @property (nonatomic) IBInspectable UIColor *placeholderColor;
 //@property (nonatomic) IBInspectable UIColor *placeholderEditingColor; // defaults to tint color
 //@property (nonatomic) IBInspectable UIColor *placeholderDisabledColor;

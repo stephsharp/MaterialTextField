@@ -10,6 +10,7 @@
 
 @interface UIColor (MaterialFormKit)
 
++ (UIColor *)mf_defaultPlaceholderGray;
 + (UIColor *)mf_veryDarkGrayColor;
 + (UIColor *)mf_darkGrayColor;
 + (UIColor *)mf_midGrayColor;

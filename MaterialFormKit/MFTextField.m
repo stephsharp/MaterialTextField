@@ -200,12 +200,25 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 - (void)setAttributedPlaceholder:(NSAttributedString *)attributedPlaceholder
 {
+    if (self.defaultPlaceholderColor) {
+        attributedPlaceholder = [self attributedString:attributedPlaceholder withColor:self.defaultPlaceholderColor];
+    }
+
     [super setAttributedPlaceholder:attributedPlaceholder];
     [self updatePlaceholderText:attributedPlaceholder.string];
     [self updateDefaultPlaceholderFont];
 }
 
 #pragma mark Placeholder
+
+- (void)setDefaultPlaceholderColor:(UIColor *)defaultPlaceholderColor
+{
+    _defaultPlaceholderColor = defaultPlaceholderColor ?: [UIColor mf_defaultPlaceholderGray];
+
+    if (self.attributedPlaceholder.length > 0) {
+        self.attributedPlaceholder = [self attributedString:self.attributedPlaceholder withColor:self.defaultPlaceholderColor];
+    }
+}
 
 - (void)setShouldAnimatePlaceholder:(BOOL)shouldAnimatePlaceholder
 {
@@ -457,6 +470,14 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     }
 
     self.placeholderLabel.textColor = color;
+}
+
+- (NSAttributedString *)attributedString:(NSAttributedString *)attributedString withColor:(UIColor *)color
+{
+    NSMutableDictionary *attributes = [[attributedString attributesAtIndex:0 effectiveRange:NULL] mutableCopy];
+    attributes[NSForegroundColorAttributeName] = color;
+
+    return [[NSAttributedString alloc] initWithString:attributedString.string attributes:attributes];
 }
 
 - (void)removePlaceholderLabel
