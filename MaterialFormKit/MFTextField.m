@@ -232,7 +232,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 - (void)setPlaceholderFont:(UIFont *)placeholderFont
 {
-    _placeholderFont = placeholderFont ? placeholderFont : self.defaultPlaceholderFont;
+    _placeholderFont = placeholderFont ?: self.defaultPlaceholderFont;
     self.placeholderLabel.font = _placeholderFont;
     [self updatePlaceholderText:self.placeholder];
 }
