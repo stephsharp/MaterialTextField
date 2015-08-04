@@ -16,6 +16,11 @@ IB_DESIGNABLE
 @property (nonatomic) IBInspectable BOOL shouldAnimatePlaceholder;
 
 /**
+ * Defaults to NO. If set to YES, placeholder will animate up on focus instead of on text input.
+ */
+@property (nonatomic) IBInspectable BOOL placeholderAnimatesOnFocus;
+
+/**
  * Optional property to set the color of the textfield's default placeholder
  */
 @property (nonatomic) IBInspectable UIColor *defaultPlaceholderColor;

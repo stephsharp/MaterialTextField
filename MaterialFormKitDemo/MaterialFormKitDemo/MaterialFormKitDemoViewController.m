@@ -30,6 +30,7 @@
     self.leftAlignedTextField.tintColor = [UIColor mf_greenColor];
     self.leftAlignedTextField.textColor = [UIColor mf_veryDarkGrayColor];
     self.leftAlignedTextField.defaultPlaceholderColor = [UIColor mf_darkGrayColor];
+    self.leftAlignedTextField.placeholderAnimatesOnFocus = YES;
 
     UIFontDescriptor * fontDescriptor = [self.leftAlignedTextField.font.fontDescriptor fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitBold];
     UIFont *font = [UIFont fontWithDescriptor:fontDescriptor size:self.leftAlignedTextField.font.pointSize];

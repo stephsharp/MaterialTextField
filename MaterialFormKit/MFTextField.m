@@ -22,7 +22,9 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 @property (nonatomic) UILabel *placeholderLabel;
 @property (nonatomic) NSLayoutConstraint *placeholderLabelTopConstraint;
+@property (nonatomic) NSAttributedString *placeholderAttributedString;
 @property (nonatomic) UIFont *defaultPlaceholderFont;
+@property (nonatomic, readonly) BOOL shouldShowPlaceholder;
 @property (nonatomic, readonly) BOOL placeholderIsHidden;
 @property (nonatomic) BOOL placeholderIsAnimating;
 
@@ -104,7 +106,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     self.placeholderLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.placeholderLabel.font = self.placeholderFont;
     self.placeholderLabel.textAlignment = self.textAlignment;
-    [self updatePlaceholderText:self.placeholder];
+    [self updatePlaceholderText];
     [self updatePlaceholderColor];
     [self addSubview:self.placeholderLabel];
     [self setupPlaceholderConstraints];
@@ -197,7 +199,8 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 - (void)setPlaceholder:(NSString *)placeholder
 {
     [super setPlaceholder:placeholder];
-    [self updatePlaceholderText:placeholder];
+    self.placeholderAttributedString = self.attributedPlaceholder;
+    [self updatePlaceholderText];
 }
 
 - (void)setAttributedPlaceholder:(NSAttributedString *)attributedPlaceholder
@@ -207,7 +210,8 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     }
 
     [super setAttributedPlaceholder:attributedPlaceholder];
-    [self updatePlaceholderText:attributedPlaceholder.string];
+    self.placeholderAttributedString = self.attributedPlaceholder;
+    [self updatePlaceholderText];
     [self updateDefaultPlaceholderFont];
 }
 
@@ -244,7 +248,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 {
     _placeholderFont = placeholderFont ?: self.defaultPlaceholderFont;
     self.placeholderLabel.font = _placeholderFont;
-    [self updatePlaceholderText:self.placeholder];
+    [self updatePlaceholderText];
 }
 
 - (void)setPlaceholderColor:(UIColor *)placeholderColor
@@ -283,9 +287,11 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 #pragma mark Computed
 
-- (BOOL)isEmpty
+- (BOOL)shouldShowPlaceholder
 {
-    return self.text.length == 0;
+    BOOL isEmpty = self.text.length == 0;
+
+    return !isEmpty || (self.placeholderAnimatesOnFocus && self.isFirstResponder);
 }
 
 - (BOOL)hasError
@@ -322,15 +328,15 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 - (void)layoutPlaceholderLabelAnimated:(BOOL)animated
 {
-    if (self.isEmpty && !self.placeholderIsHidden) {
-        [self hidePlaceholderLabelAnimated:animated];
-    }
-    else if (!self.isEmpty) {
+    if (self.shouldShowPlaceholder) {
         [self updatePlaceholderColor];
 
         if (self.placeholderIsHidden) {
             [self showPlaceholderLabelAnimated:animated];
         }
+    }
+    else if (!self.placeholderIsHidden) {
+        [self hidePlaceholderLabelAnimated:animated];
     }
 }
 
@@ -381,6 +387,9 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     if (self.attributedPlaceholder.length > 0) {
         font = [self.attributedPlaceholder attribute:NSFontAttributeName atIndex:0 effectiveRange:NULL];
     }
+    else if (self.placeholderAttributedString.length > 0) {
+        font = [self.placeholderAttributedString attribute:NSFontAttributeName atIndex:0 effectiveRange:NULL];
+    }
     else if (self.attributedText.length > 0) {
         font = [self.attributedText attribute:NSFontAttributeName atIndex:0 effectiveRange:NULL];
     }
@@ -409,6 +418,11 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 - (void)showPlaceholderLabelAnimated:(BOOL)animated
 {
+    if (self.placeholderAnimatesOnFocus) {
+        // Call setPlaceholder on super so placeholderAttributedString is not set to nil
+        [super setPlaceholder:nil];
+    }
+
     if (animated && !self.placeholderIsAnimating) {
         self.placeholderIsAnimating = YES;
         self.placeholderLabelTopConstraint.constant = 0;
@@ -421,8 +435,8 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
                              [self.superview layoutIfNeeded];
                          } completion:^(BOOL finished) {
                              self.placeholderIsAnimating = NO;
-                             // Layout label without animation if isEmpty has changed since animation started.
-                             if (self.isEmpty) {
+                             // Layout label without animation if state has changed since animation started.
+                             if (!self.shouldShowPlaceholder) {
                                  [self hidePlaceholderLabelAnimated:NO];
                              }
                          }];
@@ -437,6 +451,10 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 {
     CGFloat finalDistanceFromTop = CGRectGetMinY(self.textRect) / 2.0f;
 
+    if (self.placeholderAnimatesOnFocus) {
+        self.attributedPlaceholder = self.placeholderAttributedString;
+    }
+
     if (animated && !self.placeholderIsAnimating) {
         self.placeholderIsAnimating = YES;
         self.placeholderLabelTopConstraint.constant = finalDistanceFromTop;
@@ -449,8 +467,8 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
                              [self.superview layoutIfNeeded];
                          } completion:^(BOOL finished) {
                              self.placeholderIsAnimating = NO;
-                             // Layout label without animation if isEmpty has changed since animation started.
-                             if (!self.isEmpty) {
+                             // Layout label without animation if state has changed since animation started.
+                             if (self.shouldShowPlaceholder) {
                                  [self showPlaceholderLabelAnimated:NO];
                              }
                          }];
@@ -461,9 +479,9 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     }
 }
 
-- (void)updatePlaceholderText:(NSString *)placeholder
+- (void)updatePlaceholderText
 {
-    self.placeholderLabel.text = placeholder;
+    self.placeholderLabel.text = self.placeholder ?: self.placeholderAttributedString.string;
     [self.placeholderLabel sizeToFit];
     [self invalidateIntrinsicContentSize];
 }
