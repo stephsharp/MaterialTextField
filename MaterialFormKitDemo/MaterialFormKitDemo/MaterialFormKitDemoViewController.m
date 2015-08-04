@@ -29,6 +29,10 @@
 
     self.leftAlignedTextField.tintColor = [UIColor mf_greenColor];
     self.leftAlignedTextField.textColor = [UIColor mf_veryDarkGrayColor];
+
+    UIFontDescriptor * fontDescriptor = [self.leftAlignedTextField.font.fontDescriptor fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitBold];
+    UIFont *font = [UIFont fontWithDescriptor:fontDescriptor size:self.leftAlignedTextField.font.pointSize];
+    self.leftAlignedTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Attributed placeholder" attributes:@{NSFontAttributeName:font}];
 }
 
 - (IBAction)dismissKeyboard
