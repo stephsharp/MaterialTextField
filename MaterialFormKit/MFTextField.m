@@ -639,6 +639,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     [self setupUnderline];
 
     self.shouldAnimatePlaceholder = NO;
+    [self.errorLabel removeFromSuperview];
 }
 
 @end

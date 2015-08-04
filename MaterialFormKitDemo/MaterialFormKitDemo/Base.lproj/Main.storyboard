@@ -18,10 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="some text" placeholder="placeholder" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wbu-R9-PKC" customClass="MFTextField">
-                                <rect key="frame" x="32" y="170" width="120" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="2uj-tg-EsN"/>
-                                </constraints>
+                                <rect key="frame" x="16" y="160" width="568" height="40"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -29,37 +26,50 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="placeholder" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gNx-E7-aGq" customClass="MFTextField">
-                                <rect key="frame" x="32" y="30" width="280" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="hKY-Tm-L3B"/>
-                                </constraints>
+                                <rect key="frame" x="16" y="20" width="568" height="60"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="0u6-qT-cZ2"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="placeholder" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vrI-fI-vIo" customClass="MFTextField">
-                                <rect key="frame" x="32" y="110" width="280" height="40"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="placeholder" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vrI-fI-vIo" customClass="MFTextField">
+                                <rect key="frame" x="16" y="100" width="568" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="UwL-Iq-bVI"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="UwL-Iq-bVI"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="CoC-To-3pE"/>
                                 </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="A1d-5c-S25" customClass="MFTextField">
+                                <rect key="frame" x="16" y="220" width="568" height="32.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="gNx-E7-aGq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="JGp-OO-Lj7"/>
-                            <constraint firstItem="vrI-fI-vIo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="OcS-24-SuD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="A1d-5c-S25" secondAttribute="trailing" id="CXZ-f3-7u8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Wbu-R9-PKC" secondAttribute="trailing" id="D6h-1M-3ar"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gNx-E7-aGq" secondAttribute="trailing" id="I3m-w6-1eA"/>
+                            <constraint firstItem="gNx-E7-aGq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="JGp-OO-Lj7"/>
+                            <constraint firstItem="vrI-fI-vIo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="OcS-24-SuD"/>
                             <constraint firstItem="Wbu-R9-PKC" firstAttribute="top" secondItem="vrI-fI-vIo" secondAttribute="bottom" constant="20" id="TxR-tX-kSq"/>
+                            <constraint firstItem="A1d-5c-S25" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="V7P-NO-erp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vrI-fI-vIo" secondAttribute="trailing" id="XRC-Do-j64"/>
                             <constraint firstItem="vrI-fI-vIo" firstAttribute="top" secondItem="gNx-E7-aGq" secondAttribute="bottom" constant="20" id="YpL-as-BsA"/>
                             <constraint firstItem="Wbu-R9-PKC" firstAttribute="leading" secondItem="vrI-fI-vIo" secondAttribute="leading" id="fuU-6H-anJ"/>
-                            <constraint firstItem="gNx-E7-aGq" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="lwY-Tl-Xmh"/>
+                            <constraint firstItem="gNx-E7-aGq" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="lwY-Tl-Xmh"/>
+                            <constraint firstItem="A1d-5c-S25" firstAttribute="top" secondItem="Wbu-R9-PKC" secondAttribute="bottom" constant="20" id="sAh-8l-mox"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="c8Q-pN-pP5" appends="YES" id="9Q4-no-6ng"/>
