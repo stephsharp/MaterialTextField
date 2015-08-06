@@ -14,21 +14,21 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 @interface MFTextField ()
 
-@property (nonatomic) UILabel *placeholderLabel;
+@property (nonatomic) CGRect textRect;
 @property (nonatomic) CALayer *underlineLayer;
-@property (nonatomic) UILabel *errorLabel;
-
-@property (nonatomic) NSLayoutConstraint *placeholderLabelTopConstraint;
-@property (nonatomic) NSLayoutConstraint *errorLabelTopConstraint;
-@property (nonatomic) NSLayoutConstraint *errorLabelHeightConstraint;
-
 @property (nonatomic, readonly) BOOL isEmpty;
-@property (nonatomic, readonly) BOOL hasError;
+
+@property (nonatomic) UILabel *placeholderLabel;
+@property (nonatomic) NSLayoutConstraint *placeholderLabelTopConstraint;
+@property (nonatomic) UIFont *defaultPlaceholderFont;
 @property (nonatomic, readonly) BOOL placeholderIsHidden;
 @property (nonatomic) BOOL placeholderIsAnimating;
-@property (nonatomic) BOOL errorIsAnimating;
 
-@property (nonatomic) UIFont *defaultPlaceholderFont;
+@property (nonatomic) UILabel *errorLabel;
+@property (nonatomic) NSLayoutConstraint *errorLabelTopConstraint;
+@property (nonatomic) NSLayoutConstraint *errorLabelHeightConstraint;
+@property (nonatomic, readonly) BOOL hasError;
+@property (nonatomic) BOOL errorIsAnimating;
 
 @end
 
@@ -209,6 +209,14 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     [self updateDefaultPlaceholderFont];
 }
 
+- (CGRect)textRect
+{
+    if (CGRectEqualToRect(_textRect, CGRectZero)) {
+        _textRect = [self textRectForBounds:self.bounds];
+    }
+    return _textRect;
+}
+
 #pragma mark Placeholder
 
 - (void)setDefaultPlaceholderColor:(UIColor *)defaultPlaceholderColor
@@ -351,9 +359,8 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 - (void)updateUnderlineFrame
 {
-    CGRect textRect = [self textRectForBounds:self.bounds];
     CGFloat underlineHeight = self.isFirstResponder ? self.underlineEditingHeight : self.underlineHeight;
-    CGFloat yPos = CGRectGetMaxY(textRect) + self.textPadding.height - underlineHeight;
+    CGFloat yPos = CGRectGetMaxY(self.textRect) + self.textPadding.height - underlineHeight;
 
     self.underlineLayer.frame = CGRectMake(0, yPos, CGRectGetWidth(self.bounds), underlineHeight);
 
@@ -425,7 +432,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 - (void)hidePlaceholderLabelAnimated:(BOOL)animated
 {
-    CGFloat finalDistanceFromTop = CGRectGetMinY([self textRectForBounds:self.bounds]) / 2.0f;
+    CGFloat finalDistanceFromTop = CGRectGetMinY(self.textRect) / 2.0f;
 
     if (animated && !self.placeholderIsAnimating) {
         self.placeholderIsAnimating = YES;
@@ -604,6 +611,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     }
     rect.origin.y = top;
 
+    self.textRect = rect;
     return rect;
 }
 
@@ -615,6 +623,14 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 - (CGRect)placeholderRectForBounds:(CGRect)bounds
 {
     return [self textRectForBounds:bounds];
+}
+
+- (CGRect)clearButtonRectForBounds:(CGRect)bounds
+{
+    CGRect clearButtonRect = [super clearButtonRectForBounds:bounds];
+    clearButtonRect.origin.y = CGRectGetMidY(self.textRect) - (clearButtonRect.size.height / 2.0f);
+
+    return clearButtonRect;
 }
 
 # pragma mark - UIView
