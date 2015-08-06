@@ -8,6 +8,7 @@
 
 #import "MFTextField.h"
 #import "UIColor+MaterialFormKit.h"
+#import "UIImage+MFTint.h"
 
 static CGFloat const MFDefaultLabelFontSize = 13.0f;
 static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
@@ -16,6 +17,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 @property (nonatomic) CGRect textRect;
 @property (nonatomic) CALayer *underlineLayer;
+@property (nonatomic) UIImage *tintedClearImage;
 @property (nonatomic, readonly) BOOL isEmpty;
 
 @property (nonatomic) UILabel *placeholderLabel;
@@ -303,6 +305,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     [super layoutSubviews];
 
     [self layoutUnderlineLayer];
+    [self tintClearButton];
 
     if (self.shouldAnimatePlaceholder) {
         [self layoutPlaceholderLabelAnimated:YES];
@@ -631,6 +634,32 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     clearButtonRect.origin.y = CGRectGetMidY(self.textRect) - (clearButtonRect.size.height / 2.0f);
 
     return clearButtonRect;
+}
+
+#pragma mark Clear button
+
+- (void)tintClearButton
+{
+    UIButton *clearButton = [self clearButtonForTextField];
+    UIImage *highlightedClearImage = [clearButton imageForState:UIControlStateHighlighted];
+
+    if (highlightedClearImage) {
+        if (!self.tintedClearImage) {
+            self.tintedClearImage = [highlightedClearImage tintedImageWithColor:self.tintColor];
+        }
+        [clearButton setImage:self.tintedClearImage forState:UIControlStateHighlighted];
+    }
+}
+
+- (UIButton *)clearButtonForTextField
+{
+    UIButton *button;
+    for (UIView *view in self.subviews) {
+        if ([view isKindOfClass:[UIButton class]]) {
+            button = (UIButton *)view;
+        }
+    }
+    return button;
 }
 
 # pragma mark - UIView
