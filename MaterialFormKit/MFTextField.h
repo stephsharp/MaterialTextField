@@ -13,7 +13,7 @@ IB_DESIGNABLE
 
 @property (nonatomic) IBInspectable CGSize textPadding;
 
-@property (nonatomic) IBInspectable BOOL shouldAnimatePlaceholder;
+@property (nonatomic) IBInspectable BOOL animatesPlaceholder;
 
 /**
  * Defaults to NO. If set to YES, placeholder will animate up on focus instead of on text input.

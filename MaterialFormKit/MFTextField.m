@@ -74,7 +74,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     self.textPadding = CGSizeMake(0.0f, 8.0f);
     self.errorPadding = 4.0f;
 
-    self.shouldAnimatePlaceholder = YES;
+    self.animatesPlaceholder = YES;
     self.placeholderColor = [UIColor mf_darkGrayColor];
     //self.placeholderDisabledColor = [UIColor mf_midGrayColor];
     self.placeholderFont = self.defaultPlaceholderFont;
@@ -235,12 +235,12 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     }
 }
 
-- (void)setShouldAnimatePlaceholder:(BOOL)shouldAnimatePlaceholder
+- (void)setAnimatesPlaceholder:(BOOL)animatesPlaceholder
 {
-    _shouldAnimatePlaceholder = shouldAnimatePlaceholder;
+    _animatesPlaceholder = animatesPlaceholder;
     [self removePlaceholderLabel];
 
-    if (shouldAnimatePlaceholder) {
+    if (animatesPlaceholder) {
         [self setupPlaceholderLabel];
     }
 }
@@ -314,7 +314,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     [self layoutUnderlineLayer];
     [self tintClearButton];
 
-    if (self.shouldAnimatePlaceholder) {
+    if (self.animatesPlaceholder) {
         [self layoutPlaceholderLabelAnimated:YES];
     }
 
@@ -628,7 +628,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     rect.size.height = self.font.lineHeight;
 
     CGFloat top = ceil(self.textPadding.height);
-    if (self.shouldAnimatePlaceholder) {
+    if (self.animatesPlaceholder) {
         top += self.placeholderFont.lineHeight;
     }
     rect.origin.y = top;
@@ -691,7 +691,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     [self setupTextField];
     [self setupUnderline];
 
-    self.shouldAnimatePlaceholder = NO;
+    self.animatesPlaceholder = NO;
     [self.errorLabel removeFromSuperview];
 }
 
