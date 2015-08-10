@@ -10,6 +10,6 @@
 
 @interface UITextField (MFClearButton)
 
-- (UIButton *)mf_clearButton;
+- (void)mf_tintClearButton;
 
 @end
