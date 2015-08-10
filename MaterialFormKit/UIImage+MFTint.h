@@ -10,6 +10,6 @@
 
 @interface UIImage (MFTint)
 
-- (UIImage *)tintedImageWithColor:(UIColor *)tintColor;
+- (UIImage *)mf_tintedImageWithColor:(UIColor *)tintColor;
 
 @end

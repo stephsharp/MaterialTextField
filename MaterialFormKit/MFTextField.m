@@ -664,7 +664,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
     if (highlightedClearImage) {
         if (!self.tintedClearImage) {
-            self.tintedClearImage = [highlightedClearImage tintedImageWithColor:self.tintColor];
+            self.tintedClearImage = [highlightedClearImage mf_tintedImageWithColor:self.tintColor];
         }
         [clearButton setImage:self.tintedClearImage forState:UIControlStateHighlighted];
     }
