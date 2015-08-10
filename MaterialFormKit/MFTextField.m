@@ -626,15 +626,18 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 {
     CGRect rect = [super textRectForBounds:bounds];
     rect.size.height = self.font.lineHeight;
+    rect.origin.y = [self adjustedYPositionForTextRect];
+    self.textRect = rect;
+    return rect;
+}
 
+- (CGFloat)adjustedYPositionForTextRect
+{
     CGFloat top = ceil(self.textPadding.height);
     if (self.animatesPlaceholder) {
         top += self.placeholderFont.lineHeight;
     }
-    rect.origin.y = top;
-
-    self.textRect = rect;
-    return rect;
+    return top;
 }
 
 - (CGRect)editingRectForBounds:(CGRect)bounds
