@@ -17,6 +17,7 @@
 		8229C0011B5E2B0000C40181 /* MFTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8229C0001B5E2B0000C40181 /* MFTextField.m */; };
 		824DA4A01B5F7A4D00F189F1 /* UIColor+MaterialFormKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 824DA49F1B5F7A4D00F189F1 /* UIColor+MaterialFormKit.m */; };
 		82FC51B31B73262D004BFFE6 /* UIImage+MFTint.m in Sources */ = {isa = PBXBuildFile; fileRef = 82FC51B21B73262D004BFFE6 /* UIImage+MFTint.m */; };
+		82FC51B71B7950E1004BFFE6 /* UITextField+MFClearButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 82FC51B61B7950E1004BFFE6 /* UITextField+MFClearButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,8 @@
 		824DA49F1B5F7A4D00F189F1 /* UIColor+MaterialFormKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MaterialFormKit.m"; sourceTree = "<group>"; };
 		82FC51B11B73262D004BFFE6 /* UIImage+MFTint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MFTint.h"; sourceTree = "<group>"; };
 		82FC51B21B73262D004BFFE6 /* UIImage+MFTint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MFTint.m"; sourceTree = "<group>"; };
+		82FC51B51B7950E1004BFFE6 /* UITextField+MFClearButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+MFClearButton.h"; sourceTree = "<group>"; };
+		82FC51B61B7950E1004BFFE6 /* UITextField+MFClearButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+MFClearButton.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +141,8 @@
 				824DA49F1B5F7A4D00F189F1 /* UIColor+MaterialFormKit.m */,
 				82FC51B11B73262D004BFFE6 /* UIImage+MFTint.h */,
 				82FC51B21B73262D004BFFE6 /* UIImage+MFTint.m */,
+				82FC51B51B7950E1004BFFE6 /* UITextField+MFClearButton.h */,
+				82FC51B61B7950E1004BFFE6 /* UITextField+MFClearButton.m */,
 			);
 			name = MaterialFormKit;
 			path = ../MaterialFormKit;
@@ -248,6 +253,7 @@
 				8229BFDA1B5E2A7600C40181 /* AppDelegate.m in Sources */,
 				824DA4A01B5F7A4D00F189F1 /* UIColor+MaterialFormKit.m in Sources */,
 				8229BFD71B5E2A7600C40181 /* main.m in Sources */,
+				82FC51B71B7950E1004BFFE6 /* UITextField+MFClearButton.m in Sources */,
 				82FC51B31B73262D004BFFE6 /* UIImage+MFTint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

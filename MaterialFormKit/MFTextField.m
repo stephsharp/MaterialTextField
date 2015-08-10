@@ -9,6 +9,7 @@
 #import "MFTextField.h"
 #import "UIColor+MaterialFormKit.h"
 #import "UIImage+MFTint.h"
+#import "UITextField+MFClearButton.h"
 
 static CGFloat const MFDefaultLabelFontSize = 13.0f;
 static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
@@ -658,7 +659,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 - (void)tintClearButton
 {
-    UIButton *clearButton = [self clearButtonForTextField];
+    UIButton *clearButton = [self mf_clearButton];
     UIImage *highlightedClearImage = [clearButton imageForState:UIControlStateHighlighted];
 
     if (highlightedClearImage) {
@@ -667,17 +668,6 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
         }
         [clearButton setImage:self.tintedClearImage forState:UIControlStateHighlighted];
     }
-}
-
-- (UIButton *)clearButtonForTextField
-{
-    UIButton *button;
-    for (UIView *view in self.subviews) {
-        if ([view isKindOfClass:[UIButton class]]) {
-            button = (UIButton *)view;
-        }
-    }
-    return button;
 }
 
 # pragma mark - UIView
