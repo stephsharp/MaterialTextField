@@ -38,6 +38,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
+                                    <action selector="textFieldDidChange:" destination="BYZ-38-t0r" eventType="editingChanged" id="99k-UB-cHg"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="CoC-To-3pE"/>
                                 </connections>
                             </textField>
@@ -51,6 +52,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                 <connections>
+                                    <action selector="textFieldDidChange:" destination="BYZ-38-t0r" eventType="editingChanged" id="WVM-lw-vpg"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="0u6-qT-cZ2"/>
                                 </connections>
                             </textField>
@@ -76,8 +78,8 @@
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="leftAlignedTextField" destination="vrI-fI-vIo" id="cVN-vP-3Ab"/>
-                        <outlet property="rightAlignedTextField" destination="gNx-E7-aGq" id="Gb1-9U-5eY"/>
+                        <outlet property="textField1" destination="gNx-E7-aGq" id="1pI-Mq-qvh"/>
+                        <outlet property="textField2" destination="vrI-fI-vIo" id="e8w-3k-NaW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

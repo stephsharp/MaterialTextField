@@ -11,11 +11,12 @@
 #import "MFTextField.h"
 
 NSString *const MFDemoErrorDomain = @"MFDemoErrorDomain";
+NSInteger const MFDemoErrorCode = 100;
 
 @interface MaterialFormKitDemoViewController () <UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet MFTextField *rightAlignedTextField;
-@property (weak, nonatomic) IBOutlet MFTextField *leftAlignedTextField;
+@property (weak, nonatomic) IBOutlet MFTextField *textField1;
+@property (weak, nonatomic) IBOutlet MFTextField *textField2;
 
 @end
 
@@ -25,66 +26,88 @@ NSString *const MFDemoErrorDomain = @"MFDemoErrorDomain";
 {
     [super viewDidLoad];
 
-    self.rightAlignedTextField.animatesPlaceholder = NO;
-    self.rightAlignedTextField.tintColor = [UIColor mf_greenColor];
-    self.rightAlignedTextField.textColor = [UIColor mf_veryDarkGrayColor];
-
-    self.leftAlignedTextField.tintColor = [UIColor mf_greenColor];
-    self.leftAlignedTextField.textColor = [UIColor mf_veryDarkGrayColor];
-    self.leftAlignedTextField.defaultPlaceholderColor = [UIColor mf_darkGrayColor];
-    self.leftAlignedTextField.placeholderAnimatesOnFocus = YES;
-
-    UIFontDescriptor * fontDescriptor = [self.leftAlignedTextField.font.fontDescriptor fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitBold];
-    UIFont *font = [UIFont fontWithDescriptor:fontDescriptor size:self.leftAlignedTextField.font.pointSize];
-    self.leftAlignedTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Attributed placeholder" attributes:@{NSFontAttributeName:font}];
+    [self setupTextField1];
+    [self setupTextField2];
 }
 
-#pragma mark - UITextFieldDelegate
+#pragma mark - Setup
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+- (void)setupTextField1
 {
-    NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    [self updateTextField:textField withString:newString];
-
-    return YES;
+    self.textField1.animatesPlaceholder = NO;
+    self.textField1.tintColor = [UIColor mf_greenColor];
+    self.textField1.textColor = [UIColor mf_veryDarkGrayColor];
 }
 
-- (BOOL)textFieldShouldClear:(UITextField *)textField
+- (void)setupTextField2
 {
-    // Need to clear text here so textField:shouldChangeCharactersInRange:replacementString:
-    // is not called with autocorrection suggestion after text has been cleared.
-    textField.text = nil;
+    self.textField2.tintColor = [UIColor mf_greenColor];
+    self.textField2.textColor = [UIColor mf_veryDarkGrayColor];
+    self.textField2.defaultPlaceholderColor = [UIColor mf_darkGrayColor];
+    self.textField2.placeholderAnimatesOnFocus = YES;
 
-    [self updateTextField:textField withString:nil];
-    return YES;
+    UIFontDescriptor * fontDescriptor = [self.textField2.font.fontDescriptor fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitBold];
+    UIFont *font = [UIFont fontWithDescriptor:fontDescriptor size:self.textField2.font.pointSize];
+
+    self.textField2.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Attributed placeholder" attributes:@{NSFontAttributeName:font}];
 }
 
-#pragma mark - Errors
+#pragma mark - Actions
 
-- (void)updateTextField:(UITextField *)textField withString:(NSString *)string
+- (IBAction)dismissKeyboard
 {
-    if (textField == self.rightAlignedTextField) {
-        NSError *error = [self errorWithLocalizedDescription:@"Maximum of 6 characters allowed."];
-        self.rightAlignedTextField.error = (string.length > 6) ? error : nil;
+    [self.view endEditing:YES];
+}
+
+- (IBAction)textFieldDidChange:(UITextField *)textField
+{
+    [self updateTextField:textField];
+}
+
+#pragma mark - Text field validation
+
+- (void)updateTextField:(UITextField *)textField
+{
+    if (textField == self.textField1) {
+        [self validateTextField1];
     }
-    else if (textField == self.leftAlignedTextField) {
-        NSError *error = [self errorWithLocalizedDescription:@"This is an error message that is really long and should wrap onto 2 or more lines."];
-        self.leftAlignedTextField.error = (string.length >= 2) ? error : nil;
+    else if (textField == self.textField2) {
+        [self validateTextField2];
     }
+}
+
+- (void)validateTextField1
+{
+    NSError *error = nil;
+    if (![self textField1IsValid]) {
+        error = [self errorWithLocalizedDescription:@"Maximum of 6 characters allowed."];
+    }
+    self.textField1.error = error;
+}
+
+- (void)validateTextField2
+{
+    NSError *error = nil;
+    if (![self textField2IsValid]) {
+        error = [self errorWithLocalizedDescription:@"This is an error message that is really long and should wrap onto 2 or more lines."];
+    }
+    self.textField2.error = error;
+}
+
+- (BOOL)textField1IsValid
+{
+    return self.textField1.text.length <= 6;
+}
+
+- (BOOL)textField2IsValid
+{
+    return self.textField2.text.length < 3;
 }
 
 - (NSError *)errorWithLocalizedDescription:(NSString *)localizedDescription
 {
     NSDictionary *userInfo = @{NSLocalizedDescriptionKey: localizedDescription};
-    NSError *error = [NSError errorWithDomain:MFDemoErrorDomain code:100 userInfo:userInfo];
-    return error;
-}
-
-#pragma mark - Keyboard
-
-- (IBAction)dismissKeyboard
-{
-    [self.view endEditing:YES];
+    return [NSError errorWithDomain:MFDemoErrorDomain code:MFDemoErrorCode userInfo:userInfo];
 }
 
 @end
