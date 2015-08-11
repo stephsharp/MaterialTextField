@@ -10,6 +10,8 @@
 #import "UIColor+MaterialFormKit.h"
 #import "MFTextField.h"
 
+NSString *const MFDemoErrorDomain = @"MFDemoErrorDomain";
+
 @interface MaterialFormKitDemoViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet MFTextField *rightAlignedTextField;
@@ -37,11 +39,6 @@
     self.leftAlignedTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Attributed placeholder" attributes:@{NSFontAttributeName:font}];
 }
 
-- (IBAction)dismissKeyboard
-{
-    [self.view endEditing:YES];
-}
-
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -62,16 +59,32 @@
     return YES;
 }
 
+#pragma mark - Errors
+
 - (void)updateTextField:(UITextField *)textField withString:(NSString *)string
 {
     if (textField == self.rightAlignedTextField) {
-        NSString *error = @"Maximum of 6 characters allowed.";
+        NSError *error = [self errorWithLocalizedDescription:@"Maximum of 6 characters allowed."];
         self.rightAlignedTextField.error = (string.length > 6) ? error : nil;
     }
     else if (textField == self.leftAlignedTextField) {
-        NSString *error = @"This is an error message that is really long and should wrap onto 2 or more lines.";
+        NSError *error = [self errorWithLocalizedDescription:@"This is an error message that is really long and should wrap onto 2 or more lines."];
         self.leftAlignedTextField.error = (string.length >= 2) ? error : nil;
     }
+}
+
+- (NSError *)errorWithLocalizedDescription:(NSString *)localizedDescription
+{
+    NSDictionary *userInfo = @{NSLocalizedDescriptionKey: localizedDescription};
+    NSError *error = [NSError errorWithDomain:MFDemoErrorDomain code:100 userInfo:userInfo];
+    return error;
+}
+
+#pragma mark - Keyboard
+
+- (IBAction)dismissKeyboard
+{
+    [self.view endEditing:YES];
 }
 
 @end
