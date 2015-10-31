@@ -530,7 +530,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     [self updateErrorLabelText];
 
     if (animated && !self.errorIsAnimating) {
-        [self layoutIfNeeded];
+        [self setNeedsLayout];
         self.errorIsAnimating = YES;
         self.errorLabelHeightConstraint.active = NO;
         self.errorLabelTopConstraint.constant = [self topPaddingForErrorLabelHidden:NO];
@@ -656,7 +656,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 - (CGRect)clearButtonRectForBounds:(CGRect)bounds
 {
     CGRect clearButtonRect = [super clearButtonRectForBounds:bounds];
-    clearButtonRect.origin.y = CGRectGetMidY(self.textRect) - (clearButtonRect.size.height / 2.0f);
+    clearButtonRect.origin.y = CGRectGetMidY(_textRect) - (clearButtonRect.size.height / 2.0f);
 
     return clearButtonRect;
 }
