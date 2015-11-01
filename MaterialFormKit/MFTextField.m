@@ -112,7 +112,6 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     [self layoutPlaceholderLabelAnimated:NO];
 }
 
-// TODO: Possibly extract out into factory method
 - (void)setupErrorLabel
 {
     self.errorLabel = [UILabel new];
@@ -682,7 +681,6 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     [self setupTextField];
     [self setupUnderline];
 
-    // TODO: Don't set animatesPlaceholder to NO here
     self.animatesPlaceholder = NO;
     [self.errorLabel removeFromSuperview];
 }
