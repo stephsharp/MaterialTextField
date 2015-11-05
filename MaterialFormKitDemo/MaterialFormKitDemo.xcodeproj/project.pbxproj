@@ -27,7 +27,7 @@
 		8229BFDF1B5E2A7600C40181 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8229BFE11B5E2A7600C40181 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8229BFE41B5E2A7600C40181 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		CE4B7E621BEBE94300CD6620 /* MaterialFormKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaterialFormKit.framework; path = "../build/Debug-iphoneos/MaterialFormKit.framework"; sourceTree = "<group>"; };
+		CE4B7E621BEBE94300CD6620 /* MaterialFormKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaterialFormKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
