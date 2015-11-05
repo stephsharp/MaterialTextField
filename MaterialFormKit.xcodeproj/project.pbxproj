@@ -73,7 +73,9 @@
 				CE58F7C71BEBE64C0082924A /* MaterialFormKitTests */,
 				CE58F7BA1BEBE64C0082924A /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		CE58F7BA1BEBE64C0082924A /* Products */ = {
 			isa = PBXGroup;
