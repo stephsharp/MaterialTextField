@@ -6,9 +6,8 @@
 //  Copyright (c) 2015 Stephanie Sharp. All rights reserved.
 //
 
+#import <MaterialFormKit/MaterialFormKit.h>
 #import "MaterialFormKitDemoViewController.h"
-#import "UIColor+MaterialFormKit.h"
-#import "MFTextField.h"
 
 NSString *const MFDemoErrorDomain = @"MFDemoErrorDomain";
 NSInteger const MFDemoErrorCode = 100;

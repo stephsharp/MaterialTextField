@@ -10,6 +10,14 @@
 		CE58F7BD1BEBE64C0082924A /* MaterialFormKit.h in Headers */ = {isa = PBXBuildFile; fileRef = CE58F7BC1BEBE64C0082924A /* MaterialFormKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE58F7C41BEBE64C0082924A /* MaterialFormKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE58F7B91BEBE64C0082924A /* MaterialFormKit.framework */; };
 		CE58F7C91BEBE64C0082924A /* MaterialFormKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE58F7C81BEBE64C0082924A /* MaterialFormKitTests.m */; };
+		CE58F7DB1BEBE77E0082924A /* MFTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = CE58F7D31BEBE77E0082924A /* MFTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CE58F7DC1BEBE77E0082924A /* MFTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE58F7D41BEBE77E0082924A /* MFTextField.m */; };
+		CE58F7DD1BEBE77E0082924A /* UIColor+MaterialFormKit.h in Headers */ = {isa = PBXBuildFile; fileRef = CE58F7D51BEBE77E0082924A /* UIColor+MaterialFormKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CE58F7DE1BEBE77E0082924A /* UIColor+MaterialFormKit.m in Sources */ = {isa = PBXBuildFile; fileRef = CE58F7D61BEBE77E0082924A /* UIColor+MaterialFormKit.m */; };
+		CE58F7DF1BEBE77E0082924A /* UIImage+MFTint.h in Headers */ = {isa = PBXBuildFile; fileRef = CE58F7D71BEBE77E0082924A /* UIImage+MFTint.h */; };
+		CE58F7E01BEBE77E0082924A /* UIImage+MFTint.m in Sources */ = {isa = PBXBuildFile; fileRef = CE58F7D81BEBE77E0082924A /* UIImage+MFTint.m */; };
+		CE58F7E11BEBE77E0082924A /* UITextField+MFClearButton.h in Headers */ = {isa = PBXBuildFile; fileRef = CE58F7D91BEBE77E0082924A /* UITextField+MFClearButton.h */; };
+		CE58F7E21BEBE77E0082924A /* UITextField+MFClearButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CE58F7DA1BEBE77E0082924A /* UITextField+MFClearButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +37,14 @@
 		CE58F7C31BEBE64C0082924A /* MaterialFormKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MaterialFormKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE58F7C81BEBE64C0082924A /* MaterialFormKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaterialFormKitTests.m; sourceTree = "<group>"; };
 		CE58F7CA1BEBE64C0082924A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE58F7D31BEBE77E0082924A /* MFTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTextField.h; sourceTree = "<group>"; };
+		CE58F7D41BEBE77E0082924A /* MFTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTextField.m; sourceTree = "<group>"; };
+		CE58F7D51BEBE77E0082924A /* UIColor+MaterialFormKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MaterialFormKit.h"; sourceTree = "<group>"; };
+		CE58F7D61BEBE77E0082924A /* UIColor+MaterialFormKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MaterialFormKit.m"; sourceTree = "<group>"; };
+		CE58F7D71BEBE77E0082924A /* UIImage+MFTint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MFTint.h"; sourceTree = "<group>"; };
+		CE58F7D81BEBE77E0082924A /* UIImage+MFTint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MFTint.m"; sourceTree = "<group>"; };
+		CE58F7D91BEBE77E0082924A /* UITextField+MFClearButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+MFClearButton.h"; sourceTree = "<group>"; };
+		CE58F7DA1BEBE77E0082924A /* UITextField+MFClearButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+MFClearButton.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +88,14 @@
 			isa = PBXGroup;
 			children = (
 				CE58F7BC1BEBE64C0082924A /* MaterialFormKit.h */,
+				CE58F7D31BEBE77E0082924A /* MFTextField.h */,
+				CE58F7D41BEBE77E0082924A /* MFTextField.m */,
+				CE58F7D51BEBE77E0082924A /* UIColor+MaterialFormKit.h */,
+				CE58F7D61BEBE77E0082924A /* UIColor+MaterialFormKit.m */,
+				CE58F7D71BEBE77E0082924A /* UIImage+MFTint.h */,
+				CE58F7D81BEBE77E0082924A /* UIImage+MFTint.m */,
+				CE58F7D91BEBE77E0082924A /* UITextField+MFClearButton.h */,
+				CE58F7DA1BEBE77E0082924A /* UITextField+MFClearButton.m */,
 				CE58F7BE1BEBE64C0082924A /* Info.plist */,
 			);
 			path = MaterialFormKit;
@@ -93,7 +117,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE58F7DF1BEBE77E0082924A /* UIImage+MFTint.h in Headers */,
+				CE58F7DD1BEBE77E0082924A /* UIColor+MaterialFormKit.h in Headers */,
+				CE58F7E11BEBE77E0082924A /* UITextField+MFClearButton.h in Headers */,
 				CE58F7BD1BEBE64C0082924A /* MaterialFormKit.h in Headers */,
+				CE58F7DB1BEBE77E0082924A /* MFTextField.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +221,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE58F7DC1BEBE77E0082924A /* MFTextField.m in Sources */,
+				CE58F7DE1BEBE77E0082924A /* UIColor+MaterialFormKit.m in Sources */,
+				CE58F7E21BEBE77E0082924A /* UITextField+MFClearButton.m in Sources */,
+				CE58F7E01BEBE77E0082924A /* UIImage+MFTint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +406,7 @@
 				CE58F7CF1BEBE64C0082924A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CE58F7D01BEBE64C0082924A /* Build configuration list for PBXNativeTarget "MaterialFormKitTests" */ = {
 			isa = XCConfigurationList;
@@ -382,6 +415,7 @@
 				CE58F7D21BEBE64C0082924A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

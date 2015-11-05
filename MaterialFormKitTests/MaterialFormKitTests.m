@@ -6,6 +6,7 @@
 //  Copyright © 2015 Stephanie Sharp. All rights reserved.
 //
 
+#import <MaterialFormKit/MaterialFormKit.h>
 #import <XCTest/XCTest.h>
 
 @interface MaterialFormKitTests : XCTestCase
