@@ -66,6 +66,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		82125D251BEEF6010017F72C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CE58F7BE1BEBE64C0082924A /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		82125D261BEEF6250017F72C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CE58F7CA1BEBE64C0082924A /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		CE58F7AF1BEBE64C0082924A = {
 			isa = PBXGroup;
 			children = (
@@ -98,7 +114,7 @@
 				CE58F7D81BEBE77E0082924A /* UIImage+MFTint.m */,
 				CE58F7D91BEBE77E0082924A /* UITextField+MFClearButton.h */,
 				CE58F7DA1BEBE77E0082924A /* UITextField+MFClearButton.m */,
-				CE58F7BE1BEBE64C0082924A /* Info.plist */,
+				82125D251BEEF6010017F72C /* Supporting Files */,
 			);
 			path = MaterialFormKit;
 			sourceTree = "<group>";
@@ -107,7 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				CE58F7C81BEBE64C0082924A /* MaterialFormKitTests.m */,
-				CE58F7CA1BEBE64C0082924A /* Info.plist */,
+				82125D261BEEF6250017F72C /* Supporting Files */,
 			);
 			path = MaterialFormKitTests;
 			sourceTree = "<group>";
