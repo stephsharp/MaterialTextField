@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CE58F7B81BEBE64C0082924A"
-               BuildableName = "MaterialFormKit.framework"
-               BlueprintName = "MaterialFormKit"
-               ReferencedContainer = "container:MaterialFormKit.xcodeproj">
+               BuildableName = "MaterialTextField.framework"
+               BlueprintName = "MaterialTextField"
+               ReferencedContainer = "container:MaterialTextField.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CE58F7C21BEBE64C0082924A"
-               BuildableName = "MaterialFormKitTests.xctest"
-               BlueprintName = "MaterialFormKitTests"
-               ReferencedContainer = "container:MaterialFormKit.xcodeproj">
+               BuildableName = "MaterialTextFieldTests.xctest"
+               BlueprintName = "MaterialTextFieldTests"
+               ReferencedContainer = "container:MaterialTextField.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CE58F7B81BEBE64C0082924A"
-            BuildableName = "MaterialFormKit.framework"
-            BlueprintName = "MaterialFormKit"
-            ReferencedContainer = "container:MaterialFormKit.xcodeproj">
+            BuildableName = "MaterialTextField.framework"
+            BlueprintName = "MaterialTextField"
+            ReferencedContainer = "container:MaterialTextField.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CE58F7B81BEBE64C0082924A"
-            BuildableName = "MaterialFormKit.framework"
-            BlueprintName = "MaterialFormKit"
-            ReferencedContainer = "container:MaterialFormKit.xcodeproj">
+            BuildableName = "MaterialTextField.framework"
+            BlueprintName = "MaterialTextField"
+            ReferencedContainer = "container:MaterialTextField.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -83,9 +83,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CE58F7B81BEBE64C0082924A"
-            BuildableName = "MaterialFormKit.framework"
-            BlueprintName = "MaterialFormKit"
-            ReferencedContainer = "container:MaterialFormKit.xcodeproj">
+            BuildableName = "MaterialTextField.framework"
+            BlueprintName = "MaterialTextField"
+            ReferencedContainer = "container:MaterialTextField.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

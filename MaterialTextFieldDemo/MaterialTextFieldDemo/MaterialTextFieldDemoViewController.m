@@ -1,25 +1,25 @@
 //
-//  MaterialFormKitDemoViewController.m
-//  MaterialFormKitDemo
+//  MaterialTextFieldDemoViewController.m
+//  MaterialTextFieldDemo
 //
 //  Created by Steph Sharp on 21/07/2015.
 //  Copyright (c) 2015 Stephanie Sharp. All rights reserved.
 //
 
-#import <MaterialFormKit/MaterialFormKit.h>
-#import "MaterialFormKitDemoViewController.h"
+#import <MaterialTextField/MaterialTextField.h>
+#import "MaterialTextFieldDemoViewController.h"
 
 NSString *const MFDemoErrorDomain = @"MFDemoErrorDomain";
 NSInteger const MFDemoErrorCode = 100;
 
-@interface MaterialFormKitDemoViewController () <UITextFieldDelegate>
+@interface MaterialTextFieldDemoViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet MFTextField *textField1;
 @property (weak, nonatomic) IBOutlet MFTextField *textField2;
 
 @end
 
-@implementation MaterialFormKitDemoViewController
+@implementation MaterialTextFieldDemoViewController
 
 - (void)viewDidLoad
 {

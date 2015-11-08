@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE58F7BD1BEBE64C0082924A /* MaterialFormKit.h in Headers */ = {isa = PBXBuildFile; fileRef = CE58F7BC1BEBE64C0082924A /* MaterialFormKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CE58F7C41BEBE64C0082924A /* MaterialFormKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE58F7B91BEBE64C0082924A /* MaterialFormKit.framework */; };
-		CE58F7C91BEBE64C0082924A /* MaterialFormKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE58F7C81BEBE64C0082924A /* MaterialFormKitTests.m */; };
+		CE58F7BD1BEBE64C0082924A /* MaterialTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = CE58F7BC1BEBE64C0082924A /* MaterialTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CE58F7C41BEBE64C0082924A /* MaterialTextField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE58F7B91BEBE64C0082924A /* MaterialTextField.framework */; };
+		CE58F7C91BEBE64C0082924A /* MaterialTextFieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE58F7C81BEBE64C0082924A /* MaterialTextFieldTests.m */; };
 		CE58F7DB1BEBE77E0082924A /* MFTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = CE58F7D31BEBE77E0082924A /* MFTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE58F7DC1BEBE77E0082924A /* MFTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE58F7D41BEBE77E0082924A /* MFTextField.m */; };
-		CE58F7DD1BEBE77E0082924A /* UIColor+MaterialFormKit.h in Headers */ = {isa = PBXBuildFile; fileRef = CE58F7D51BEBE77E0082924A /* UIColor+MaterialFormKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CE58F7DE1BEBE77E0082924A /* UIColor+MaterialFormKit.m in Sources */ = {isa = PBXBuildFile; fileRef = CE58F7D61BEBE77E0082924A /* UIColor+MaterialFormKit.m */; };
+		CE58F7DD1BEBE77E0082924A /* UIColor+MaterialTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = CE58F7D51BEBE77E0082924A /* UIColor+MaterialTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CE58F7DE1BEBE77E0082924A /* UIColor+MaterialTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE58F7D61BEBE77E0082924A /* UIColor+MaterialTextField.m */; };
 		CE58F7DF1BEBE77E0082924A /* UIImage+MFTint.h in Headers */ = {isa = PBXBuildFile; fileRef = CE58F7D71BEBE77E0082924A /* UIImage+MFTint.h */; };
 		CE58F7E01BEBE77E0082924A /* UIImage+MFTint.m in Sources */ = {isa = PBXBuildFile; fileRef = CE58F7D81BEBE77E0082924A /* UIImage+MFTint.m */; };
 		CE58F7E11BEBE77E0082924A /* UITextField+MFClearButton.h in Headers */ = {isa = PBXBuildFile; fileRef = CE58F7D91BEBE77E0082924A /* UITextField+MFClearButton.h */; };
@@ -26,21 +26,21 @@
 			containerPortal = CE58F7B01BEBE64C0082924A /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = CE58F7B81BEBE64C0082924A;
-			remoteInfo = MaterialFormKit;
+			remoteInfo = MaterialTextField;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CE58F7B91BEBE64C0082924A /* MaterialFormKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MaterialFormKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE58F7BC1BEBE64C0082924A /* MaterialFormKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaterialFormKit.h; sourceTree = "<group>"; };
+		CE58F7B91BEBE64C0082924A /* MaterialTextField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MaterialTextField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE58F7BC1BEBE64C0082924A /* MaterialTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaterialTextField.h; sourceTree = "<group>"; };
 		CE58F7BE1BEBE64C0082924A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CE58F7C31BEBE64C0082924A /* MaterialFormKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MaterialFormKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE58F7C81BEBE64C0082924A /* MaterialFormKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaterialFormKitTests.m; sourceTree = "<group>"; };
+		CE58F7C31BEBE64C0082924A /* MaterialTextFieldTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MaterialTextFieldTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE58F7C81BEBE64C0082924A /* MaterialTextFieldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaterialTextFieldTests.m; sourceTree = "<group>"; };
 		CE58F7CA1BEBE64C0082924A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE58F7D31BEBE77E0082924A /* MFTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTextField.h; sourceTree = "<group>"; };
 		CE58F7D41BEBE77E0082924A /* MFTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTextField.m; sourceTree = "<group>"; };
-		CE58F7D51BEBE77E0082924A /* UIColor+MaterialFormKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MaterialFormKit.h"; sourceTree = "<group>"; };
-		CE58F7D61BEBE77E0082924A /* UIColor+MaterialFormKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MaterialFormKit.m"; sourceTree = "<group>"; };
+		CE58F7D51BEBE77E0082924A /* UIColor+MaterialTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MaterialTextField.h"; sourceTree = "<group>"; };
+		CE58F7D61BEBE77E0082924A /* UIColor+MaterialTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MaterialTextField.m"; sourceTree = "<group>"; };
 		CE58F7D71BEBE77E0082924A /* UIImage+MFTint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MFTint.h"; sourceTree = "<group>"; };
 		CE58F7D81BEBE77E0082924A /* UIImage+MFTint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MFTint.m"; sourceTree = "<group>"; };
 		CE58F7D91BEBE77E0082924A /* UITextField+MFClearButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+MFClearButton.h"; sourceTree = "<group>"; };
@@ -59,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE58F7C41BEBE64C0082924A /* MaterialFormKit.framework in Frameworks */,
+				CE58F7C41BEBE64C0082924A /* MaterialTextField.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,8 +85,8 @@
 		CE58F7AF1BEBE64C0082924A = {
 			isa = PBXGroup;
 			children = (
-				CE58F7BB1BEBE64C0082924A /* MaterialFormKit */,
-				CE58F7C71BEBE64C0082924A /* MaterialFormKitTests */,
+				CE58F7BB1BEBE64C0082924A /* MaterialTextField */,
+				CE58F7C71BEBE64C0082924A /* MaterialTextFieldTests */,
 				CE58F7BA1BEBE64C0082924A /* Products */,
 			);
 			indentWidth = 4;
@@ -96,36 +96,36 @@
 		CE58F7BA1BEBE64C0082924A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CE58F7B91BEBE64C0082924A /* MaterialFormKit.framework */,
-				CE58F7C31BEBE64C0082924A /* MaterialFormKitTests.xctest */,
+				CE58F7B91BEBE64C0082924A /* MaterialTextField.framework */,
+				CE58F7C31BEBE64C0082924A /* MaterialTextFieldTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CE58F7BB1BEBE64C0082924A /* MaterialFormKit */ = {
+		CE58F7BB1BEBE64C0082924A /* MaterialTextField */ = {
 			isa = PBXGroup;
 			children = (
-				CE58F7BC1BEBE64C0082924A /* MaterialFormKit.h */,
+				CE58F7BC1BEBE64C0082924A /* MaterialTextField.h */,
 				CE58F7D31BEBE77E0082924A /* MFTextField.h */,
 				CE58F7D41BEBE77E0082924A /* MFTextField.m */,
-				CE58F7D51BEBE77E0082924A /* UIColor+MaterialFormKit.h */,
-				CE58F7D61BEBE77E0082924A /* UIColor+MaterialFormKit.m */,
+				CE58F7D51BEBE77E0082924A /* UIColor+MaterialTextField.h */,
+				CE58F7D61BEBE77E0082924A /* UIColor+MaterialTextField.m */,
 				CE58F7D71BEBE77E0082924A /* UIImage+MFTint.h */,
 				CE58F7D81BEBE77E0082924A /* UIImage+MFTint.m */,
 				CE58F7D91BEBE77E0082924A /* UITextField+MFClearButton.h */,
 				CE58F7DA1BEBE77E0082924A /* UITextField+MFClearButton.m */,
 				82125D251BEEF6010017F72C /* Supporting Files */,
 			);
-			path = MaterialFormKit;
+			path = MaterialTextField;
 			sourceTree = "<group>";
 		};
-		CE58F7C71BEBE64C0082924A /* MaterialFormKitTests */ = {
+		CE58F7C71BEBE64C0082924A /* MaterialTextFieldTests */ = {
 			isa = PBXGroup;
 			children = (
-				CE58F7C81BEBE64C0082924A /* MaterialFormKitTests.m */,
+				CE58F7C81BEBE64C0082924A /* MaterialTextFieldTests.m */,
 				82125D261BEEF6250017F72C /* Supporting Files */,
 			);
-			path = MaterialFormKitTests;
+			path = MaterialTextFieldTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,9 +136,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE58F7DF1BEBE77E0082924A /* UIImage+MFTint.h in Headers */,
-				CE58F7DD1BEBE77E0082924A /* UIColor+MaterialFormKit.h in Headers */,
+				CE58F7DD1BEBE77E0082924A /* UIColor+MaterialTextField.h in Headers */,
 				CE58F7E11BEBE77E0082924A /* UITextField+MFClearButton.h in Headers */,
-				CE58F7BD1BEBE64C0082924A /* MaterialFormKit.h in Headers */,
+				CE58F7BD1BEBE64C0082924A /* MaterialTextField.h in Headers */,
 				CE58F7DB1BEBE77E0082924A /* MFTextField.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,9 +146,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		CE58F7B81BEBE64C0082924A /* MaterialFormKit */ = {
+		CE58F7B81BEBE64C0082924A /* MaterialTextField */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CE58F7CD1BEBE64C0082924A /* Build configuration list for PBXNativeTarget "MaterialFormKit" */;
+			buildConfigurationList = CE58F7CD1BEBE64C0082924A /* Build configuration list for PBXNativeTarget "MaterialTextField" */;
 			buildPhases = (
 				CE58F7B41BEBE64C0082924A /* Sources */,
 				CE58F7B51BEBE64C0082924A /* Frameworks */,
@@ -159,14 +159,14 @@
 			);
 			dependencies = (
 			);
-			name = MaterialFormKit;
-			productName = MaterialFormKit;
-			productReference = CE58F7B91BEBE64C0082924A /* MaterialFormKit.framework */;
+			name = MaterialTextField;
+			productName = MaterialTextField;
+			productReference = CE58F7B91BEBE64C0082924A /* MaterialTextField.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		CE58F7C21BEBE64C0082924A /* MaterialFormKitTests */ = {
+		CE58F7C21BEBE64C0082924A /* MaterialTextFieldTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CE58F7D01BEBE64C0082924A /* Build configuration list for PBXNativeTarget "MaterialFormKitTests" */;
+			buildConfigurationList = CE58F7D01BEBE64C0082924A /* Build configuration list for PBXNativeTarget "MaterialTextFieldTests" */;
 			buildPhases = (
 				CE58F7BF1BEBE64C0082924A /* Sources */,
 				CE58F7C01BEBE64C0082924A /* Frameworks */,
@@ -177,9 +177,9 @@
 			dependencies = (
 				CE58F7C61BEBE64C0082924A /* PBXTargetDependency */,
 			);
-			name = MaterialFormKitTests;
-			productName = MaterialFormKitTests;
-			productReference = CE58F7C31BEBE64C0082924A /* MaterialFormKitTests.xctest */;
+			name = MaterialTextFieldTests;
+			productName = MaterialTextFieldTests;
+			productReference = CE58F7C31BEBE64C0082924A /* MaterialTextFieldTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -199,7 +199,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CE58F7B31BEBE64C0082924A /* Build configuration list for PBXProject "MaterialFormKit" */;
+			buildConfigurationList = CE58F7B31BEBE64C0082924A /* Build configuration list for PBXProject "MaterialTextField" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -211,8 +211,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CE58F7B81BEBE64C0082924A /* MaterialFormKit */,
-				CE58F7C21BEBE64C0082924A /* MaterialFormKitTests */,
+				CE58F7B81BEBE64C0082924A /* MaterialTextField */,
+				CE58F7C21BEBE64C0082924A /* MaterialTextFieldTests */,
 			);
 		};
 /* End PBXProject section */
@@ -240,7 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE58F7DC1BEBE77E0082924A /* MFTextField.m in Sources */,
-				CE58F7DE1BEBE77E0082924A /* UIColor+MaterialFormKit.m in Sources */,
+				CE58F7DE1BEBE77E0082924A /* UIColor+MaterialTextField.m in Sources */,
 				CE58F7E21BEBE77E0082924A /* UITextField+MFClearButton.m in Sources */,
 				CE58F7E01BEBE77E0082924A /* UIImage+MFTint.m in Sources */,
 			);
@@ -250,7 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE58F7C91BEBE64C0082924A /* MaterialFormKitTests.m in Sources */,
+				CE58F7C91BEBE64C0082924A /* MaterialTextFieldTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,7 +259,7 @@
 /* Begin PBXTargetDependency section */
 		CE58F7C61BEBE64C0082924A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CE58F7B81BEBE64C0082924A /* MaterialFormKit */;
+			target = CE58F7B81BEBE64C0082924A /* MaterialTextField */;
 			targetProxy = CE58F7C51BEBE64C0082924A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -305,7 +305,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROJECT_NAME = MaterialFormKit;
+				PROJECT_NAME = MaterialTextField;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -346,7 +346,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROJECT_NAME = MaterialFormKit;
+				PROJECT_NAME = MaterialTextField;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -362,7 +362,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = MaterialFormKit/Info.plist;
+				INFOPLIST_FILE = MaterialTextField/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ssharp.$(PRODUCT_NAME)";
@@ -378,7 +378,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = MaterialFormKit/Info.plist;
+				INFOPLIST_FILE = MaterialTextField/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ssharp.$(PRODUCT_NAME)";
@@ -390,7 +390,7 @@
 		CE58F7D11BEBE64C0082924A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = MaterialFormKitTests/Info.plist;
+				INFOPLIST_FILE = MaterialTextFieldTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ssharp.$(PRODUCT_NAME)";
 				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
@@ -400,7 +400,7 @@
 		CE58F7D21BEBE64C0082924A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = MaterialFormKitTests/Info.plist;
+				INFOPLIST_FILE = MaterialTextFieldTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ssharp.$(PRODUCT_NAME)";
 				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
@@ -410,7 +410,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CE58F7B31BEBE64C0082924A /* Build configuration list for PBXProject "MaterialFormKit" */ = {
+		CE58F7B31BEBE64C0082924A /* Build configuration list for PBXProject "MaterialTextField" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CE58F7CB1BEBE64C0082924A /* Debug */,
@@ -419,7 +419,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CE58F7CD1BEBE64C0082924A /* Build configuration list for PBXNativeTarget "MaterialFormKit" */ = {
+		CE58F7CD1BEBE64C0082924A /* Build configuration list for PBXNativeTarget "MaterialTextField" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CE58F7CE1BEBE64C0082924A /* Debug */,
@@ -428,7 +428,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CE58F7D01BEBE64C0082924A /* Build configuration list for PBXNativeTarget "MaterialFormKitTests" */ = {
+		CE58F7D01BEBE64C0082924A /* Build configuration list for PBXNativeTarget "MaterialTextFieldTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CE58F7D11BEBE64C0082924A /* Debug */,

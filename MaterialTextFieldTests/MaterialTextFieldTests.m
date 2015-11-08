@@ -1,19 +1,19 @@
 //
-//  MaterialFormKitTests.m
-//  MaterialFormKitTests
+//  MaterialTextFieldTests.m
+//  MaterialTextFieldTests
 //
 //  Created by Adam Sharp on 6/11/2015.
 //  Copyright © 2015 Stephanie Sharp. All rights reserved.
 //
 
-#import <MaterialFormKit/MaterialFormKit.h>
+#import <MaterialTextField/MaterialTextField.h>
 #import <XCTest/XCTest.h>
 
-@interface MaterialFormKitTests : XCTestCase
+@interface MaterialTextFieldTests : XCTestCase
 
 @end
 
-@implementation MaterialFormKitTests
+@implementation MaterialTextFieldTests
 
 - (void)setUp {
     [super setUp];

@@ -1,6 +1,6 @@
 //
-//  UIColor+MaterialFormKit.h
-//  MaterialFormKit
+//  UIColor+MaterialTextField.h
+//  MaterialTextField
 //
 //  Created by Steph Sharp on 22/07/2015.
 //  Copyright (c) 2015 Stephanie Sharp. All rights reserved.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIColor (MaterialFormKit)
+@interface UIColor (MaterialTextField)
 
 + (UIColor *)mf_defaultPlaceholderGray;
 + (UIColor *)mf_veryDarkGrayColor;

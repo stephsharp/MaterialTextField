@@ -9,25 +9,25 @@
 /* Begin PBXBuildFile section */
 		8229BFD71B5E2A7600C40181 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8229BFD61B5E2A7600C40181 /* main.m */; };
 		8229BFDA1B5E2A7600C40181 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8229BFD91B5E2A7600C40181 /* AppDelegate.m */; };
-		8229BFDD1B5E2A7600C40181 /* MaterialFormKitDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8229BFDC1B5E2A7600C40181 /* MaterialFormKitDemoViewController.m */; };
+		8229BFDD1B5E2A7600C40181 /* MaterialTextFieldDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8229BFDC1B5E2A7600C40181 /* MaterialTextFieldDemoViewController.m */; };
 		8229BFE01B5E2A7600C40181 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8229BFDE1B5E2A7600C40181 /* Main.storyboard */; };
 		8229BFE21B5E2A7600C40181 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8229BFE11B5E2A7600C40181 /* Images.xcassets */; };
 		8229BFE51B5E2A7600C40181 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8229BFE31B5E2A7600C40181 /* LaunchScreen.xib */; };
-		CECEC4381BEBECB500FDD23F /* MaterialFormKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4B7E621BEBE94300CD6620 /* MaterialFormKit.framework */; };
+		CECEC4381BEBECB500FDD23F /* MaterialTextField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4B7E621BEBE94300CD6620 /* MaterialTextField.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8229BFD11B5E2A7600C40181 /* MaterialFormKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaterialFormKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8229BFD11B5E2A7600C40181 /* MaterialTextFieldDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaterialTextFieldDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8229BFD51B5E2A7600C40181 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8229BFD61B5E2A7600C40181 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8229BFD81B5E2A7600C40181 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8229BFD91B5E2A7600C40181 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8229BFDB1B5E2A7600C40181 /* MaterialFormKitDemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaterialFormKitDemoViewController.h; sourceTree = "<group>"; };
-		8229BFDC1B5E2A7600C40181 /* MaterialFormKitDemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaterialFormKitDemoViewController.m; sourceTree = "<group>"; };
+		8229BFDB1B5E2A7600C40181 /* MaterialTextFieldDemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaterialTextFieldDemoViewController.h; sourceTree = "<group>"; };
+		8229BFDC1B5E2A7600C40181 /* MaterialTextFieldDemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaterialTextFieldDemoViewController.m; sourceTree = "<group>"; };
 		8229BFDF1B5E2A7600C40181 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8229BFE11B5E2A7600C40181 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8229BFE41B5E2A7600C40181 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		CE4B7E621BEBE94300CD6620 /* MaterialFormKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MaterialFormKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE4B7E621BEBE94300CD6620 /* MaterialTextField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MaterialTextField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,7 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CECEC4381BEBECB500FDD23F /* MaterialFormKit.framework in Frameworks */,
+				CECEC4381BEBECB500FDD23F /* MaterialTextField.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,7 +45,7 @@
 		8229BFC81B5E2A7600C40181 = {
 			isa = PBXGroup;
 			children = (
-				8229BFD31B5E2A7600C40181 /* MaterialFormKitDemo */,
+				8229BFD31B5E2A7600C40181 /* MaterialTextFieldDemo */,
 				CE4B7E611BEBE92B00CD6620 /* Frameworks */,
 				8229BFD21B5E2A7600C40181 /* Products */,
 			);
@@ -56,24 +56,24 @@
 		8229BFD21B5E2A7600C40181 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8229BFD11B5E2A7600C40181 /* MaterialFormKitDemo.app */,
+				8229BFD11B5E2A7600C40181 /* MaterialTextFieldDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8229BFD31B5E2A7600C40181 /* MaterialFormKitDemo */ = {
+		8229BFD31B5E2A7600C40181 /* MaterialTextFieldDemo */ = {
 			isa = PBXGroup;
 			children = (
 				8229BFD81B5E2A7600C40181 /* AppDelegate.h */,
 				8229BFD91B5E2A7600C40181 /* AppDelegate.m */,
-				8229BFDB1B5E2A7600C40181 /* MaterialFormKitDemoViewController.h */,
-				8229BFDC1B5E2A7600C40181 /* MaterialFormKitDemoViewController.m */,
+				8229BFDB1B5E2A7600C40181 /* MaterialTextFieldDemoViewController.h */,
+				8229BFDC1B5E2A7600C40181 /* MaterialTextFieldDemoViewController.m */,
 				8229BFDE1B5E2A7600C40181 /* Main.storyboard */,
 				8229BFE11B5E2A7600C40181 /* Images.xcassets */,
 				8229BFE31B5E2A7600C40181 /* LaunchScreen.xib */,
 				8229BFD41B5E2A7600C40181 /* Supporting Files */,
 			);
-			path = MaterialFormKitDemo;
+			path = MaterialTextFieldDemo;
 			sourceTree = "<group>";
 		};
 		8229BFD41B5E2A7600C40181 /* Supporting Files */ = {
@@ -88,7 +88,7 @@
 		CE4B7E611BEBE92B00CD6620 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CE4B7E621BEBE94300CD6620 /* MaterialFormKit.framework */,
+				CE4B7E621BEBE94300CD6620 /* MaterialTextField.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -96,9 +96,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8229BFD01B5E2A7600C40181 /* MaterialFormKitDemo */ = {
+		8229BFD01B5E2A7600C40181 /* MaterialTextFieldDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8229BFF41B5E2A7600C40181 /* Build configuration list for PBXNativeTarget "MaterialFormKitDemo" */;
+			buildConfigurationList = 8229BFF41B5E2A7600C40181 /* Build configuration list for PBXNativeTarget "MaterialTextFieldDemo" */;
 			buildPhases = (
 				8229BFCD1B5E2A7600C40181 /* Sources */,
 				8229BFCE1B5E2A7600C40181 /* Frameworks */,
@@ -108,9 +108,9 @@
 			);
 			dependencies = (
 			);
-			name = MaterialFormKitDemo;
-			productName = MaterialFormKitDemo;
-			productReference = 8229BFD11B5E2A7600C40181 /* MaterialFormKitDemo.app */;
+			name = MaterialTextFieldDemo;
+			productName = MaterialTextFieldDemo;
+			productReference = 8229BFD11B5E2A7600C40181 /* MaterialTextFieldDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -127,7 +127,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8229BFCC1B5E2A7600C40181 /* Build configuration list for PBXProject "MaterialFormKitDemo" */;
+			buildConfigurationList = 8229BFCC1B5E2A7600C40181 /* Build configuration list for PBXProject "MaterialTextFieldDemo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -140,7 +140,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8229BFD01B5E2A7600C40181 /* MaterialFormKitDemo */,
+				8229BFD01B5E2A7600C40181 /* MaterialTextFieldDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -163,7 +163,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8229BFDD1B5E2A7600C40181 /* MaterialFormKitDemoViewController.m in Sources */,
+				8229BFDD1B5E2A7600C40181 /* MaterialTextFieldDemoViewController.m in Sources */,
 				8229BFDA1B5E2A7600C40181 /* AppDelegate.m in Sources */,
 				8229BFD71B5E2A7600C40181 /* main.m in Sources */,
 			);
@@ -278,7 +278,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = MaterialFormKitDemo/Info.plist;
+				INFOPLIST_FILE = MaterialTextFieldDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ssharp.$(PRODUCT_NAME:rfc1034identifier)";
@@ -290,7 +290,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = MaterialFormKitDemo/Info.plist;
+				INFOPLIST_FILE = MaterialTextFieldDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ssharp.$(PRODUCT_NAME:rfc1034identifier)";
@@ -301,7 +301,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8229BFCC1B5E2A7600C40181 /* Build configuration list for PBXProject "MaterialFormKitDemo" */ = {
+		8229BFCC1B5E2A7600C40181 /* Build configuration list for PBXProject "MaterialTextFieldDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8229BFF21B5E2A7600C40181 /* Debug */,
@@ -310,7 +310,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8229BFF41B5E2A7600C40181 /* Build configuration list for PBXNativeTarget "MaterialFormKitDemo" */ = {
+		8229BFF41B5E2A7600C40181 /* Build configuration list for PBXNativeTarget "MaterialTextFieldDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8229BFF51B5E2A7600C40181 /* Debug */,

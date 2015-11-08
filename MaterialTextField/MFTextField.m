@@ -1,13 +1,13 @@
 //
 //  MFTextField.m
-//  MaterialFormKit
+//  MaterialTextField
 //
 //  Created by Steph Sharp on 21/07/2015.
 //  Copyright (c) 2015 Stephanie Sharp. All rights reserved.
 //
 
 #import "MFTextField.h"
-#import "UIColor+MaterialFormKit.h"
+#import "UIColor+MaterialTextField.h"
 #import "UITextField+MFClearButton.h"
 
 static CGFloat const MFDefaultLabelFontSize = 13.0f;
