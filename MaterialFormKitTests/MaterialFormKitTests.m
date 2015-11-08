@@ -1,19 +1,19 @@
 //
-//  MaterialFormKitDemoTests.m
-//  MaterialFormKitDemoTests
+//  MaterialFormKitTests.m
+//  MaterialFormKitTests
 //
-//  Created by Steph Sharp on 21/07/2015.
-//  Copyright (c) 2015 Stephanie Sharp. All rights reserved.
+//  Created by Adam Sharp on 6/11/2015.
+//  Copyright © 2015 Stephanie Sharp. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <MaterialFormKit/MaterialFormKit.h>
 #import <XCTest/XCTest.h>
 
-@interface MaterialFormKitDemoTests : XCTestCase
+@interface MaterialFormKitTests : XCTestCase
 
 @end
 
-@implementation MaterialFormKitDemoTests
+@implementation MaterialFormKitTests
 
 - (void)setUp {
     [super setUp];
@@ -27,7 +27,7 @@
 
 - (void)testExample {
     // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
+    // Use XCTAssert and related functions to verify your tests produce the correct results.
 }
 
 - (void)testPerformanceExample {

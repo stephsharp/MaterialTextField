@@ -13,22 +13,8 @@
 		8229BFE01B5E2A7600C40181 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8229BFDE1B5E2A7600C40181 /* Main.storyboard */; };
 		8229BFE21B5E2A7600C40181 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8229BFE11B5E2A7600C40181 /* Images.xcassets */; };
 		8229BFE51B5E2A7600C40181 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8229BFE31B5E2A7600C40181 /* LaunchScreen.xib */; };
-		8229BFF11B5E2A7600C40181 /* MaterialFormKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8229BFF01B5E2A7600C40181 /* MaterialFormKitDemoTests.m */; };
-		8229C0011B5E2B0000C40181 /* MFTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8229C0001B5E2B0000C40181 /* MFTextField.m */; };
-		824DA4A01B5F7A4D00F189F1 /* UIColor+MaterialFormKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 824DA49F1B5F7A4D00F189F1 /* UIColor+MaterialFormKit.m */; };
-		82FC51B31B73262D004BFFE6 /* UIImage+MFTint.m in Sources */ = {isa = PBXBuildFile; fileRef = 82FC51B21B73262D004BFFE6 /* UIImage+MFTint.m */; };
-		82FC51B71B7950E1004BFFE6 /* UITextField+MFClearButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 82FC51B61B7950E1004BFFE6 /* UITextField+MFClearButton.m */; };
+		CECEC4381BEBECB500FDD23F /* MaterialFormKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4B7E621BEBE94300CD6620 /* MaterialFormKit.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		8229BFEB1B5E2A7600C40181 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8229BFC91B5E2A7600C40181 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8229BFD01B5E2A7600C40181;
-			remoteInfo = MaterialFormKitDemo;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		8229BFD11B5E2A7600C40181 /* MaterialFormKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaterialFormKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,17 +27,7 @@
 		8229BFDF1B5E2A7600C40181 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8229BFE11B5E2A7600C40181 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8229BFE41B5E2A7600C40181 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		8229BFEA1B5E2A7600C40181 /* MaterialFormKitDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MaterialFormKitDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8229BFEF1B5E2A7600C40181 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8229BFF01B5E2A7600C40181 /* MaterialFormKitDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaterialFormKitDemoTests.m; sourceTree = "<group>"; };
-		8229BFFF1B5E2B0000C40181 /* MFTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTextField.h; sourceTree = "<group>"; };
-		8229C0001B5E2B0000C40181 /* MFTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTextField.m; sourceTree = "<group>"; };
-		824DA49E1B5F7A4D00F189F1 /* UIColor+MaterialFormKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MaterialFormKit.h"; sourceTree = "<group>"; };
-		824DA49F1B5F7A4D00F189F1 /* UIColor+MaterialFormKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MaterialFormKit.m"; sourceTree = "<group>"; };
-		82FC51B11B73262D004BFFE6 /* UIImage+MFTint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MFTint.h"; sourceTree = "<group>"; };
-		82FC51B21B73262D004BFFE6 /* UIImage+MFTint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MFTint.m"; sourceTree = "<group>"; };
-		82FC51B51B7950E1004BFFE6 /* UITextField+MFClearButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+MFClearButton.h"; sourceTree = "<group>"; };
-		82FC51B61B7950E1004BFFE6 /* UITextField+MFClearButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+MFClearButton.m"; sourceTree = "<group>"; };
+		CE4B7E621BEBE94300CD6620 /* MaterialFormKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MaterialFormKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,13 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8229BFE71B5E2A7600C40181 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				CECEC4381BEBECB500FDD23F /* MaterialFormKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,18 +45,18 @@
 		8229BFC81B5E2A7600C40181 = {
 			isa = PBXGroup;
 			children = (
-				8229BFFE1B5E2B0000C40181 /* MaterialFormKit */,
 				8229BFD31B5E2A7600C40181 /* MaterialFormKitDemo */,
-				8229BFED1B5E2A7600C40181 /* MaterialFormKitDemoTests */,
+				CE4B7E611BEBE92B00CD6620 /* Frameworks */,
 				8229BFD21B5E2A7600C40181 /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		8229BFD21B5E2A7600C40181 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				8229BFD11B5E2A7600C40181 /* MaterialFormKitDemo.app */,
-				8229BFEA1B5E2A7600C40181 /* MaterialFormKitDemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -115,37 +85,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		8229BFED1B5E2A7600C40181 /* MaterialFormKitDemoTests */ = {
+		CE4B7E611BEBE92B00CD6620 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8229BFF01B5E2A7600C40181 /* MaterialFormKitDemoTests.m */,
-				8229BFEE1B5E2A7600C40181 /* Supporting Files */,
+				CE4B7E621BEBE94300CD6620 /* MaterialFormKit.framework */,
 			);
-			path = MaterialFormKitDemoTests;
-			sourceTree = "<group>";
-		};
-		8229BFEE1B5E2A7600C40181 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				8229BFEF1B5E2A7600C40181 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		8229BFFE1B5E2B0000C40181 /* MaterialFormKit */ = {
-			isa = PBXGroup;
-			children = (
-				8229BFFF1B5E2B0000C40181 /* MFTextField.h */,
-				8229C0001B5E2B0000C40181 /* MFTextField.m */,
-				824DA49E1B5F7A4D00F189F1 /* UIColor+MaterialFormKit.h */,
-				824DA49F1B5F7A4D00F189F1 /* UIColor+MaterialFormKit.m */,
-				82FC51B11B73262D004BFFE6 /* UIImage+MFTint.h */,
-				82FC51B21B73262D004BFFE6 /* UIImage+MFTint.m */,
-				82FC51B51B7950E1004BFFE6 /* UITextField+MFClearButton.h */,
-				82FC51B61B7950E1004BFFE6 /* UITextField+MFClearButton.m */,
-			);
-			name = MaterialFormKit;
-			path = ../MaterialFormKit;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,24 +113,6 @@
 			productReference = 8229BFD11B5E2A7600C40181 /* MaterialFormKitDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8229BFE91B5E2A7600C40181 /* MaterialFormKitDemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8229BFF71B5E2A7600C40181 /* Build configuration list for PBXNativeTarget "MaterialFormKitDemoTests" */;
-			buildPhases = (
-				8229BFE61B5E2A7600C40181 /* Sources */,
-				8229BFE71B5E2A7600C40181 /* Frameworks */,
-				8229BFE81B5E2A7600C40181 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8229BFEC1B5E2A7600C40181 /* PBXTargetDependency */,
-			);
-			name = MaterialFormKitDemoTests;
-			productName = MaterialFormKitDemoTests;
-			productReference = 8229BFEA1B5E2A7600C40181 /* MaterialFormKitDemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -197,10 +124,6 @@
 				TargetAttributes = {
 					8229BFD01B5E2A7600C40181 = {
 						CreatedOnToolsVersion = 6.3.2;
-					};
-					8229BFE91B5E2A7600C40181 = {
-						CreatedOnToolsVersion = 6.3.2;
-						TestTargetID = 8229BFD01B5E2A7600C40181;
 					};
 				};
 			};
@@ -218,7 +141,6 @@
 			projectRoot = "";
 			targets = (
 				8229BFD01B5E2A7600C40181 /* MaterialFormKitDemo */,
-				8229BFE91B5E2A7600C40181 /* MaterialFormKitDemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -234,13 +156,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8229BFE81B5E2A7600C40181 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -248,33 +163,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8229C0011B5E2B0000C40181 /* MFTextField.m in Sources */,
 				8229BFDD1B5E2A7600C40181 /* MaterialFormKitDemoViewController.m in Sources */,
 				8229BFDA1B5E2A7600C40181 /* AppDelegate.m in Sources */,
-				824DA4A01B5F7A4D00F189F1 /* UIColor+MaterialFormKit.m in Sources */,
 				8229BFD71B5E2A7600C40181 /* main.m in Sources */,
-				82FC51B71B7950E1004BFFE6 /* UITextField+MFClearButton.m in Sources */,
-				82FC51B31B73262D004BFFE6 /* UIImage+MFTint.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8229BFE61B5E2A7600C40181 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8229BFF11B5E2A7600C40181 /* MaterialFormKitDemoTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		8229BFEC1B5E2A7600C40181 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8229BFD01B5E2A7600C40181 /* MaterialFormKitDemo */;
-			targetProxy = 8229BFEB1B5E2A7600C40181 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		8229BFDE1B5E2A7600C40181 /* Main.storyboard */ = {
@@ -403,34 +298,6 @@
 			};
 			name = Release;
 		};
-		8229BFF81B5E2A7600C40181 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = MaterialFormKitDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ssharp.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MaterialFormKitDemo.app/MaterialFormKitDemo";
-			};
-			name = Debug;
-		};
-		8229BFF91B5E2A7600C40181 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = MaterialFormKitDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ssharp.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MaterialFormKitDemo.app/MaterialFormKitDemo";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -448,15 +315,6 @@
 			buildConfigurations = (
 				8229BFF51B5E2A7600C40181 /* Debug */,
 				8229BFF61B5E2A7600C40181 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8229BFF71B5E2A7600C40181 /* Build configuration list for PBXNativeTarget "MaterialFormKitDemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8229BFF81B5E2A7600C40181 /* Debug */,
-				8229BFF91B5E2A7600C40181 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
