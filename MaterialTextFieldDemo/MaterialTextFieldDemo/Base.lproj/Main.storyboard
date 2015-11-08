@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Material Form Kit Demo View Controller-->
+        <!--Material Text Field Demo View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MaterialTextFieldDemoViewController" sceneMemberID="viewController">
