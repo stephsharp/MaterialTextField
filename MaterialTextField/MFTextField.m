@@ -9,6 +9,7 @@
 #import "MFTextField.h"
 #import "UIColor+MaterialTextField.h"
 #import "UITextField+MFClearButton.h"
+#import "UIFont+MaterialTextField.h"
 
 static CGFloat const MFDefaultLabelFontSize = 13.0f;
 static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
@@ -400,18 +401,13 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 - (void)updateDefaultPlaceholderFont
 {
-    BOOL isUsingDefaultFont = [self font:self.placeholderFont isEqualToFont:self.defaultPlaceholderFont];
+    BOOL isUsingDefaultFont = [self.placeholderFont isEqual:self.defaultPlaceholderFont];
 
     self.defaultPlaceholderFont = [self defaultFontForPlaceholder];
 
     if (!self.defaultPlaceholderFont || isUsingDefaultFont) {
         self.placeholderFont = self.defaultPlaceholderFont;
     }
-}
-
-- (BOOL)font:(UIFont *)font1 isEqualToFont:(UIFont *)font2
-{
-    return [[[font1 fontDescriptor] fontAttributes] isEqual:[[font2 fontDescriptor] fontAttributes]];
 }
 
 - (void)showPlaceholderLabelAnimated:(BOOL)animated

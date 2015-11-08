@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		82125D291BEF36E20017F72C /* UIFont+MaterialTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 82125D271BEF36E20017F72C /* UIFont+MaterialTextField.h */; };
+		82125D2A1BEF36E20017F72C /* UIFont+MaterialTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 82125D281BEF36E20017F72C /* UIFont+MaterialTextField.m */; };
 		CE58F7BD1BEBE64C0082924A /* MaterialTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = CE58F7BC1BEBE64C0082924A /* MaterialTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE58F7C41BEBE64C0082924A /* MaterialTextField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE58F7B91BEBE64C0082924A /* MaterialTextField.framework */; };
 		CE58F7C91BEBE64C0082924A /* MaterialTextFieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE58F7C81BEBE64C0082924A /* MaterialTextFieldTests.m */; };
@@ -31,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		82125D271BEF36E20017F72C /* UIFont+MaterialTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+MaterialTextField.h"; sourceTree = "<group>"; };
+		82125D281BEF36E20017F72C /* UIFont+MaterialTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+MaterialTextField.m"; sourceTree = "<group>"; };
 		CE58F7B91BEBE64C0082924A /* MaterialTextField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MaterialTextField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE58F7BC1BEBE64C0082924A /* MaterialTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaterialTextField.h; sourceTree = "<group>"; };
 		CE58F7BE1BEBE64C0082924A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -110,6 +114,8 @@
 				CE58F7D41BEBE77E0082924A /* MFTextField.m */,
 				CE58F7D51BEBE77E0082924A /* UIColor+MaterialTextField.h */,
 				CE58F7D61BEBE77E0082924A /* UIColor+MaterialTextField.m */,
+				82125D271BEF36E20017F72C /* UIFont+MaterialTextField.h */,
+				82125D281BEF36E20017F72C /* UIFont+MaterialTextField.m */,
 				CE58F7D71BEBE77E0082924A /* UIImage+MFTint.h */,
 				CE58F7D81BEBE77E0082924A /* UIImage+MFTint.m */,
 				CE58F7D91BEBE77E0082924A /* UITextField+MFClearButton.h */,
@@ -139,6 +145,7 @@
 				CE58F7DD1BEBE77E0082924A /* UIColor+MaterialTextField.h in Headers */,
 				CE58F7E11BEBE77E0082924A /* UITextField+MFClearButton.h in Headers */,
 				CE58F7BD1BEBE64C0082924A /* MaterialTextField.h in Headers */,
+				82125D291BEF36E20017F72C /* UIFont+MaterialTextField.h in Headers */,
 				CE58F7DB1BEBE77E0082924A /* MFTextField.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -243,6 +250,7 @@
 				CE58F7DE1BEBE77E0082924A /* UIColor+MaterialTextField.m in Sources */,
 				CE58F7E21BEBE77E0082924A /* UITextField+MFClearButton.m in Sources */,
 				CE58F7E01BEBE77E0082924A /* UIImage+MFTint.m in Sources */,
+				82125D2A1BEF36E20017F72C /* UIFont+MaterialTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
