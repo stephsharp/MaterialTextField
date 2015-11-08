@@ -224,15 +224,6 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 #pragma mark Placeholder
 
-- (void)setDefaultPlaceholderColor:(UIColor *)defaultPlaceholderColor
-{
-    _defaultPlaceholderColor = defaultPlaceholderColor ?: [UIColor mf_defaultPlaceholderGray];
-
-    if (self.attributedPlaceholder.length > 0) {
-        self.attributedPlaceholder = [self attributedString:self.attributedPlaceholder withColor:self.defaultPlaceholderColor];
-    }
-}
-
 - (void)setAnimatesPlaceholder:(BOOL)animatesPlaceholder
 {
     _animatesPlaceholder = animatesPlaceholder;
@@ -243,17 +234,26 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     }
 }
 
-- (void)setPlaceholderFont:(UIFont *)placeholderFont
+- (void)setDefaultPlaceholderColor:(UIColor *)defaultPlaceholderColor
 {
-    _placeholderFont = placeholderFont ?: self.defaultPlaceholderFont;
-    self.placeholderLabel.font = _placeholderFont;
-    [self updatePlaceholderText];
+    _defaultPlaceholderColor = defaultPlaceholderColor ?: [UIColor mf_defaultPlaceholderGray];
+
+    if (self.attributedPlaceholder.length > 0) {
+        self.attributedPlaceholder = [self attributedString:self.attributedPlaceholder withColor:self.defaultPlaceholderColor];
+    }
 }
 
 - (void)setPlaceholderColor:(UIColor *)placeholderColor
 {
     _placeholderColor = placeholderColor;
     [self updatePlaceholderColor];
+}
+
+- (void)setPlaceholderFont:(UIFont *)placeholderFont
+{
+    _placeholderFont = placeholderFont ?: self.defaultPlaceholderFont;
+    self.placeholderLabel.font = _placeholderFont;
+    [self updatePlaceholderText];
 }
 
 - (UIFont *)defaultPlaceholderFont
