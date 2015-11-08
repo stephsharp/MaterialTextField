@@ -74,7 +74,6 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
     self.animatesPlaceholder = YES;
     self.placeholderColor = [UIColor mf_darkGrayColor];
-    //self.placeholderDisabledColor = [UIColor mf_midGrayColor];
     self.placeholderFont = self.defaultPlaceholderFont;
 
     self.underlineHeight = 1.0f;
@@ -589,7 +588,6 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
         self.errorLabelTopConstraint.constant = [self topPaddingForErrorLabelHidden:YES];
         self.errorLabelHeightConstraint.active = YES;
     }
-
 }
 
 - (void)updateErrorLabelText

@@ -26,8 +26,6 @@ IB_DESIGNABLE
 @property (nonatomic) IBInspectable UIColor *defaultPlaceholderColor;
 
 @property (nonatomic) IBInspectable UIColor *placeholderColor;
-//@property (nonatomic) IBInspectable UIColor *placeholderEditingColor; // defaults to tint color
-//@property (nonatomic) IBInspectable UIColor *placeholderDisabledColor;
 
 /**
  * Defaults to the first applicable font:
@@ -37,9 +35,10 @@ IB_DESIGNABLE
 @property (nonatomic) UIFont *placeholderFont;
 
 @property (nonatomic) IBInspectable CGFloat underlineHeight;
+
 @property (nonatomic) IBInspectable CGFloat underlineEditingHeight;
+
 @property (nonatomic) IBInspectable UIColor *underlineColor;
-//@property (nonatomic) IBInspectable UIColor *underlineEditingColor; // defaults to tint color
 
 /** 
  * The error message displayed under the text field is the NSError's localized description.
@@ -47,7 +46,9 @@ IB_DESIGNABLE
 @property (nonatomic) NSError *error;
 
 @property (nonatomic) UIFont *errorFont;
+
 @property (nonatomic) IBInspectable UIColor *errorColor;
+
 @property (nonatomic) IBInspectable CGFloat errorPadding;
 
 @end
