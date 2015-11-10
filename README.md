@@ -6,18 +6,26 @@ A [Material Design](https://www.google.com/design/spec/components/text-fields.ht
 
 ##Features
 
-- Floating placeholder label
-  - Animates on focus or on text input
-  - Supports attributed placeholder text with custom fonts
-  - Can be turned off to use the text field with the default iOS placeholder
-- Text field underline
-  - Line height expands when editing
-  - Customize colour for default, editing and error states
-- Error message
-  - Animated error message appears below the text field
-  - Long error messages wrap onto multiple lines 
-- IBDesignable view
-  - Adjust the appearance of your text field in Interface Builder with inspectable properties
+#####Floating placeholder label
+
+- Animates on focus or on text input
+- Supports attributed placeholder text with custom fonts
+- Can be turned off to use the text field with the default iOS placeholder
+
+#####Underline
+
+- Line height expands when editing
+- Customize colour for default, editing and error states
+
+#####Error message
+
+- Animated error message appears below the text field
+- Long error messages wrap onto multiple lines 
+
+
+#####IBDesignable view
+
+- Adjust the appearance of your text field in Interface Builder with inspectable properties
 
 ##Setup
 
@@ -33,7 +41,7 @@ TBC
 
 ##Acknowledgements
 
-I found the following libraries to be useful references when creating MaterialTextField:
+I found the following libraries to be useful resources:
 
 - [MaterialKit](https://github.com/nghialv/MaterialKit)
 - [JVFloatLabeledTextField](https://github.com/jverdi/JVFloatLabeledTextField)
