@@ -10,12 +10,12 @@ A [Material Design](https://www.google.com/design/spec/components/text-fields.ht
 
 - Animates on focus or on text input
 - Supports attributed placeholder text with custom fonts
-- Can be turned off to use the text field with the default iOS placeholder
+- Can be turned off to use the text field with the default UITextField placeholder
 
 #####Underline
 
 - Line height expands when editing
-- Customize colour for default, editing and error states
+- Set colours for default, editing and error states
 
 #####Error message
 
@@ -25,7 +25,7 @@ A [Material Design](https://www.google.com/design/spec/components/text-fields.ht
 
 #####IBDesignable view
 
-- Adjust the appearance of your text field in Interface Builder with inspectable properties
+- Adjust the appearance of the text field in Interface Builder with inspectable properties
 
 ##Setup
 
@@ -49,6 +49,4 @@ I found the following libraries to be useful resources:
 
 ##License
 
-The MIT License (MIT)
-
-Copyright (c) 2015 Stephanie Sharp
+MaterialTextField is released under the MIT license. See LICENSE for details.
