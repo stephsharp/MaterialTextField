@@ -37,7 +37,17 @@ To install via CocoaPods, add to your podfile:
 
 ###Carthage
 
-TBC
+First, add this to your Cartfile:
+
+    github "stephsharp/MaterialTextField"
+
+Then run `carthage update`.
+
+The recommended way to integrate `MaterialTextField.framework` is as a workspace dependency:
+
+1. If you don't yet have a workspace, go to the File menu in Xcode and select Save as Workspace...
+2. At the bottom left of the project navigator, select the + and add `Carthage/Checkouts/MaterialTextField/MaterialTextField.xcodeproj`.
+3. Add `MaterialTextField.framework` to your app's "Link Binary with Libraries" build phase.
 
 ##Acknowledgements
 
