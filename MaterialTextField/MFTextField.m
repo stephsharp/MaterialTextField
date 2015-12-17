@@ -266,10 +266,10 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 #pragma mark Error
 
-- (void)setError:(NSError *)error
+- (void)setError:(NSError *)error animated:(BOOL)animated
 {
     _error = error;
-    [self layoutErrorLabelAnimated:YES];
+    [self layoutErrorLabelAnimated:animated];
 }
 
 - (void)setErrorColor:(UIColor *)errorColor

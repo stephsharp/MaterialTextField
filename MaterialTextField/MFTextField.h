@@ -60,10 +60,17 @@ IB_DESIGNABLE
  */
 @property (nonatomic) IBInspectable UIColor *underlineColor;
 
-/** 
+/**
  * To display an error under the text field, provide an NSError with a localized description.
+ *
+ * @param animated Set to YES to animate showing & hiding the error message.
  */
-@property (nonatomic) NSError *error;
+- (void)setError:(NSError *)error animated:(BOOL)animated;
+
+/**
+ * The error displayed under the text field.
+ */
+@property (nonatomic, readonly) NSError *error;
 
 /**
  * The font for the error displayed under the text field.

@@ -16,6 +16,7 @@ NSInteger const MFDemoErrorCode = 100;
 
 @property (weak, nonatomic) IBOutlet MFTextField *textField1;
 @property (weak, nonatomic) IBOutlet MFTextField *textField2;
+@property (weak, nonatomic) IBOutlet MFTextField *textField5;
 
 @end
 
@@ -27,6 +28,7 @@ NSInteger const MFDemoErrorCode = 100;
 
     [self setupTextField1];
     [self setupTextField2];
+    [self setupTextField5];
 }
 
 #pragma mark - Setup
@@ -51,6 +53,11 @@ NSInteger const MFDemoErrorCode = 100;
     self.textField2.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Attributed placeholder" attributes:@{NSFontAttributeName:font}];
 }
 
+- (void)setupTextField5
+{
+    [self validateTextField5Animated:NO];
+}
+
 #pragma mark - Actions
 
 - (IBAction)dismissKeyboard
@@ -60,20 +67,18 @@ NSInteger const MFDemoErrorCode = 100;
 
 - (IBAction)textFieldDidChange:(UITextField *)textField
 {
-    [self updateTextField:textField];
-}
-
-#pragma mark - Text field validation
-
-- (void)updateTextField:(UITextField *)textField
-{
     if (textField == self.textField1) {
         [self validateTextField1];
     }
     else if (textField == self.textField2) {
         [self validateTextField2];
     }
+    else if (textField == self.textField5) {
+        [self validateTextField5Animated:YES];
+    }
 }
+
+#pragma mark - Text field validation
 
 - (void)validateTextField1
 {
@@ -81,7 +86,7 @@ NSInteger const MFDemoErrorCode = 100;
     if (![self textField1IsValid]) {
         error = [self errorWithLocalizedDescription:@"Maximum of 6 characters allowed."];
     }
-    self.textField1.error = error;
+    [self.textField1 setError:error animated:YES];
 }
 
 - (void)validateTextField2
@@ -90,7 +95,16 @@ NSInteger const MFDemoErrorCode = 100;
     if (![self textField2IsValid]) {
         error = [self errorWithLocalizedDescription:@"This is an error message that is really long and should wrap onto 2 or more lines."];
     }
-    self.textField2.error = error;
+    [self.textField2 setError:error animated:YES];
+}
+
+- (void)validateTextField5Animated:(BOOL)animated
+{
+    NSError *error = nil;
+    if (![self textField5IsValid]) {
+        error = [self errorWithLocalizedDescription:@"An error message"];
+    }
+    [self.textField5 setError:error animated:animated];
 }
 
 - (BOOL)textField1IsValid
@@ -101,6 +115,11 @@ NSInteger const MFDemoErrorCode = 100;
 - (BOOL)textField2IsValid
 {
     return self.textField2.text.length < 3;
+}
+
+- (BOOL)textField5IsValid
+{
+    return self.textField5.text.length > 0;
 }
 
 - (NSError *)errorWithLocalizedDescription:(NSString *)localizedDescription
