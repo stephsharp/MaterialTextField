@@ -13,8 +13,23 @@
 		8229BFE01B5E2A7600C40181 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8229BFDE1B5E2A7600C40181 /* Main.storyboard */; };
 		8229BFE21B5E2A7600C40181 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8229BFE11B5E2A7600C40181 /* Images.xcassets */; };
 		8229BFE51B5E2A7600C40181 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8229BFE31B5E2A7600C40181 /* LaunchScreen.xib */; };
-		CECEC4381BEBECB500FDD23F /* MaterialTextField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4B7E621BEBE94300CD6620 /* MaterialTextField.framework */; };
+		CE3E46F41C2239B4002D0A92 /* MaterialTextField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4B7E621BEBE94300CD6620 /* MaterialTextField.framework */; };
+		CE3E46F51C2239B4002D0A92 /* MaterialTextField.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE4B7E621BEBE94300CD6620 /* MaterialTextField.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CE3E46F61C2239B4002D0A92 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CE3E46F51C2239B4002D0A92 /* MaterialTextField.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8229BFD11B5E2A7600C40181 /* MaterialTextFieldDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaterialTextFieldDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,7 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CECEC4381BEBECB500FDD23F /* MaterialTextField.framework in Frameworks */,
+				CE3E46F41C2239B4002D0A92 /* MaterialTextField.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +118,7 @@
 				8229BFCD1B5E2A7600C40181 /* Sources */,
 				8229BFCE1B5E2A7600C40181 /* Frameworks */,
 				8229BFCF1B5E2A7600C40181 /* Resources */,
+				CE3E46F61C2239B4002D0A92 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
