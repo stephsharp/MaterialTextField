@@ -416,7 +416,8 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     }
 
     if (animated && !self.placeholderIsAnimating) {
-        [self setNeedsLayout];
+        [self.superview layoutIfNeeded];
+
         self.placeholderIsAnimating = YES;
         self.placeholderLabelTopConstraint.constant = 0;
 
@@ -449,7 +450,8 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     }
 
     if (animated && !self.placeholderIsAnimating) {
-        [self setNeedsLayout];
+        [self.superview layoutIfNeeded];
+
         self.placeholderIsAnimating = YES;
         self.placeholderLabelTopConstraint.constant = finalDistanceFromTop;
 
@@ -522,7 +524,8 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     [self updateErrorLabelText];
 
     if (animated && !self.errorIsAnimating) {
-        [self setNeedsLayout];
+        [self.superview layoutIfNeeded];
+
         self.errorIsAnimating = YES;
         self.errorLabelHeightConstraint.active = NO;
         self.errorLabelTopConstraint.constant = [self topPaddingForErrorLabelHidden:NO];
@@ -551,7 +554,6 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 - (void)hideErrorLabelAnimated:(BOOL)animated
 {
     if (animated && !self.errorIsAnimating) {
-        [self setNeedsLayout];
         self.errorIsAnimating = YES;
         [UIView animateWithDuration:MFDefaultAnimationDuration * 0.5
                               delay:0.0
@@ -559,6 +561,8 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
                          animations:^{
                             self.errorLabel.alpha = 0.0f;
                          } completion:^(BOOL finished) {
+                             [self.superview layoutIfNeeded];
+
                              self.errorLabelTopConstraint.constant = [self topPaddingForErrorLabelHidden:YES];
                              self.errorLabelHeightConstraint.active = YES;
 
