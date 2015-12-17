@@ -418,7 +418,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     }
 
     if (animated && !self.placeholderIsAnimating) {
-        [self layoutIfNeeded];
+        [self setNeedsLayout];
         self.placeholderIsAnimating = YES;
         self.placeholderLabelTopConstraint.constant = 0;
 
@@ -451,7 +451,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     }
 
     if (animated && !self.placeholderIsAnimating) {
-        [self layoutIfNeeded];
+        [self setNeedsLayout];
         self.placeholderIsAnimating = YES;
         self.placeholderLabelTopConstraint.constant = finalDistanceFromTop;
 
@@ -553,7 +553,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 - (void)hideErrorLabelAnimated:(BOOL)animated
 {
     if (animated && !self.errorIsAnimating) {
-        [self layoutIfNeeded];
+        [self setNeedsLayout];
         self.errorIsAnimating = YES;
         [UIView animateWithDuration:MFDefaultAnimationDuration * 0.5
                               delay:0.0
