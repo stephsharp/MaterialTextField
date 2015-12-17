@@ -315,8 +315,6 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     if (self.animatesPlaceholder) {
         [self layoutPlaceholderLabelAnimated:YES];
     }
-
-    [self layoutErrorLabelAnimated:YES];
 }
 
 - (void)layoutUnderlineLayer
