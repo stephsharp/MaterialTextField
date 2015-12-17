@@ -310,6 +310,11 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     return self.placeholderLabel.alpha == 0.0f;
 }
 
+- (CGRect)accessibilityFrame
+{
+    return [self convertRect:self.textRect toView:self.superview];
+}
+
 #pragma mark - Layout
 
 - (void)layoutSubviews
