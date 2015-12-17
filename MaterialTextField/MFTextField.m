@@ -7,6 +7,7 @@
 //
 
 #import "MFTextField.h"
+#import "MFAccessibilityElementProxy.h"
 #import "UIColor+MaterialTextField.h"
 #import "UITextField+MFClearButton.h"
 #import "UIFont+MaterialTextField.h"
@@ -15,6 +16,9 @@ static CGFloat const MFDefaultLabelFontSize = 13.0f;
 static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 @interface MFTextField ()
+{
+    NSMutableArray *_accessibilityElements;
+}
 
 @property (nonatomic) CGRect textRect;
 @property (nonatomic) CALayer *underlineLayer;
@@ -679,6 +683,26 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
     self.animatesPlaceholder = NO;
     [self.errorLabel removeFromSuperview];
+}
+
+#pragma mark - Accessibility
+
+- (BOOL)isAccessibilityElement
+{
+    return NO;
+}
+
+- (NSArray *)accessibilityElements
+{
+    if (_accessibilityElements) {
+        return _accessibilityElements;
+    }
+
+    _accessibilityElements = [NSMutableArray new];
+
+    [_accessibilityElements addObject:[[MFAccessibilityElementProxy alloc] initWithAccessibilityContainer:self underlyingElement:self]];
+
+    return _accessibilityElements;
 }
 
 @end

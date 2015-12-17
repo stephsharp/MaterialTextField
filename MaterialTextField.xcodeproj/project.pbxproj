@@ -20,6 +20,8 @@
 		CE58F7E01BEBE77E0082924A /* UIImage+MFTint.m in Sources */ = {isa = PBXBuildFile; fileRef = CE58F7D81BEBE77E0082924A /* UIImage+MFTint.m */; };
 		CE58F7E11BEBE77E0082924A /* UITextField+MFClearButton.h in Headers */ = {isa = PBXBuildFile; fileRef = CE58F7D91BEBE77E0082924A /* UITextField+MFClearButton.h */; };
 		CE58F7E21BEBE77E0082924A /* UITextField+MFClearButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CE58F7DA1BEBE77E0082924A /* UITextField+MFClearButton.m */; };
+		CE83F0CF1C2234BE0031E333 /* MFAccessibilityElementProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = CE83F0CD1C2234BE0031E333 /* MFAccessibilityElementProxy.h */; };
+		CE83F0D01C2234BE0031E333 /* MFAccessibilityElementProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = CE83F0CE1C2234BE0031E333 /* MFAccessibilityElementProxy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		CE58F7D81BEBE77E0082924A /* UIImage+MFTint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MFTint.m"; sourceTree = "<group>"; };
 		CE58F7D91BEBE77E0082924A /* UITextField+MFClearButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+MFClearButton.h"; sourceTree = "<group>"; };
 		CE58F7DA1BEBE77E0082924A /* UITextField+MFClearButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+MFClearButton.m"; sourceTree = "<group>"; };
+		CE83F0CD1C2234BE0031E333 /* MFAccessibilityElementProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFAccessibilityElementProxy.h; sourceTree = "<group>"; };
+		CE83F0CE1C2234BE0031E333 /* MFAccessibilityElementProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFAccessibilityElementProxy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,8 @@
 				CE58F7BC1BEBE64C0082924A /* MaterialTextField.h */,
 				CE58F7D31BEBE77E0082924A /* MFTextField.h */,
 				CE58F7D41BEBE77E0082924A /* MFTextField.m */,
+				CE83F0CD1C2234BE0031E333 /* MFAccessibilityElementProxy.h */,
+				CE83F0CE1C2234BE0031E333 /* MFAccessibilityElementProxy.m */,
 				CE58F7D51BEBE77E0082924A /* UIColor+MaterialTextField.h */,
 				CE58F7D61BEBE77E0082924A /* UIColor+MaterialTextField.m */,
 				82125D271BEF36E20017F72C /* UIFont+MaterialTextField.h */,
@@ -144,6 +150,7 @@
 				CE58F7DF1BEBE77E0082924A /* UIImage+MFTint.h in Headers */,
 				CE58F7DD1BEBE77E0082924A /* UIColor+MaterialTextField.h in Headers */,
 				CE58F7E11BEBE77E0082924A /* UITextField+MFClearButton.h in Headers */,
+				CE83F0CF1C2234BE0031E333 /* MFAccessibilityElementProxy.h in Headers */,
 				CE58F7BD1BEBE64C0082924A /* MaterialTextField.h in Headers */,
 				82125D291BEF36E20017F72C /* UIFont+MaterialTextField.h in Headers */,
 				CE58F7DB1BEBE77E0082924A /* MFTextField.h in Headers */,
@@ -249,6 +256,7 @@
 				CE58F7DC1BEBE77E0082924A /* MFTextField.m in Sources */,
 				CE58F7DE1BEBE77E0082924A /* UIColor+MaterialTextField.m in Sources */,
 				CE58F7E21BEBE77E0082924A /* UITextField+MFClearButton.m in Sources */,
+				CE83F0D01C2234BE0031E333 /* MFAccessibilityElementProxy.m in Sources */,
 				CE58F7E01BEBE77E0082924A /* UIImage+MFTint.m in Sources */,
 				82125D2A1BEF36E20017F72C /* UIFont+MaterialTextField.m in Sources */,
 			);
