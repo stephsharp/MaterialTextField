@@ -38,6 +38,8 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 @property (nonatomic, readonly) BOOL hasError;
 @property (nonatomic) BOOL errorIsAnimating;
 
+@property (nonatomic, readonly) MFAccessibilityElementProxy *accessibilityProxy;
+
 @end
 
 @implementation MFTextField
@@ -94,6 +96,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     self.borderStyle = UITextBorderStyleNone;
     self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
     self.clipsToBounds = NO;
+    _accessibilityProxy = [[MFAccessibilityElementProxy alloc] initWithAccessibilityContainer:self underlyingElement:self];
 }
 
 - (void)setupUnderline
@@ -700,7 +703,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
     _accessibilityElements = [NSMutableArray new];
 
-    [_accessibilityElements addObject:[[MFAccessibilityElementProxy alloc] initWithAccessibilityContainer:self underlyingElement:self]];
+    [_accessibilityElements addObject:self.accessibilityProxy];
 
     return _accessibilityElements;
 }
