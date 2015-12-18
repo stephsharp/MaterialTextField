@@ -2,7 +2,7 @@
 
 A [Material Design](https://www.google.com/design/spec/components/text-fields.html#text-fields-single-line-text-field) inspired UITextField with animated placeholder label and error message.
 
-![MaterialTextField gif](https://raw.githubusercontent.com/stephsharp/MaterialTextField/develop/Screenshots/MaterialTextField.gif)
+![MaterialTextField gif](Screenshots/MaterialTextField.gif)
 
 ##Features
 
