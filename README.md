@@ -33,7 +33,7 @@ A [Material Design](https://www.google.com/design/spec/components/text-fields.ht
 
 To install via CocoaPods, add to your podfile:
 
-    pod 'MaterialTextField', '~> 0.1'
+    pod 'MaterialTextField', '~> 0.2'
 
 ###Carthage
 
