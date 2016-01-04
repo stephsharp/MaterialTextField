@@ -709,6 +709,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     _accessibilityElements = [NSMutableArray new];
 
     [_accessibilityElements addObject:self.accessibilityProxy];
+    if (self.hasError) [_accessibilityElements addObject:self.errorLabel];
 
     return _accessibilityElements;
 }
