@@ -700,6 +700,21 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     return NO;
 }
 
+- (NSInteger)indexOfAccessibilityElement:(id)element
+{
+    return [self.accessibilityElements indexOfObject:element];
+}
+
+- (id)accessibilityElementAtIndex:(NSInteger)index
+{
+    return [self.accessibilityElements objectAtIndex:index];
+}
+
+- (NSInteger)accessibilityElementCount
+{
+    return self.accessibilityElements.count;
+}
+
 - (NSArray *)accessibilityElements
 {
     if (_accessibilityElements) {
