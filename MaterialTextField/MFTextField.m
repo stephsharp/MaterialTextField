@@ -549,11 +549,11 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
                              [self.superview layoutIfNeeded];
                              self.errorLabel.alpha = 1.0f;
                          } completion:^(BOOL finished) {
-                              self.errorIsAnimating = NO;
-                              // Layout error label without animation if isValid has changed since animation started.
-                              if (!self.hasError) {
-                                  [self hideErrorLabelAnimated:NO];
-                              }
+                             self.errorIsAnimating = NO;
+                             // Layout error label without animation if isValid has changed since animation started.
+                             if (!self.hasError) {
+                                 [self hideErrorLabelAnimated:NO];
+                             }
                          }];
     }
     else if (!animated) {
@@ -571,7 +571,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
                               delay:0.0
                             options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
-                            self.errorLabel.alpha = 0.0f;
+                             self.errorLabel.alpha = 0.0f;
                          } completion:^(BOOL finished) {
                              [self.superview layoutIfNeeded];
 
@@ -582,7 +582,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
                                                    delay:0.0
                                                  options:UIViewAnimationOptionCurveEaseOut
                                               animations:^{
-                                                    [self.superview layoutIfNeeded];
+                                                  [self.superview layoutIfNeeded];
                                               } completion:^(BOOL finished) {
                                                   self.errorIsAnimating = NO;
                                                   [self updateErrorLabelText];
