@@ -554,12 +554,14 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
                              if (!self.hasError) {
                                  [self hideErrorLabelAnimated:NO];
                              }
+                             [self updateErrorLabelAccessibility];
                          }];
     }
     else if (!animated) {
         self.errorLabel.alpha = 1.0f;
         self.errorLabelTopConstraint.constant = [self topPaddingForErrorLabelHidden:NO];
         self.errorLabelHeightConstraint.active = NO;
+        [self updateErrorLabelAccessibility];
     }
 }
 
@@ -590,6 +592,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
                                                   if (self.hasError) {
                                                       [self showErrorLabelAnimated:NO];
                                                   }
+                                                  [self updateErrorLabelAccessibility];
                                               }];
                          }];
     }
@@ -597,6 +600,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
         self.errorLabel.alpha = 0.0f;
         self.errorLabelTopConstraint.constant = [self topPaddingForErrorLabelHidden:YES];
         self.errorLabelHeightConstraint.active = YES;
+        [self updateErrorLabelAccessibility];
     }
 }
 
@@ -604,6 +608,28 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 {
     self.errorLabel.text = self.error.localizedDescription;
     [self.errorLabel sizeToFit];
+}
+
+- (void)updateErrorLabelAccessibility
+{
+    BOOL accessibilityElementsIncludesError = [self indexOfAccessibilityElement:self.errorLabel] != NSNotFound;
+
+    if (self.hasError && accessibilityElementsIncludesError) {
+        return;
+    }
+
+    if (!self.hasError && !accessibilityElementsIncludesError) {
+        return;
+    }
+
+    if (self.hasError) {
+        [_accessibilityElements addObject:self.errorLabel];
+        UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self.errorLabel);
+    }
+    else {
+        [_accessibilityElements removeObject:self.errorLabel];
+        UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
+    }
 }
 
 - (CGFloat)topPaddingForErrorLabelHidden:(BOOL)hidden
