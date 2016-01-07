@@ -70,9 +70,18 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     [self setupTextField];
     [self setupUnderline];
     [self setupErrorLabel];
+    [self setupAccessibility];
 }
 
 #pragma mark - Setup
+
+- (void)setupAccessibility
+{
+    _accessibilityProxy = [[MFAccessibilityElementProxy alloc] initWithAccessibilityContainer:self underlyingElement:self];
+
+    _accessibilityElements = [NSMutableArray new];
+    [_accessibilityElements addObject:self.accessibilityProxy];
+}
 
 - (void)setDefaults
 {
@@ -96,7 +105,6 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     self.borderStyle = UITextBorderStyleNone;
     self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
     self.clipsToBounds = NO;
-    _accessibilityProxy = [[MFAccessibilityElementProxy alloc] initWithAccessibilityContainer:self underlyingElement:self];
 }
 
 - (void)setupUnderline
@@ -743,15 +751,6 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 - (NSArray *)accessibilityElements
 {
-    if (_accessibilityElements) {
-        return _accessibilityElements;
-    }
-
-    _accessibilityElements = [NSMutableArray new];
-
-    [_accessibilityElements addObject:self.accessibilityProxy];
-    if (self.hasError) [_accessibilityElements addObject:self.errorLabel];
-
     return _accessibilityElements;
 }
 
