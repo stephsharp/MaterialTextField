@@ -216,7 +216,8 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 - (CGRect)textRect
 {
-    if (CGRectEqualToRect(_textRect, CGRectZero)) {
+    // This whole line could probably be removed, keeping legacy code for iOS 10 or lower just in case...
+    if (CGRectEqualToRect(_textRect, CGRectZero) || [[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0) {
         _textRect = [self textRectForBounds:self.bounds];
     }
     return _textRect;
