@@ -498,7 +498,14 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 - (NSAttributedString *)attributedString:(NSAttributedString *)attributedString withColor:(UIColor *)color
 {
-    NSMutableDictionary *attributes = [[attributedString attributesAtIndex:0 effectiveRange:NULL] mutableCopy];
+    NSMutableDictionary *attributes;
+
+    if (attributedString.length > 0) {
+        attributes = [[attributedString attributesAtIndex:0 effectiveRange:NULL] mutableCopy];
+    }
+    else {
+        attributes = [NSMutableDictionary dictionary];
+    }
     attributes[NSForegroundColorAttributeName] = color;
 
     return [[NSAttributedString alloc] initWithString:attributedString.string attributes:attributes];
