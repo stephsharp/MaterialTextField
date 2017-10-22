@@ -216,9 +216,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 - (CGRect)textRect
 {
-    if (CGRectEqualToRect(_textRect, CGRectZero)) {
-        _textRect = [self textRectForBounds:self.bounds];
-    }
+    _textRect = [self textRectForBounds:self.bounds];
     return _textRect;
 }
 
