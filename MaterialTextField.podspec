@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "MaterialTextField"
-  s.version      = "0.2"
+  s.version      = "0.2.1"
   s.summary      = "Material design UITextField with animated placeholder label and error message"
   s.homepage     = "https://github.com/stephsharp/MaterialTextField"
   s.license      = { :type => "MIT", :file => "LICENSE" }
