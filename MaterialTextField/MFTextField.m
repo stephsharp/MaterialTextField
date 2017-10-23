@@ -7,6 +7,7 @@
 //
 
 #import "MFTextField.h"
+#import "MFAccessibilityElementProxy.h"
 #import "UIColor+MaterialTextField.h"
 #import "UITextField+MFClearButton.h"
 #import "UIFont+MaterialTextField.h"
@@ -15,6 +16,9 @@ static CGFloat const MFDefaultLabelFontSize = 13.0f;
 static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 @interface MFTextField ()
+{
+    NSMutableArray *_accessibilityElements;
+}
 
 @property (nonatomic) CGRect textRect;
 @property (nonatomic) CALayer *underlineLayer;
@@ -33,6 +37,8 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 @property (nonatomic) NSLayoutConstraint *errorLabelHeightConstraint;
 @property (nonatomic, readonly) BOOL hasError;
 @property (nonatomic) BOOL errorIsAnimating;
+
+@property (nonatomic, readonly) MFAccessibilityElementProxy *accessibilityProxy;
 
 @end
 
@@ -64,9 +70,18 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     [self setupTextField];
     [self setupUnderline];
     [self setupErrorLabel];
+    [self setupAccessibility];
 }
 
 #pragma mark - Setup
+
+- (void)setupAccessibility
+{
+    _accessibilityProxy = [[MFAccessibilityElementProxy alloc] initWithAccessibilityContainer:self underlyingElement:self];
+
+    _accessibilityElements = [NSMutableArray new];
+    [_accessibilityElements addObject:self.accessibilityProxy];
+}
 
 - (void)setDefaults
 {
@@ -299,6 +314,11 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 - (BOOL)placeholderIsHidden
 {
     return self.placeholderLabel.alpha == 0.0f;
+}
+
+- (CGRect)accessibilityFrame
+{
+    return [self convertRect:self.textRect toView:self.superview];
 }
 
 #pragma mark - Layout
@@ -542,17 +562,19 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
                              [self.superview layoutIfNeeded];
                              self.errorLabel.alpha = 1.0f;
                          } completion:^(BOOL finished) {
-                              self.errorIsAnimating = NO;
-                              // Layout error label without animation if isValid has changed since animation started.
-                              if (!self.hasError) {
-                                  [self hideErrorLabelAnimated:NO];
-                              }
+                             self.errorIsAnimating = NO;
+                             // Layout error label without animation if isValid has changed since animation started.
+                             if (!self.hasError) {
+                                 [self hideErrorLabelAnimated:NO];
+                             }
+                             [self updateErrorLabelAccessibility];
                          }];
     }
     else if (!animated) {
         self.errorLabel.alpha = 1.0f;
         self.errorLabelTopConstraint.constant = [self topPaddingForErrorLabelHidden:NO];
         self.errorLabelHeightConstraint.active = NO;
+        [self updateErrorLabelAccessibility];
     }
 }
 
@@ -564,7 +586,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
                               delay:0.0
                             options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
-                            self.errorLabel.alpha = 0.0f;
+                             self.errorLabel.alpha = 0.0f;
                          } completion:^(BOOL finished) {
                              [self.superview layoutIfNeeded];
 
@@ -575,7 +597,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
                                                    delay:0.0
                                                  options:UIViewAnimationOptionCurveEaseOut
                                               animations:^{
-                                                    [self.superview layoutIfNeeded];
+                                                  [self.superview layoutIfNeeded];
                                               } completion:^(BOOL finished) {
                                                   self.errorIsAnimating = NO;
                                                   [self updateErrorLabelText];
@@ -583,6 +605,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
                                                   if (self.hasError) {
                                                       [self showErrorLabelAnimated:NO];
                                                   }
+                                                  [self updateErrorLabelAccessibility];
                                               }];
                          }];
     }
@@ -590,6 +613,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
         self.errorLabel.alpha = 0.0f;
         self.errorLabelTopConstraint.constant = [self topPaddingForErrorLabelHidden:YES];
         self.errorLabelHeightConstraint.active = YES;
+        [self updateErrorLabelAccessibility];
     }
 }
 
@@ -597,6 +621,28 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 {
     self.errorLabel.text = self.error.localizedDescription;
     [self.errorLabel sizeToFit];
+}
+
+- (void)updateErrorLabelAccessibility
+{
+    BOOL accessibilityElementsIncludesError = [self indexOfAccessibilityElement:self.errorLabel] != NSNotFound;
+
+    if (self.hasError && accessibilityElementsIncludesError) {
+        return;
+    }
+
+    if (!self.hasError && !accessibilityElementsIncludesError) {
+        return;
+    }
+
+    if (self.hasError) {
+        [_accessibilityElements addObject:self.errorLabel];
+        UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self.errorLabel);
+    }
+    else {
+        [_accessibilityElements removeObject:self.errorLabel];
+        UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
+    }
 }
 
 - (CGFloat)topPaddingForErrorLabelHidden:(BOOL)hidden
@@ -684,6 +730,33 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
     self.animatesPlaceholder = NO;
     [self.errorLabel removeFromSuperview];
+}
+
+#pragma mark - Accessibility
+
+- (BOOL)isAccessibilityElement
+{
+    return NO;
+}
+
+- (NSInteger)indexOfAccessibilityElement:(id)element
+{
+    return [self.accessibilityElements indexOfObject:element];
+}
+
+- (id)accessibilityElementAtIndex:(NSInteger)index
+{
+    return [self.accessibilityElements objectAtIndex:index];
+}
+
+- (NSInteger)accessibilityElementCount
+{
+    return self.accessibilityElements.count;
+}
+
+- (NSArray *)accessibilityElements
+{
+    return _accessibilityElements;
 }
 
 @end
