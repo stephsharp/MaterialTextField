@@ -1,41 +1,41 @@
-#MaterialTextField
+# MaterialTextField
 
 A [Material Design](https://www.google.com/design/spec/components/text-fields.html#text-fields-single-line-text-field) inspired UITextField with animated placeholder label and error message.
 
 ![MaterialTextField gif](Screenshots/MaterialTextField.gif)
 
-##Features
+## Features
 
-#####Floating placeholder label
+##### Floating placeholder label
 
 - Animates on focus or on text input
 - Supports attributed placeholder text with custom fonts
 - Can be turned off to use the text field with the default UITextField placeholder
 
-#####Underline
+##### Underline
 
 - Line height expands when editing
 - Set colours for default, editing and error states
 
-#####Error message
+##### Error message
 
 - Animated error message appears below the text field
 - Long error messages wrap onto multiple lines 
 
 
-#####IBDesignable view
+##### IBDesignable view
 
 - Adjust the appearance of the text field in Interface Builder with inspectable properties
 
-##Setup
+## Setup
 
-###CocoaPods
+### CocoaPods
 
 To install via CocoaPods, add to your podfile:
 
     pod 'MaterialTextField', '~> 0.2'
 
-###Carthage
+### Carthage
 
 First, add this to your Cartfile:
 
@@ -49,7 +49,7 @@ The recommended way to integrate `MaterialTextField.framework` is as a workspace
 2. At the bottom left of the project navigator, select the + and add `Carthage/Checkouts/MaterialTextField/MaterialTextField.xcodeproj`.
 3. Add `MaterialTextField.framework` to your app's "Link Binary with Libraries" build phase.
 
-##Acknowledgements
+## Acknowledgements
 
 I found the following libraries to be useful resources:
 
@@ -57,6 +57,6 @@ I found the following libraries to be useful resources:
 - [JVFloatLabeledTextField](https://github.com/jverdi/JVFloatLabeledTextField)
 
 
-##License
+## License
 
 MaterialTextField is released under the MIT license. See LICENSE for details.
