@@ -22,6 +22,8 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 @property (nonatomic) UILabel *placeholderLabel;
 @property (nonatomic) NSLayoutConstraint *placeholderLabelTopConstraint;
+@property (nonatomic) NSLayoutConstraint *placeholderLabelLeftConstraint;
+@property (nonatomic) NSLayoutConstraint *placeholderLabelRightConstraint;
 @property (nonatomic) NSAttributedString *placeholderAttributedString;
 @property (nonatomic) UIFont *defaultPlaceholderFont;
 @property (nonatomic, readonly) BOOL shouldShowPlaceholder;
@@ -31,6 +33,9 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 @property (nonatomic) UILabel *errorLabel;
 @property (nonatomic) NSLayoutConstraint *errorLabelTopConstraint;
 @property (nonatomic) NSLayoutConstraint *errorLabelHeightConstraint;
+@property (nonatomic) NSLayoutConstraint *errorLabelLeftConstraint;
+@property (nonatomic) NSLayoutConstraint *errorLabelRightConstraint;
+
 @property (nonatomic, readonly) BOOL hasError;
 @property (nonatomic) BOOL errorIsAnimating;
 
@@ -71,7 +76,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 - (void)setDefaults
 {
     self.textPadding = CGSizeMake(0.0f, 8.0f);
-    self.errorPadding = 4.0f;
+    self.errorPadding = CGSizeMake(0.0f, 4.0f);
 
     self.animatesPlaceholder = YES;
     self.placeholderColor = [UIColor mf_darkGrayColor];
@@ -132,18 +137,26 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 {
     if (self.placeholderLabel) {
         NSDictionary *views = @{@"placeholder": self.placeholderLabel};
-
+        NSDictionary *metrics = @{@"leftPadding": @(self.textPadding.width),
+                                  @"rightPadding": @(self.textPadding.width)};
+        
+        
         NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[placeholder]"
                                                                                options:0
                                                                                metrics:nil
                                                                                  views:views];
+        
+        NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-leftPadding-[placeholder]-rightPadding-|"
+                                                                                 options:0
+                                                                                 metrics:metrics
+                                                                                   views:views];
+        
         self.placeholderLabelTopConstraint = verticalConstraints[0];
-        [self addConstraints:verticalConstraints];
+        self.placeholderLabelLeftConstraint = horizontalConstraints[0];
+        self.placeholderLabelRightConstraint = horizontalConstraints[1];
 
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[placeholder]|"
-                                                                     options:0
-                                                                     metrics:nil
-                                                                       views:views]];
+        [self addConstraints:verticalConstraints];
+        [self addConstraints:horizontalConstraints];
     }
 }
 
@@ -151,7 +164,10 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 {
     if (self.errorLabel) {
         NSDictionary *views = @{@"error": self.errorLabel};
-        NSDictionary *metrics = @{@"topPadding": @([self topPaddingForErrorLabelHidden:!self.hasError])};
+        NSDictionary *metrics = @{@"topPadding": @([self topPaddingForErrorLabelHidden:!self.hasError]),
+                                  @"leftPadding": @(self.errorPadding.width),
+                                  @"rightPadding": @(self.errorPadding.width)
+                                  };
 
         NSString *visualFormatString = @"V:|-topPadding-[error]-(>=0,0@900)-|";
         NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:visualFormatString
@@ -161,10 +177,15 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
         self.errorLabelTopConstraint = verticalConstraints[0];
         [self addConstraints:verticalConstraints];
 
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[error]->=0-|"
+
+        NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-leftPadding-[error]->=rightPadding-|"
                                                                      options:0
                                                                      metrics:metrics
-                                                                       views:views]];
+                                                                     views:views];
+        [self addConstraints:horizontalConstraints];
+        
+        self.errorLabelLeftConstraint = horizontalConstraints[0];
+        self.errorLabelRightConstraint = horizontalConstraints[1];
 
         self.errorLabelHeightConstraint = [NSLayoutConstraint constraintWithItem:self.errorLabel
                                                                        attribute:NSLayoutAttributeHeight
@@ -179,6 +200,32 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 }
 
 #pragma mark - Properties
+    
+#pragma mark Padding
+    
+- (void)setTextPadding:(CGSize)textPadding
+{
+    _textPadding = textPadding;
+    [self updatePlaceholderHorizontalConstraints];
+}
+    
+- (void)updatePlaceholderHorizontalConstraints
+{
+    self.placeholderLabelLeftConstraint.constant = self.textPadding.width;
+    self.placeholderLabelRightConstraint.constant = self.textPadding.width;
+}
+    
+- (void)setErrorPadding:(CGSize)errorPadding
+{
+    _errorPadding = errorPadding;
+    [self updateErrorHorizontalConstraints];
+}
+    
+- (void)updateErrorHorizontalConstraints
+{
+    self.errorLabelLeftConstraint.constant = self.errorPadding.width;
+    self.errorLabelRightConstraint.constant = self.errorPadding.width;
+}
 
 #pragma mark UITextField
 
@@ -604,7 +651,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     CGFloat topPadding = CGRectGetMaxY(self.underlineLayer.frame);
 
     if (!hidden) {
-        topPadding += self.errorPadding;
+        topPadding += self.errorPadding.height;
     }
 
     return topPadding;
@@ -630,6 +677,8 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     CGRect rect = [super textRectForBounds:bounds];
     rect.size.height = self.font.lineHeight;
     rect.origin.y = [self adjustedYPositionForTextRect];
+    rect.origin.x = self.textPadding.width;
+    rect.size.width = (rect.size.width - 2.0 * self.textPadding.width);
     self.textRect = rect;
     return rect;
 }
