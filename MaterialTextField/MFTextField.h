@@ -85,6 +85,6 @@ IB_DESIGNABLE
 /**
  * The vertical padding between the underline and the error label.
  */
-@property (nonatomic) IBInspectable CGFloat errorPadding;
+@property (nonatomic) IBInspectable CGSize errorPadding;
 
 @end
