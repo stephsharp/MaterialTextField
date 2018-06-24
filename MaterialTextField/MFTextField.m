@@ -22,8 +22,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 @property (nonatomic) UILabel *placeholderLabel;
 @property (nonatomic) NSLayoutConstraint *placeholderLabelTopConstraint;
-@property (nonatomic) NSLayoutConstraint *placeholderLabelLeftConstraint;
-@property (nonatomic) NSLayoutConstraint *placeholderLabelRightConstraint;
+@property (nonatomic) NSArray<NSLayoutConstraint *> *placeholderLabelHorizontalConstraints;
 @property (nonatomic) NSAttributedString *placeholderAttributedString;
 @property (nonatomic) UIFont *defaultPlaceholderFont;
 @property (nonatomic, readonly) BOOL shouldShowPlaceholder;
@@ -33,8 +32,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 @property (nonatomic) UILabel *errorLabel;
 @property (nonatomic) NSLayoutConstraint *errorLabelTopConstraint;
 @property (nonatomic) NSLayoutConstraint *errorLabelHeightConstraint;
-@property (nonatomic) NSLayoutConstraint *errorLabelLeftConstraint;
-@property (nonatomic) NSLayoutConstraint *errorLabelRightConstraint;
+@property (nonatomic) NSArray<NSLayoutConstraint *> *errorLabelHorizontalConstraints;
 
 @property (nonatomic, readonly) BOOL hasError;
 @property (nonatomic) BOOL errorIsAnimating;
@@ -137,8 +135,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 {
     if (self.placeholderLabel) {
         NSDictionary *views = @{@"placeholder": self.placeholderLabel};
-        NSDictionary *metrics = @{@"leftPadding": @(self.textPadding.width),
-                                  @"rightPadding": @(self.textPadding.width)};
+        NSDictionary *metrics = @{@"hPadding": @(self.textPadding.width)};
         
         
         NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[placeholder]"
@@ -146,14 +143,13 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
                                                                                metrics:nil
                                                                                  views:views];
         
-        NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-leftPadding-[placeholder]-rightPadding-|"
+        NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-hPadding-[placeholder]-hPadding-|"
                                                                                  options:0
                                                                                  metrics:metrics
                                                                                    views:views];
         
         self.placeholderLabelTopConstraint = verticalConstraints[0];
-        self.placeholderLabelLeftConstraint = horizontalConstraints[0];
-        self.placeholderLabelRightConstraint = horizontalConstraints[1];
+        self.placeholderLabelHorizontalConstraints = horizontalConstraints;
 
         [self addConstraints:verticalConstraints];
         [self addConstraints:horizontalConstraints];
@@ -165,27 +161,24 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     if (self.errorLabel) {
         NSDictionary *views = @{@"error": self.errorLabel};
         NSDictionary *metrics = @{@"topPadding": @([self topPaddingForErrorLabelHidden:!self.hasError]),
-                                  @"leftPadding": @(self.errorPadding.width),
-                                  @"rightPadding": @(self.errorPadding.width)
-                                  };
+                                  @"hPadding": @(self.errorPadding.width)};
 
         NSString *visualFormatString = @"V:|-topPadding-[error]-(>=0,0@900)-|";
         NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:visualFormatString
                                                                                options:0
                                                                                metrics:metrics
                                                                                  views:views];
-        self.errorLabelTopConstraint = verticalConstraints[0];
-        [self addConstraints:verticalConstraints];
 
-
-        NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-leftPadding-[error]->=rightPadding-|"
+        NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-hPadding-[error]->=hPadding-|"
                                                                      options:0
                                                                      metrics:metrics
                                                                      views:views];
-        [self addConstraints:horizontalConstraints];
         
-        self.errorLabelLeftConstraint = horizontalConstraints[0];
-        self.errorLabelRightConstraint = horizontalConstraints[1];
+        self.errorLabelTopConstraint = verticalConstraints[0];
+        self.errorLabelHorizontalConstraints = horizontalConstraints;
+        
+        [self addConstraints:verticalConstraints];
+        [self addConstraints:horizontalConstraints];
 
         self.errorLabelHeightConstraint = [NSLayoutConstraint constraintWithItem:self.errorLabel
                                                                        attribute:NSLayoutAttributeHeight
@@ -211,8 +204,9 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     
 - (void)updatePlaceholderHorizontalConstraints
 {
-    self.placeholderLabelLeftConstraint.constant = self.textPadding.width;
-    self.placeholderLabelRightConstraint.constant = self.textPadding.width;
+    for (NSLayoutConstraint *constraint in self.placeholderLabelHorizontalConstraints) {
+        constraint.constant = self.textPadding.width;
+    }
 }
     
 - (void)setErrorPadding:(CGSize)errorPadding
@@ -223,8 +217,9 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     
 - (void)updateErrorHorizontalConstraints
 {
-    self.errorLabelLeftConstraint.constant = self.errorPadding.width;
-    self.errorLabelRightConstraint.constant = self.errorPadding.width;
+    for (NSLayoutConstraint *constraint in self.errorLabelHorizontalConstraints) {
+        constraint.constant = self.errorPadding.width;
+    }
 }
 
 #pragma mark UITextField
@@ -674,11 +669,11 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 - (CGRect)textRectForBounds:(CGRect)bounds
 {
-    CGRect rect = [super textRectForBounds:bounds];
-    rect.size.height = self.font.lineHeight;
-    rect.origin.y = [self adjustedYPositionForTextRect];
-    rect.origin.x = self.textPadding.width;
-    rect.size.width = (rect.size.width - 2.0 * self.textPadding.width);
+    CGRect superRect = [super textRectForBounds:bounds];
+    CGRect rect = CGRectMake(self.textPadding.width,
+                             [self adjustedYPositionForTextRect],
+                             superRect.size.width - (2.0 * self.textPadding.width),
+                             self.font.lineHeight);
     self.textRect = rect;
     return rect;
 }

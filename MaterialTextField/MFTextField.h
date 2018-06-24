@@ -13,7 +13,7 @@ IB_DESIGNABLE
 
 /**
  * textPadding.height: Padding above and below the text field, between the placeholder label and underline.
- * textPadding.width:  Horizontal padding is yet to be implemented.
+ * textPadding.width:  Horizontal padding on the left and right of the text field.
  */
 @property (nonatomic) IBInspectable CGSize textPadding;
 
@@ -83,7 +83,8 @@ IB_DESIGNABLE
 @property (nonatomic) IBInspectable UIColor *errorColor;
 
 /**
- * The vertical padding between the underline and the error label.
+ * errorPadding.height: The vertical padding between the underline and the error label.
+ * errorPadding.width:  Horizontal padding on the left and right of the error label.
  */
 @property (nonatomic) IBInspectable CGSize errorPadding;
 
