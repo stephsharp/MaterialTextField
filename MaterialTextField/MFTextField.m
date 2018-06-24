@@ -31,7 +31,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 @property (nonatomic) UILabel *errorLabel;
 @property (nonatomic) NSLayoutConstraint *errorLabelTopConstraint;
-@property (nonatomic) NSLayoutConstraint *errorLabelHeightConstraint;
+@property (nonatomic) NSLayoutConstraint *errorLabelZeroHeightConstraint;
 @property (nonatomic) NSArray<NSLayoutConstraint *> *errorLabelHorizontalConstraints;
 
 @property (nonatomic, readonly) BOOL hasError;
@@ -133,63 +133,34 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 - (void)setupPlaceholderConstraints
 {
-    if (self.placeholderLabel) {
-        NSDictionary *views = @{@"placeholder": self.placeholderLabel};
-        NSDictionary *metrics = @{@"hPadding": @(self.textPadding.width)};
-        
-        
-        NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[placeholder]"
-                                                                               options:0
-                                                                               metrics:nil
-                                                                                 views:views];
-        
-        NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-hPadding-[placeholder]-hPadding-|"
-                                                                                 options:0
-                                                                                 metrics:metrics
-                                                                                   views:views];
-        
-        self.placeholderLabelTopConstraint = verticalConstraints[0];
-        self.placeholderLabelHorizontalConstraints = horizontalConstraints;
+    self.placeholderLabelTopConstraint = [self.topAnchor constraintEqualToAnchor:self.placeholderLabel.topAnchor];
+    
+    NSLayoutConstraint *leading = [self.placeholderLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor
+                                                                                      constant:self.textPadding.width];
+    NSLayoutConstraint *trailing = [self.trailingAnchor constraintEqualToAnchor:self.placeholderLabel.trailingAnchor
+                                                                       constant:self.textPadding.width];
+    self.placeholderLabelHorizontalConstraints = @[leading, trailing];
 
-        [self addConstraints:verticalConstraints];
-        [self addConstraints:horizontalConstraints];
-    }
+    [NSLayoutConstraint activateConstraints:@[self.placeholderLabelTopConstraint, leading, trailing]];
 }
 
 - (void)setupErrorConstraints
 {
-    if (self.errorLabel) {
-        NSDictionary *views = @{@"error": self.errorLabel};
-        NSDictionary *metrics = @{@"topPadding": @([self topPaddingForErrorLabelHidden:!self.hasError]),
-                                  @"hPadding": @(self.errorPadding.width)};
+    self.errorLabelTopConstraint = [self.errorLabel.topAnchor constraintEqualToAnchor:self.topAnchor
+                                                                             constant:[self topPaddingForErrorLabelHidden:!self.hasError]];
+    NSLayoutConstraint *bottom = [self.errorLabel.bottomAnchor constraintGreaterThanOrEqualToAnchor:self.bottomAnchor];
+    bottom.priority = 900;
 
-        NSString *visualFormatString = @"V:|-topPadding-[error]-(>=0,0@900)-|";
-        NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:visualFormatString
-                                                                               options:0
-                                                                               metrics:metrics
-                                                                                 views:views];
-
-        NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-hPadding-[error]->=hPadding-|"
-                                                                     options:0
-                                                                     metrics:metrics
-                                                                     views:views];
-        
-        self.errorLabelTopConstraint = verticalConstraints[0];
-        self.errorLabelHorizontalConstraints = horizontalConstraints;
-        
-        [self addConstraints:verticalConstraints];
-        [self addConstraints:horizontalConstraints];
-
-        self.errorLabelHeightConstraint = [NSLayoutConstraint constraintWithItem:self.errorLabel
-                                                                       attribute:NSLayoutAttributeHeight
-                                                                       relatedBy:NSLayoutRelationEqual
-                                                                          toItem:nil
-                                                                       attribute:NSLayoutAttributeNotAnAttribute
-                                                                      multiplier:0
-                                                                        constant:0];
-        [self.errorLabel addConstraint:self.errorLabelHeightConstraint];
-        self.errorLabelHeightConstraint.active = !self.hasError;
-    }
+    NSLayoutConstraint *leading = [self.errorLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor
+                                                                                constant:self.errorPadding.width];
+    NSLayoutConstraint *trailing = [self.trailingAnchor constraintGreaterThanOrEqualToAnchor:self.errorLabel.trailingAnchor
+                                                                                    constant:self.errorPadding.width];
+    self.errorLabelHorizontalConstraints = @[leading, trailing];
+    
+    [NSLayoutConstraint activateConstraints:@[self.errorLabelTopConstraint, bottom, leading, trailing]];
+    
+    self.errorLabelZeroHeightConstraint = [self.errorLabel.heightAnchor constraintEqualToConstant:0];
+    self.errorLabelZeroHeightConstraint.active = !self.hasError;
 }
 
 #pragma mark - Properties
@@ -574,7 +545,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
         [self.superview layoutIfNeeded];
 
         self.errorIsAnimating = YES;
-        self.errorLabelHeightConstraint.active = NO;
+        self.errorLabelZeroHeightConstraint.active = NO;
         self.errorLabelTopConstraint.constant = [self topPaddingForErrorLabelHidden:NO];
 
         [UIView animateWithDuration:MFDefaultAnimationDuration
@@ -594,7 +565,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     else if (!animated) {
         self.errorLabel.alpha = 1.0f;
         self.errorLabelTopConstraint.constant = [self topPaddingForErrorLabelHidden:NO];
-        self.errorLabelHeightConstraint.active = NO;
+        self.errorLabelZeroHeightConstraint.active = NO;
     }
 }
 
@@ -611,7 +582,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
                              [self.superview layoutIfNeeded];
 
                              self.errorLabelTopConstraint.constant = [self topPaddingForErrorLabelHidden:YES];
-                             self.errorLabelHeightConstraint.active = YES;
+                             self.errorLabelZeroHeightConstraint.active = YES;
 
                              [UIView animateWithDuration:MFDefaultAnimationDuration * 0.3
                                                    delay:0.0
@@ -631,7 +602,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     else if (!animated) {
         self.errorLabel.alpha = 0.0f;
         self.errorLabelTopConstraint.constant = [self topPaddingForErrorLabelHidden:YES];
-        self.errorLabelHeightConstraint.active = YES;
+        self.errorLabelZeroHeightConstraint.active = YES;
     }
 }
 
