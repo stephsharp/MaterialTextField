@@ -69,6 +69,14 @@
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="textPadding">
+                                        <size key="value" width="8" height="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="errorPadding">
+                                        <size key="value" width="8" height="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="textFieldDidChange:" destination="BYZ-38-t0r" eventType="editingChanged" id="7p3-ay-HPi"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="xHD-DP-ky4"/>
