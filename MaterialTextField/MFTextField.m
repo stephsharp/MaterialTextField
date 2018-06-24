@@ -519,7 +519,8 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     }
     attributes[NSForegroundColorAttributeName] = color;
 
-    return [[NSAttributedString alloc] initWithString:attributedString.string attributes:attributes];
+    return [[NSAttributedString alloc] initWithString:attributedString.string ?: @""
+                                           attributes:attributes];
 }
 
 - (void)removePlaceholderLabel
