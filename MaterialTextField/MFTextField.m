@@ -133,7 +133,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 - (void)setupPlaceholderConstraints
 {
-    self.placeholderLabelTopConstraint = [self.topAnchor constraintEqualToAnchor:self.placeholderLabel.topAnchor];
+    self.placeholderLabelTopConstraint = [self.placeholderLabel.topAnchor constraintEqualToAnchor:self.topAnchor];
     
     NSLayoutConstraint *leading = [self.placeholderLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor
                                                                                       constant:self.textPadding.width];
