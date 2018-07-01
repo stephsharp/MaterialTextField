@@ -53,7 +53,16 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
                                         <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="textPadding">
+                                        <size key="value" width="20" height="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="errorPadding">
+                                        <size key="value" width="20" height="8"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="textFieldDidChange:" destination="BYZ-38-t0r" eventType="editingChanged" id="uMx-3J-4yS"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="number" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gNx-E7-aGq" customClass="MFTextField">
                                 <rect key="frame" x="16" y="20" width="343" height="60"/>
@@ -109,6 +118,7 @@
                     <connections>
                         <outlet property="textField1" destination="gNx-E7-aGq" id="1pI-Mq-qvh"/>
                         <outlet property="textField2" destination="vrI-fI-vIo" id="e8w-3k-NaW"/>
+                        <outlet property="textField4" destination="A1d-5c-S25" id="k4X-gw-qB1"/>
                         <outlet property="textField5" destination="Z0L-Ka-jzP" id="lDR-gK-uuK"/>
                     </connections>
                 </viewController>

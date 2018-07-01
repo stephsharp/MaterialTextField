@@ -642,7 +642,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 - (CGRect)textRectForBounds:(CGRect)bounds
 {
     CGRect superRect = [super textRectForBounds:bounds];
-    CGRect rect = CGRectMake(self.textPadding.width,
+    CGRect rect = CGRectMake(superRect.origin.x + self.textPadding.width,
                              [self adjustedYPositionForTextRect],
                              superRect.size.width - (2.0 * self.textPadding.width),
                              self.font.lineHeight);
@@ -675,6 +675,22 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     clearButtonRect.origin.y = CGRectGetMidY(_textRect) - (clearButtonRect.size.height / 2.0f);
 
     return clearButtonRect;
+}
+
+- (CGRect)rightViewRectForBounds:(CGRect)bounds
+{
+    CGRect rightViewRect = [super rightViewRectForBounds:bounds];
+    rightViewRect.origin.y = CGRectGetMidY(_textRect) - (rightViewRect.size.height / 2.0f);
+    
+    return rightViewRect;
+}
+
+- (CGRect)leftViewRectForBounds:(CGRect)bounds
+{
+    CGRect leftViewRect = [super leftViewRectForBounds:bounds];
+    leftViewRect.origin.y = CGRectGetMidY(_textRect) - (leftViewRect.size.height / 2.0f);
+    
+    return leftViewRect;
 }
 
 # pragma mark - UIView

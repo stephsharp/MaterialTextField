@@ -16,6 +16,7 @@ NSInteger const MFDemoErrorCode = 100;
 
 @property (weak, nonatomic) IBOutlet MFTextField *textField1;
 @property (weak, nonatomic) IBOutlet MFTextField *textField2;
+@property (weak, nonatomic) IBOutlet MFTextField *textField4;
 @property (weak, nonatomic) IBOutlet MFTextField *textField5;
 
 @end
@@ -28,6 +29,7 @@ NSInteger const MFDemoErrorCode = 100;
 
     [self setupTextField1];
     [self setupTextField2];
+    [self setupTextField4];
     [self setupTextField5];
 }
 
@@ -53,6 +55,31 @@ NSInteger const MFDemoErrorCode = 100;
     self.textField2.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Attributed placeholder" attributes:@{NSFontAttributeName:font}];
 }
 
+- (void)setupTextField4
+{
+    UIButton *eyeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [eyeButton setImage:[UIImage imageNamed:@"eye"] forState:UIControlStateNormal];
+    eyeButton.imageEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
+    eyeButton.bounds = CGRectMake(0, 0, 24, 16);
+    [eyeButton addTarget:self
+                  action:@selector(togglePassword)
+        forControlEvents:UIControlEventTouchUpInside];
+    
+    self.textField4.rightViewMode = UITextFieldViewModeAlways;
+    self.textField4.rightView = eyeButton;
+    
+    UIImageView *lockImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"lock"]];
+    lockImage.bounds = CGRectMake(0, 0, 24, 16);
+    lockImage.contentMode = UIViewContentModeLeft;
+    self.textField4.leftViewMode = UITextFieldViewModeAlways;
+    self.textField4.leftView = lockImage;
+}
+
+- (void)togglePassword
+{
+    self.textField4.secureTextEntry = !self.textField4.isSecureTextEntry;
+}
+
 - (void)setupTextField5
 {
     [self validateTextField5Animated:NO];
@@ -72,6 +99,9 @@ NSInteger const MFDemoErrorCode = 100;
     }
     else if (textField == self.textField2) {
         [self validateTextField2];
+    }
+    else if (textField == self.textField4) {
+        [self validateTextField4];
     }
     else if (textField == self.textField5) {
         [self validateTextField5Animated:YES];
@@ -98,6 +128,15 @@ NSInteger const MFDemoErrorCode = 100;
     [self.textField2 setError:error animated:YES];
 }
 
+- (void)validateTextField4
+{
+    NSError *error = nil;
+    if (![self textField4IsValid]) {
+        error = [self errorWithLocalizedDescription:@"Password must be less than 16 characters."];
+    }
+    [self.textField4 setError:error animated:YES];
+}
+
 - (void)validateTextField5Animated:(BOOL)animated
 {
     NSError *error = nil;
@@ -115,6 +154,11 @@ NSInteger const MFDemoErrorCode = 100;
 - (BOOL)textField2IsValid
 {
     return self.textField2.text.length < 3;
+}
+
+- (BOOL)textField4IsValid
+{
+    return self.textField4.text.length < 16;
 }
 
 - (BOOL)textField5IsValid
