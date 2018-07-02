@@ -642,9 +642,16 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 - (CGRect)textRectForBounds:(CGRect)bounds
 {
     CGRect superRect = [super textRectForBounds:bounds];
-    CGRect rect = CGRectMake(superRect.origin.x + self.textPadding.width,
+    CGRect rightRect = [super rightViewRectForBounds:bounds];
+    BOOL hasLeftView = [self leftViewRectForBounds:bounds].size.width > 0;
+    BOOL hasRightView = [self rightViewRectForBounds:bounds].size.width > 0;
+    
+    CGFloat leftPadding = hasLeftView ? 0 : self.textPadding.width;
+    CGFloat rightPadding = hasRightView ? rightRect.size.width : self.textPadding.width * 2;
+    
+    CGRect rect = CGRectMake(superRect.origin.x + leftPadding,
                              [self adjustedYPositionForTextRect],
-                             superRect.size.width - (2.0 * self.textPadding.width),
+                             superRect.size.width - rightPadding,
                              self.font.lineHeight);
     self.textRect = rect;
     return rect;
@@ -680,6 +687,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 - (CGRect)rightViewRectForBounds:(CGRect)bounds
 {
     CGRect rightViewRect = [super rightViewRectForBounds:bounds];
+    rightViewRect.origin.x = rightViewRect.origin.x - self.textPadding.width;
     rightViewRect.origin.y = CGRectGetMidY(_textRect) - (rightViewRect.size.height / 2.0f);
     
     return rightViewRect;
@@ -688,6 +696,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 - (CGRect)leftViewRectForBounds:(CGRect)bounds
 {
     CGRect leftViewRect = [super leftViewRectForBounds:bounds];
+    leftViewRect.origin.x = self.textPadding.width;
     leftViewRect.origin.y = CGRectGetMidY(_textRect) - (leftViewRect.size.height / 2.0f);
     
     return leftViewRect;
