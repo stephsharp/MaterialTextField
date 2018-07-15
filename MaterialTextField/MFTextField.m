@@ -336,12 +336,9 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 {
     if (self.shouldShowPlaceholder) {
         [self updatePlaceholderColor];
-
-        if (self.placeholderIsHidden) {
-            [self showPlaceholderLabelAnimated:animated];
-        }
+        [self showPlaceholderLabelAnimated:animated];
     }
-    else if (!self.placeholderIsHidden) {
+    else {
         [self hidePlaceholderLabelAnimated:animated];
     }
 }
@@ -423,6 +420,10 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
         // Call setPlaceholder on super so placeholderAttributedString is not set to nil
         [super setPlaceholder:nil];
     }
+    
+    if (!self.placeholderIsHidden) {
+        return;
+    }
 
     if (animated && !self.placeholderIsAnimating) {
         [self.superview layoutIfNeeded];
@@ -452,6 +453,10 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 
 - (void)hidePlaceholderLabelAnimated:(BOOL)animated
 {
+    if (self.placeholderIsHidden) {
+        return;
+    }
+
     CGFloat finalDistanceFromTop = CGRectGetMinY(self.textRect) / 2.0f;
 
     if (self.placeholderAnimatesOnFocus) {
