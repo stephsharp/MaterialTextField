@@ -148,9 +148,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 {
     self.errorLabelTopConstraint = [self.errorLabel.topAnchor constraintEqualToAnchor:self.topAnchor
                                                                              constant:[self topPaddingForErrorLabelHidden:!self.hasError]];
-    NSLayoutConstraint *bottom = [self.errorLabel.bottomAnchor constraintGreaterThanOrEqualToAnchor:self.bottomAnchor];
-    bottom.priority = 900;
-
+    NSLayoutConstraint *bottom = [self.errorLabel.bottomAnchor constraintEqualToAnchor:self.bottomAnchor];
     NSLayoutConstraint *leading = [self.errorLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor
                                                                                 constant:self.errorPadding.width];
     NSLayoutConstraint *trailing = [self.trailingAnchor constraintGreaterThanOrEqualToAnchor:self.errorLabel.trailingAnchor
