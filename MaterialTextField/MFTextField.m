@@ -76,6 +76,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     self.textPadding = CGSizeMake(0.0f, 8.0f);
     self.errorPadding = CGSizeMake(0.0f, 4.0f);
 
+    self.alwaysShowPlaceholderOnTop = NO;
     self.animatesPlaceholder = YES;
     self.placeholderColor = [UIColor mf_darkGrayColor];
     self.placeholderFont = self.defaultPlaceholderFont;
@@ -243,6 +244,15 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     }
 }
 
+- (void)setAlwaysShowPlaceholderOnTop:(BOOL)alwaysShowPlaceholderOnTop
+{
+    _alwaysShowPlaceholderOnTop = alwaysShowPlaceholderOnTop;
+    if (alwaysShowPlaceholderOnTop)
+    {
+        self.placeholderLabel.alpha = 1;
+    }
+}
+
 - (void)setDefaultPlaceholderColor:(UIColor *)defaultPlaceholderColor
 {
     _defaultPlaceholderColor = defaultPlaceholderColor ?: [UIColor mf_defaultPlaceholderGray];
@@ -299,7 +309,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
 {
     BOOL isEmpty = self.text.length == 0;
 
-    return !isEmpty || (self.placeholderAnimatesOnFocus && self.isFirstResponder);
+    return !isEmpty || self.alwaysShowPlaceholderOnTop || (self.placeholderAnimatesOnFocus && self.isFirstResponder);
 }
 
 - (BOOL)hasError
