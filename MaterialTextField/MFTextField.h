@@ -28,6 +28,12 @@ IB_DESIGNABLE
  */
 @property (nonatomic) IBInspectable BOOL placeholderAnimatesOnFocus;
 
+
+/**
+ * Default is NO. If YES, the placeholder label will be always visible
+ */
+@property (nonatomic) IBInspectable BOOL alwaysShowPlaceholderOnTop;
+
 /**
  * The color of the text field's default placeholder (displayed when text field is empty).
  */
