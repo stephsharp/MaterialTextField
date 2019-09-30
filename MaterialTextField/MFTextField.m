@@ -400,7 +400,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
         font = self.font;
     }
 
-    return [UIFont fontWithName:font.fontName size:MFDefaultLabelFontSize];
+    return [font fontWithSize:MFDefaultLabelFontSize];
 }
 
 - (void)updateDefaultPlaceholderFont
