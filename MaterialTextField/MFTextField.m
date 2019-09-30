@@ -460,7 +460,11 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     CGFloat finalDistanceFromTop = CGRectGetMinY(self.textRect) / 2.0f;
 
     if (self.placeholderAnimatesOnFocus) {
-        self.attributedPlaceholder = self.placeholderAttributedString;
+        if (self.placeholderAttributedString.length > 0) {
+            self.attributedPlaceholder = self.placeholderAttributedString;
+        } else {
+            self.placeholder = self.placeholderLabel.text;
+        }
     }
 
     if (animated && !self.placeholderIsAnimating) {
