@@ -426,7 +426,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     }
 
     if (animated && !self.placeholderIsAnimating) {
-        [self.superview layoutIfNeeded];
+        [self.superview setNeedsLayout];
 
         self.placeholderIsAnimating = YES;
         self.placeholderLabelTopConstraint.constant = 0;
@@ -468,7 +468,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     }
 
     if (animated && !self.placeholderIsAnimating) {
-        [self.superview layoutIfNeeded];
+        [self.superview setNeedsLayout];
 
         self.placeholderIsAnimating = YES;
         self.placeholderLabelTopConstraint.constant = finalDistanceFromTop;
@@ -550,7 +550,7 @@ static NSTimeInterval const MFDefaultAnimationDuration = 0.3;
     [self updateErrorLabelText];
 
     if (animated && !self.errorIsAnimating) {
-        [self.superview layoutIfNeeded];
+        [self.superview setNeedsLayout];
 
         self.errorIsAnimating = YES;
         self.errorLabelZeroHeightConstraint.active = NO;
