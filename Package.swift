@@ -28,6 +28,10 @@ import PackageDescription
 let package = Package(name: "MaterialTextField",
                       platforms: [.iOS(.v10)],
                       products: [.library(name: "MaterialTextField",
+                                          type: .dynamic,
                                           targets: ["MaterialTextField"])],
                       targets: [.target(name: "MaterialTextField",
-                                        path: "MaterialTextField")])
+                                        path: "MaterialTextField",
+                                        exclude: [],
+                                        sources: nil,
+                                        publicHeadersPath: "Public")])

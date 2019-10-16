@@ -70,6 +70,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		485C089923573E370023A279 /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				CE58F7D31BEBE77E0082924A /* MFTextField.h */,
+				CE58F7D51BEBE77E0082924A /* UIColor+MaterialTextField.h */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
 		82125D251BEEF6010017F72C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,16 +119,15 @@
 			isa = PBXGroup;
 			children = (
 				CE58F7BC1BEBE64C0082924A /* MaterialTextField.h */,
-				CE58F7D31BEBE77E0082924A /* MFTextField.h */,
-				CE58F7D41BEBE77E0082924A /* MFTextField.m */,
-				CE58F7D51BEBE77E0082924A /* UIColor+MaterialTextField.h */,
-				CE58F7D61BEBE77E0082924A /* UIColor+MaterialTextField.m */,
+				485C089923573E370023A279 /* Public */,
 				82125D271BEF36E20017F72C /* UIFont+MaterialTextField.h */,
 				82125D281BEF36E20017F72C /* UIFont+MaterialTextField.m */,
 				CE58F7D71BEBE77E0082924A /* UIImage+MFTint.h */,
 				CE58F7D81BEBE77E0082924A /* UIImage+MFTint.m */,
 				CE58F7D91BEBE77E0082924A /* UITextField+MFClearButton.h */,
 				CE58F7DA1BEBE77E0082924A /* UITextField+MFClearButton.m */,
+				CE58F7D41BEBE77E0082924A /* MFTextField.m */,
+				CE58F7D61BEBE77E0082924A /* UIColor+MaterialTextField.m */,
 				82125D251BEEF6010017F72C /* Supporting Files */,
 			);
 			path = MaterialTextField;
@@ -211,6 +219,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = CE58F7AF1BEBE64C0082924A;
