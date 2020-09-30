@@ -19,7 +19,7 @@ A [Material Design](https://www.google.com/design/spec/components/text-fields.ht
 
 ##### Error message
 
-- Animated error message appears below the text field
+- Animated error messages appears below the text field
 - Long error messages wrap onto multiple lines 
 
 
